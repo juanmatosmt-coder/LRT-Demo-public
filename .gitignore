@@ -1,0 +1,15 @@
+.venv/
+.venv-agents/
+local_settings.bat
+__pycache__/
+traces/
+spikes/results/
+eval/results/
+*.pyc
+
+# Real company data: never commit
+data/private/*
+!data/private/README.md
+
+# Previous versions kept by the lab data editor
+data/**/history/

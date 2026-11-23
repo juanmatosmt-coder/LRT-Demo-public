@@ -1,0 +1,98 @@
+{
+ "id": "SYN-LR-023",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Thermal cycling with humidity",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Prototype",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Shield attach, glue",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "4"
+   },
+   {
+    "productName": "Shield attach, solder paste",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "4"
+   },
+   {
+    "productName": "Shield attach, gasket",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "4"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Thermal cycling: 25 °C to 65 °C with humidity, 10 cycles of 10 hours (100 hours), 2-hour ramps. 4 samples per design (C1-C4).",
+    "applicableSpecifications": "EIA-364-31",
+    "specificationRevision": "EIA-364-31 Rev F"
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-12-09",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 2: Part Number Revision is empty.",
+   "Item 2: Traceability Mfg Lot Info is empty.",
+   "Item 2: Housing Material is empty.",
+   "Item 3: Part Number Revision is empty.",
+   "Item 3: Traceability Mfg Lot Info is empty.",
+   "Item 3: Housing Material is empty.",
+   "Additional Information is empty."
+  ],
+  "should_fix": [
+   "Preconditioning is not mentioned.",
+   "Sample storage history is missing."
+  ],
+  "good_practice": [
+   "'humidity' has no procedure in the assistant's library.",
+   "High-quality past requests for this test also state the report contents."
+  ]
+ },
+ "why_good": [
+  "Full cycling profile.",
+  "Cites the method.",
+  "Same sample IDs for each design."
+ ],
+ "gaps": [
+  "No dwell or humidity level.",
+  "Does not say what to measure before and after."
+ ]
+}

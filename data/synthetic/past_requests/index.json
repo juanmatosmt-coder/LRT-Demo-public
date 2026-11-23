@@ -1,0 +1,379 @@
+{
+ "_about": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results. Built by tools/make_synthetic_library.py.",
+ "synthetic": true,
+ "examples": [
+  {
+   "id": "SYN-LR-001",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Temperature rise, parallel-board fixture",
+   "kind": "good example",
+   "why_good": [
+    "Points to the earlier test and says what is different this time.",
+    "Gives the stopping point (30 °C rise) and the thermocouple locations.",
+    "States the expected current, so the lab can choose the supply and range in advance."
+   ],
+   "file": "SYN-LR-001.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-002",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Contact resistance and mating force, immersed in coolant",
+   "kind": "good example",
+   "why_good": [
+    "States the test medium for every test.",
+    "Cites a standard for each measurement.",
+    "Explains why the sample count may change."
+   ],
+   "file": "SYN-LR-002.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-003",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Chlorine exposure and SEM, same day",
+   "kind": "contrast example (what to avoid)",
+   "why_good": [
+    "Gives the plating thickness on the mating area.",
+    "Says which part is urgent."
+   ],
+   "file": "SYN-LR-003.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-004",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Mixed flowing gas, unmated and mated groups",
+   "kind": "good example",
+   "why_good": [
+    "Two groups that differ only in mating state, with the sequence for each.",
+    "Cites the method; states the objective."
+   ],
+   "file": "SYN-LR-004.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-005",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Full qualification with annotated test board",
+   "kind": "good example",
+   "why_good": [
+    "Complete part data and quantity.",
+    "Cites the qualification standard.",
+    "Shows the assembly torque on a photo of the test board."
+   ],
+   "file": "SYN-LR-005.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-006",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Competitor plating thickness by cross-section",
+   "kind": "good example",
+   "why_good": [
+    "Compares like with like (receptacle and header from both sources).",
+    "Says what to measure and where, and the order of work."
+   ],
+   "file": "SYN-LR-006.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-007",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Hardness: certificate vs specification",
+   "kind": "good example",
+   "why_good": [
+    "Asks one clear question with both numbers.",
+    "Small scope that fits a short turnaround."
+   ],
+   "file": "SYN-LR-007.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-008",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Temperature rise, two current setups",
+   "kind": "good example",
+   "why_good": [
+    "Two setups with the current plan for each.",
+    "Warns that the test boards are not here yet."
+   ],
+   "file": "SYN-LR-008.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-009",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Cap insertion and removal, per-sample cycles",
+   "kind": "good example",
+   "why_good": [
+    "Cycle plan per sample.",
+    "Revisions for the socket and its cap."
+   ],
+   "file": "SYN-LR-009.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-010",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] CT scan, five sample groups",
+   "kind": "good example",
+   "why_good": [
+    "Complete material data and a lot for every group.",
+    "Named groups and a drawing of the feature."
+   ],
+   "file": "SYN-LR-010.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-011",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Lubricant change verification",
+   "kind": "good example",
+   "why_good": [
+    "States the objective.",
+    "Cites the governing specification with its revision.",
+    "Materials per contact type, and which samples suit which group and why."
+   ],
+   "file": "SYN-LR-011.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-012",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] End-of-life program for a customer",
+   "kind": "good example",
+   "why_good": [
+    "Full traceability and plating thickness.",
+    "Test groups with simulated life.",
+    "Ties to the customer plan and warns about custom boards."
+   ],
+   "file": "SYN-LR-012.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-013",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Cable durability with two speed profiles",
+   "kind": "good example",
+   "why_good": [
+    "Defines the mating pairs.",
+    "Two speed profiles with sample counts.",
+    "Separate samples for each destructive test."
+   ],
+   "file": "SYN-LR-013.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-014",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Foam compression method",
+   "kind": "good example",
+   "why_good": [
+    "Precise method: strain, speed, platen and cycles.",
+    "Cites the material standard."
+   ],
+   "file": "SYN-LR-014.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-015",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] FTIR on a melted area",
+   "kind": "contrast example (what to avoid)",
+   "why_good": [
+    "Asks one question: identify the polymer."
+   ],
+   "file": "SYN-LR-015.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-016",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Lab equipment check: current shunts",
+   "kind": "good example",
+   "why_good": [
+    "Full measurement method.",
+    "Cites the method standard."
+   ],
+   "file": "SYN-LR-016.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-017",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Socket current rating in two phases",
+   "kind": "good example",
+   "why_good": [
+    "Two phases with full sequences.",
+    "A standard for each measurement.",
+    "Lists the assembly and flags equipment to buy first."
+   ],
+   "file": "SYN-LR-017.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-018",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] FIB plating analysis at marked spots",
+   "kind": "good example",
+   "why_good": [
+    "Lists every result wanted.",
+    "Says where and how much to cut, with photos."
+   ],
+   "file": "SYN-LR-018.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-019",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] CT wipe distance at three stack heights",
+   "kind": "good example",
+   "why_good": [
+    "Says what to focus on and what to ignore.",
+    "One clear measurement per sample, three stack heights."
+   ],
+   "file": "SYN-LR-019.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-020",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Retention force with a minimum",
+   "kind": "good example",
+   "why_good": [
+    "States the pass limit.",
+    "How many and how to pick them.",
+    "Highlights the feature in a picture."
+   ],
+   "file": "SYN-LR-020.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-021",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Conductor fracture: which failure mode?",
+   "kind": "good example",
+   "why_good": [
+    "Asks a specific question with candidate answers.",
+    "Says where to look and approves destructive work."
+   ],
+   "file": "SYN-LR-021.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-022",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Dye and pry with a pass rule",
+   "kind": "good example",
+   "why_good": [
+    "States the pass criterion.",
+    "Traces samples to an earlier group and adds new samples as a baseline.",
+    "Cites the procedure with revision."
+   ],
+   "file": "SYN-LR-022.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-023",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Thermal cycling with humidity",
+   "kind": "good example",
+   "why_good": [
+    "Full cycling profile.",
+    "Cites the method.",
+    "Same sample IDs for each design."
+   ],
+   "file": "SYN-LR-023.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-024",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] DSC on a two-part epoxy",
+   "kind": "good example",
+   "why_good": [
+    "Complete DSC method and outputs.",
+    "Cites both methods.",
+    "Compares cured, liquid and field-return samples."
+   ],
+   "file": "SYN-LR-024.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-025",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Contact force without cutting the housing",
+   "kind": "good example",
+   "why_good": [
+    "Says how to test without destroying the part.",
+    "Two tests with deflection and cycles.",
+    "Gives the wafer pattern and counts."
+   ],
+   "file": "SYN-LR-025.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-026",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Validation with pass criteria",
+   "kind": "good example",
+   "why_good": [
+    "States pass criteria.",
+    "Cites each method and condition.",
+    "Sample counts per group."
+   ],
+   "file": "SYN-LR-026.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-027",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Coating DOE on LLCR",
+   "kind": "good example",
+   "why_good": [
+    "States the purpose in one line.",
+    "Defines the DOE groups and counts.",
+    "Step plan with hand-offs and how to report."
+   ],
+   "file": "SYN-LR-027.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-028",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Gasket ageing: two suppliers by three conditions",
+   "kind": "good example",
+   "why_good": [
+    "Clean supplier-by-condition grid.",
+    "Says how to present results.",
+    "Explains an observation and asks for both faces."
+   ],
+   "file": "SYN-LR-028.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-029",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] Abrasion method on plated plastic",
+   "kind": "good example",
+   "why_good": [
+    "Full abrasion method.",
+    "Photos and thickness after each load."
+   ],
+   "file": "SYN-LR-029.json",
+   "synthetic": true
+  },
+  {
+   "id": "SYN-LR-030",
+   "form": "lab_test_request",
+   "title": "[SYNTHETIC] CT scan with no question",
+   "kind": "contrast example (what to avoid)",
+   "why_good": [
+    "Groups samples by design."
+   ],
+   "file": "SYN-LR-030.json",
+   "synthetic": true
+  }
+ ]
+}

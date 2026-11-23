@@ -1,0 +1,84 @@
+{
+ "id": "SYN-LR-008",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Temperature rise, two current setups",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic pluggable connector, fast",
+    "partNumberRevision": "SYN-40707 Rev A",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Synthetic pluggable connector, standard",
+    "partNumberRevision": "SYN-40708 Rev A",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Setup 1, signals and power: signals at 0.25 A, ramp power to over 2 A or a 40 °C rise, then ramp signals to 0.5 A. Setup 2, signals, power and grounds: same, with grounds ramped with power.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "",
+  "canTestingBeSubcontracted": "",
+  "additionalInformation": "New test boards are on order; expected next week.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-05-06",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 2: Traceability Mfg Lot Info is empty.",
+   "Item 2: Housing Material is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Confidential tests or samples is empty.",
+   "Can testing be subcontracted is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "Item 1: SYN-40707 is not in the parts directory.",
+   "Item 2: SYN-40708 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Two setups with the current plan for each.",
+  "Warns that the test boards are not here yet."
+ ],
+ "gaps": [
+  "No standard cited.",
+  "No thermocouple locations or ambient."
+ ]
+}

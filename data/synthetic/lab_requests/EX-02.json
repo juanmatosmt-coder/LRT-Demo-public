@@ -1,0 +1,52 @@
+{
+ "id": "EX-02",
+ "form": "lab_test_request",
+ "title": "Thermal cycling 500 cycles with readouts, SYN-10003 Rev B",
+ "fields": {
+  "firstName": "Alex",
+  "lastName": "Example",
+  "email": "alex.example@example.com",
+  "phone": "5550100",
+  "bPCNumber": "U0000 - Synthetic Cost Center A",
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "Qualification",
+  "confidentialTestsOrSamples": "no",
+  "canTestingBeSubcontracted": "no",
+  "sendCopiesTo": "alex.example@example.com, quality.example@example.com",
+  "requestedTestingCompletionDate": "2027-02-26",
+  "resultsFormat": "Data and Observations",
+  "step2_rows": [
+   {
+    "productName": "Synthetic mezzanine receptacle 400",
+    "partNumberRevision": "SYN-10003 Rev B",
+    "traceabilityMfgLotInfo": "Lot L2610-15 (15 pcs, IDs R01-R15)",
+    "contactBaseMaterial": "Copper alloy C7025",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "Synthetic lube A",
+    "housingMaterial": "PPS, 40% glass",
+    "quantity": "15"
+   }
+  ],
+  "postTestingSampleDisposition": "Keep in the lab",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Thermal cycling -40 C to 125 C, 15 min dwell, 10 C/min ramp, 500 cycles; visual inspection and coplanarity readouts at 0, 100, 200, 300, 400 and 500 cycles",
+    "applicableSpecifications": "SYN-TM-110 Thermal Cycling Exposure; SYN-PR-201 Sample Preparation",
+    "specificationRevision": "SYN-TM-110 Rev D; SYN-PR-201 Rev B"
+   }
+  ],
+  "additionalInformation": "Objective: check for housing cracking and coplanarity drift over 500 cycles before design freeze.\nProfile is inside the chamber range (-55 to 150 C) per the lab equipment list.\nSamples are as-molded, dry-packed since molding. Precondition per SYN-PR-201 before the first cycle.\nReadout measurement: coplanarity at 25 C over the mating face, datum = mounting pegs.\nStop and contact the requester if any sample cracks before 300 cycles.\nReport: coplanarity per sample at each readout, photos of any cracks."
+ },
+ "_why_good": [
+  "Gives every profile parameter the procedure requires (min, max, dwell, ramp, cycles).",
+  "Defines readouts and what is measured at each one.",
+  "Checks the profile against the chamber range before submitting.",
+  "Says what to do if something goes wrong mid-test (a stop condition)."
+ ],
+ "created": "2026-11-23",
+ "submitted": false,
+ "synthetic": true
+}

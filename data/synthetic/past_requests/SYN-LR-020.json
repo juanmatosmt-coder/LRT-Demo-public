@@ -1,0 +1,81 @@
+{
+ "id": "SYN-LR-020",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Retention force with a minimum",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic interposer A",
+    "partNumberRevision": "SYN-42020 Rev A",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "Copper alloy NK",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "",
+    "housingMaterial": "LCP",
+    "quantity": "1"
+   },
+   {
+    "productName": "Synthetic interposer B",
+    "partNumberRevision": "SYN-42021 Rev A",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "Copper alloy NK",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "",
+    "housingMaterial": "LCP",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Contact retention: push 5 contacts per interposer (of 9 loaded), and push 5 inserts out of the housing; pick locations at random.",
+    "applicableSpecifications": "Force 10 g minimum",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "A CAD view highlights the insert to push.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-10-28",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 2: Traceability Mfg Lot Info is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'contact retention force' has no procedure in the assistant's library.",
+   "Item 1: SYN-42020 is not in the parts directory.",
+   "Item 2: SYN-42021 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "States the pass limit.",
+  "How many and how to pick them.",
+  "Highlights the feature in a picture."
+ ],
+ "gaps": [
+  "No lots.",
+  "Objective not stated."
+ ]
+}

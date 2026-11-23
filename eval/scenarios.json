@@ -1,0 +1,216 @@
+{
+  "_about": "Synthetic test scenarios. required_facts / forbidden_facts are exact substrings of the documents in docs/: a retrieved chunk covers a fact only if the whole sentence fragment is inside that one chunk. output_checks / output_forbidden are case-insensitive regexes applied to Qwen's draft (approximate, for comparison between routes only). primary_tests drive the form-section queries; scope_types drive the metadata filter. Facts from docs_extended/ only occur when the extended library is searched.",
+  "test_descriptions": {
+    "warpage_reflow": "warpage measurement during reflow simulation",
+    "flatness_rt": "room-temperature flatness measurement",
+    "thermal_cycling": "thermal cycling exposure"
+  },
+  "scenarios": [
+    {
+      "id": "S1_warpage_reflow",
+      "request": "I need warpage measured on 10 LCP connector housings (synthetic part SYN-CONN-400, 400 positions, 0.8 mm pitch) through a lead-free reflow cycle. The customer wants to know whether coplanarity stays within 0.10 mm at peak temperature. Please prepare the lab request.",
+      "primary_tests": [
+        "warpage_reflow"
+      ],
+      "scope_types": [
+        "warpage_reflow",
+        "preparation",
+        "reporting"
+      ],
+      "required_facts": [
+        "A request without a thermal profile cannot be scheduled",
+        "must include 25 C before heating, peak temperature, and 25 C after cooling",
+        "the measurement area and datum",
+        "Samples must be moisture-preconditioned per SYN-PR-201 before the baseline measurement",
+        "A minimum of 5 samples per test condition is required",
+        "Measure each sample at 25 C as the baseline",
+        "Samples must not be run through a second profile",
+        "Bake samples at 125 C for 24 hours",
+        "sample storage history since molding",
+        "whether contour maps are required for every sample"
+      ],
+      "forbidden_facts": [
+        "Moisture preconditioning before warpage measurement is optional",
+        "A minimum of 3 samples per test condition is required",
+        "A minimum of 10 samples per lot is required",
+        "No thermal profile is required",
+        "Bake samples at 105 C for 8 hours"
+      ],
+      "output_checks": {
+        "asks for thermal profile": "thermal profile",
+        "measurement area / datum": "datum",
+        "preconditioning": "precondition",
+        "bake 125 C / 24 h": "125\\s*°?\\s*C|24\\s*h",
+        "25 C baseline": "baseline",
+        "no second profile": "second (thermal |reflow )?profile",
+        "minimum 5 samples": "(minimum|at least)\\s+(of\\s+)?(5|five)\\b|\\b(5|five) samples per",
+        "contour maps choice": "contour",
+        "storage history": "storage history|since molding|storage"
+      },
+      "output_forbidden": {
+        "preconditioning optional": "precondition[^.\\n]{0,60}optional",
+        "10 samples per lot": "10 samples per lot",
+        "obsolete 105 C bake": "105\\s*°?\\s*C"
+      }
+    },
+    {
+      "id": "S2_warpage_paraphrased",
+      "request": "Can the lab run shadow moire on our LCP headers across a solder reflow profile? We care about how flat the seating plane stays at the hottest point of the profile.",
+      "primary_tests": [
+        "warpage_reflow"
+      ],
+      "scope_types": [
+        "warpage_reflow",
+        "preparation",
+        "reporting"
+      ],
+      "required_facts": [
+        "A request without a thermal profile cannot be scheduled",
+        "must include 25 C before heating, peak temperature, and 25 C after cooling",
+        "Samples must be moisture-preconditioned per SYN-PR-201 before the baseline measurement",
+        "A minimum of 5 samples per test condition is required",
+        "Measure each sample at 25 C as the baseline",
+        "Bake samples at 125 C for 24 hours"
+      ],
+      "forbidden_facts": [
+        "Moisture preconditioning before warpage measurement is optional",
+        "A minimum of 3 samples per test condition is required",
+        "A minimum of 10 samples per lot is required",
+        "No thermal profile is required",
+        "Bake samples at 105 C for 8 hours"
+      ],
+      "output_checks": {
+        "asks for thermal profile": "thermal profile",
+        "preconditioning": "precondition",
+        "bake 125 C / 24 h": "125\\s*°?\\s*C|24\\s*h",
+        "25 C baseline": "baseline",
+        "minimum 5 samples": "(minimum|at least)\\s+(of\\s+)?(5|five)\\b|\\b(5|five) samples per",
+        "asks sample quantity": "how many|quantity|number of samples"
+      },
+      "output_forbidden": {
+        "preconditioning optional": "precondition[^.\\n]{0,60}optional",
+        "10 samples per lot": "10 samples per lot",
+        "obsolete 105 C bake": "105\\s*°?\\s*C"
+      }
+    },
+    {
+      "id": "S3_flatness_room_temp",
+      "request": "Please check the flatness of 20 LCP connector housings from the latest molding lot at room temperature. The coplanarity limit is 0.08 mm.",
+      "primary_tests": [
+        "flatness_rt"
+      ],
+      "scope_types": [
+        "flatness_rt"
+      ],
+      "required_facts": [
+        "Stabilize samples at 25 C for at least 2 hours",
+        "A minimum of 10 samples per lot is required",
+        "The request must include the measurement area, the datum, and the acceptance limit",
+        "No thermal profile is required"
+      ],
+      "forbidden_facts": [
+        "A request without a thermal profile cannot be scheduled",
+        "Bake samples at 125 C for 24 hours",
+        "A minimum of 5 samples per test condition is required",
+        "Moisture preconditioning before warpage measurement is optional"
+      ],
+      "output_checks": {
+        "2 h stabilization": "2\\s*(hours|h)\\b",
+        "minimum 10 samples per lot": "10 samples",
+        "measurement area / datum": "datum",
+        "acceptance limit": "acceptance limit|0\\.08"
+      },
+      "output_forbidden": {
+        "bake (not required)": "\\bbake",
+        "reflow / heating profile": "reflow|thermal profile is required|ramp rate"
+      }
+    },
+    {
+      "id": "S4_thermal_cycling",
+      "request": "We need 15 connector housings thermally cycled between -40 C and 125 C for 500 cycles, with readouts every 100 cycles.",
+      "primary_tests": [
+        "thermal_cycling"
+      ],
+      "scope_types": [
+        "thermal_cycling",
+        "preparation"
+      ],
+      "required_facts": [
+        "minimum and maximum temperature, dwell time at each extreme, ramp rate, and number of cycles",
+        "Precondition samples per SYN-PR-201 before the first cycle",
+        "Perform intermediate readouts at the requested cycle counts",
+        "Bake samples at 125 C for 24 hours",
+        "sample storage history since molding"
+      ],
+      "forbidden_facts": [
+        "Moisture preconditioning before warpage measurement is optional",
+        "A minimum of 10 samples per lot is required",
+        "No thermal profile is required",
+        "A minimum of 3 samples per test condition is required",
+        "Bake samples at 105 C for 8 hours",
+        "Samples do not require moisture preconditioning",
+        "Transfer between baths within 10 seconds"
+      ],
+      "output_checks": {
+        "asks dwell time": "dwell",
+        "asks ramp rate": "ramp",
+        "preconditioning": "precondition",
+        "bake": "\\bbake",
+        "readouts": "readout",
+        "what is measured at readouts": "measurement"
+      },
+      "output_forbidden": {
+        "preconditioning optional": "precondition[^.\\n]{0,60}optional",
+        "10 samples per lot": "10 samples per lot",
+        "obsolete 105 C bake": "105\\s*°?\\s*C",
+        "no preconditioning (thermal shock rule)": "(do not|does not|not) require[^.\\n]{0,20}precondition"
+      }
+    },
+    {
+      "id": "S5_combined_reflow_cycling",
+      "request": "Measure warpage through reflow on 10 housings, then thermally cycle the same housings for 200 cycles and measure warpage through reflow again so we can compare before and after.",
+      "primary_tests": [
+        "warpage_reflow",
+        "thermal_cycling"
+      ],
+      "scope_types": [
+        "warpage_reflow",
+        "thermal_cycling",
+        "preparation",
+        "reporting"
+      ],
+      "required_facts": [
+        "A request without a thermal profile cannot be scheduled",
+        "Samples must not be run through a second profile",
+        "A minimum of 5 samples per test condition is required",
+        "minimum and maximum temperature, dwell time at each extreme, ramp rate, and number of cycles",
+        "Precondition samples per SYN-PR-201 before the first cycle",
+        "Bake samples at 125 C for 24 hours",
+        "no more than 72 hours"
+      ],
+      "forbidden_facts": [
+        "Moisture preconditioning before warpage measurement is optional",
+        "A minimum of 3 samples per test condition is required",
+        "A minimum of 10 samples per lot is required",
+        "No thermal profile is required",
+        "Bake samples at 105 C for 8 hours",
+        "Samples do not require moisture preconditioning",
+        "Transfer between baths within 10 seconds"
+      ],
+      "output_checks": {
+        "flags second-profile rule": "second (thermal |reflow )?profile",
+        "preconditioning": "precondition",
+        "minimum 5 samples": "(minimum|at least)\\s+(of\\s+)?(5|five)\\b|\\b(5|five) samples per",
+        "asks cycling profile": "dwell|ramp",
+        "asks reflow profile": "thermal profile|reflow profile",
+        "storage window": "72"
+      },
+      "output_forbidden": {
+        "preconditioning optional": "precondition[^.\\n]{0,60}optional",
+        "10 samples per lot": "10 samples per lot",
+        "obsolete 105 C bake": "105\\s*°?\\s*C",
+        "no preconditioning (thermal shock rule)": "(do not|does not|not) require[^.\\n]{0,20}precondition"
+      }
+    }
+  ]
+}

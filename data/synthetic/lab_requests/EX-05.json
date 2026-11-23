@@ -1,0 +1,81 @@
+{
+ "id": "EX-05",
+ "form": "machine_shop_request",
+ "title": "Warpage sample fixture plates, two parts",
+ "fields": {
+  "requestType": "Fixture",
+  "programName": "Synthetic socket qualification",
+  "programNumber": "SYN-PRG-12",
+  "requestorName": "Alex Example",
+  "businessUnit": "BU-A",
+  "costCenter": "U0000 - Synthetic Cost Center A",
+  "email": "alex.example@example.com",
+  "phone": "5550100",
+  "emailCc": "lab.lead@example.com",
+  "projectJobName": "Shadow moire fixture set for SYN-10001",
+  "scopeOfWork": "Two fixture parts that hold the SYN-10001 socket flat in the warpage chamber without loading the seating plane. Critical: pocket depth 2.00 +/-0.02 mm and flatness 0.02 mm on the datum face; break all edges; no anodize on the datum face (it reflects). Inspect the pocket depth and flatness and send the report with the parts.",
+  "partDeliveryMethod": "Deliver to the lab",
+  "requestedDueDate": "2026-12-14",
+  "priority": "Normal",
+  "step3_rows": [
+   {
+    "partNumber": "SYN-20001",
+    "rev": "D",
+    "description": "Fixture base plate, 150 x 100 mm",
+    "qty": "2",
+    "material": "Aluminium 6061-T6",
+    "itemNotes": "Datum face lapped; see drawing note 3.",
+    "_files": {
+     "drawing": [
+      {
+       "name": "SYN-20001_RevD.pdf",
+       "bytes": 220000,
+       "ok": true
+      }
+     ],
+     "cad": [
+      {
+       "name": "SYN-20001_RevD.step",
+       "bytes": 480000,
+       "ok": true
+      }
+     ]
+    }
+   },
+   {
+    "partNumber": "SYN-20003",
+    "rev": "A",
+    "description": "Clamp ring for base plate",
+    "qty": "2",
+    "material": "Stainless steel 304",
+    "itemNotes": "",
+    "_files": {
+     "drawing": [
+      {
+       "name": "SYN-20003_RevA.pdf",
+       "bytes": 150000,
+       "ok": true
+      }
+     ],
+     "cad": [
+      {
+       "name": "SYN-20003_RevA.step",
+       "bytes": 300000,
+       "ok": true
+      }
+     ]
+    }
+   }
+  ],
+  "additionalInformation": "Parts are used at up to 260 C, so no plastic inserts. Call me if the flatness cannot be held; a 0.03 mm flatness is acceptable for the clamp ring."
+ },
+ "why_good": [
+  "One job with every part listed, sharing the requester, cost center and job details.",
+  "Each part has its drawing and matching STEP file.",
+  "Scope gives the purpose, critical features with tolerances, finish and inspection.",
+  "Says what can be relaxed if a tolerance cannot be held."
+ ],
+ "created": "2026-11-23",
+ "submitted": false,
+ "synthetic": true
+}

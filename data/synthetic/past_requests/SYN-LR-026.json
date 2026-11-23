@@ -1,0 +1,74 @@
+{
+ "id": "SYN-LR-026",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Validation with pass criteria",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "Operational Support",
+  "step2_rows": [
+   {
+    "productName": "Synthetic backstack connector",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "6"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Short temperature life: 72 h at 105 °C with CT, contact height and LLCR before and after (3 samples). Vibration and mechanical shock with LLCR before and after (3 samples).",
+    "applicableSpecifications": "EIA-364-28 condition Y; EIA-364-27 condition A",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Pass: at most 10 mΩ change in LLCR, no visual damage, no discontinuity over 1 µs per EIA-364-46.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2026-02-10",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Qualification"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'CT scan' has no procedure in the assistant's library.",
+   "'contact resistance' has no procedure in the assistant's library.",
+   "'mechanical shock' has no procedure in the assistant's library.",
+   "'temperature life' has no procedure in the assistant's library.",
+   "'vibration' has no procedure in the assistant's library."
+  ]
+ },
+ "why_good": [
+  "States pass criteria.",
+  "Cites each method and condition.",
+  "Sample counts per group."
+ ],
+ "gaps": [
+  "No part numbers or lots.",
+  "No requested date."
+ ]
+}

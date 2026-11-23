@@ -1,0 +1,72 @@
+{
+ "id": "SYN-LR-017",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Socket current rating in two phases",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic CPU socket",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "15"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Phase 1: LLCR, 6-hour current rating, LLCR, SEM/EDX. Phase 2: LLCR, 500-hour current rating, LLCR, SEM/EDX.",
+    "applicableSpecifications": "EIA-364-23; EIA-364-70",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Assembly includes backplate, host board, frame, package, film heater, heat sink and fan. Customer B test plan referenced. Power supplies and heater controllers must be bought first.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-09-16",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'SEM inspection' has no procedure in the assistant's library.",
+   "'contact resistance' has no procedure in the assistant's library.",
+   "'temperature rise' has no procedure in the assistant's library."
+  ]
+ },
+ "why_good": [
+  "Two phases with full sequences.",
+  "A standard for each measurement.",
+  "Lists the assembly and flags equipment to buy first."
+ ],
+ "gaps": [
+  "No part number or lot.",
+  "Current target only in the customer plan."
+ ]
+}

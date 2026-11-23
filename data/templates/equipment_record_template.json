@@ -1,0 +1,47 @@
+{
+ "_about": "One record per kind of instrument in lab_equipment.json. Real lab data goes in data/private/equipment/ (gitignored). 'count' is how many identical units; give units with different limits their own record. List anything not yet known in 'unknown' so it shows up in the gaps report.",
+ "id": "AREA-SHORT-NAME",
+ "name": "What it is",
+ "area": "mechanical | electrical | environmental | analytical | solderability | metrology | process",
+ "count": 1,
+ "model": "Maker and model, or null",
+ "status": "available | out of service | calibration due | planned 2026",
+ "tests": [
+  "T15"
+ ],
+ "standards": [
+  "EIA 364-32"
+ ],
+ "capabilities": [
+  "plain-language uses"
+ ],
+ "limits": {
+  "temp_min_c": null,
+  "temp_max_c": null,
+  "cold_zone_c": [
+   null,
+   null
+  ],
+  "hot_zone_c": [
+   null,
+   null
+  ],
+  "rh_min_pct": null,
+  "rh_max_pct": null,
+  "ramp_max_c_per_min": null,
+  "load_cell_capacity_max_n": null,
+  "current_max_a": null,
+  "voltage_max_kv": null,
+  "frequency_max_hz": null,
+  "sine_accel_max_gpk": null,
+  "random_accel_max_grms": null,
+  "channels": null,
+  "working_volume_ft3": null,
+  "sample_max_mm": null
+ },
+ "unknown": [
+  "fields still to find"
+ ],
+ "source": "where the values came from",
+ "notes": ""
+}

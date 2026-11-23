@@ -1,0 +1,74 @@
+{
+ "id": "SYN-LR-004",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Mixed flowing gas, unmated and mated groups",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic I/O connector, unmated group",
+    "partNumberRevision": "SYN-40303 Rev A",
+    "traceabilityMfgLotInfo": "Lot SYN-L2503",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "LCP",
+    "quantity": "3"
+   },
+   {
+    "productName": "Synthetic I/O connector, mated group",
+    "partNumberRevision": "SYN-40303 Rev A",
+    "traceabilityMfgLotInfo": "Lot SYN-L2503",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "LCP",
+    "quantity": "3"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Mixed flowing gas exposure. Group 1 (3 samples): 7 days unmated, LLCR, then 7 days mated. Group 2 (3 samples): 7 days mated, LLCR, then 7 days mated. LLCR before and after each exposure.",
+    "applicableSpecifications": "EIA-364-65",
+    "specificationRevision": "EIA-364-65 Rev B"
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Objective: confirm the new plating line matches the current line before release.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-03-11",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Qualification"
+ },
+ "quality_at_request_date": {
+  "must_fix": [],
+  "should_fix": [],
+  "good_practice": [
+   "'contact resistance' has no procedure in the assistant's library.",
+   "'gas corrosion' has no procedure in the assistant's library.",
+   "Item 1: SYN-40303 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Two groups that differ only in mating state, with the sequence for each.",
+  "Cites the method; states the objective."
+ ],
+ "gaps": [
+  "No LLCR change limit.",
+  "Exposure class not stated."
+ ]
+}

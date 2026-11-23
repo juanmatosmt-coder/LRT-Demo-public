@@ -1,0 +1,93 @@
+{
+ "id": "SYN-LR-024",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] DSC on a two-part epoxy",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic cured epoxy",
+    "partNumberRevision": "SYN-EPX-1",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Field return fragments",
+    "partNumberRevision": "SYN-42424",
+    "traceabilityMfgLotInfo": "Lot SYN-L2601",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Synthetic epoxy, liquid",
+    "partNumberRevision": "SYN-EPX-1",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "DSC: two heating cycles for glass transition and residual exotherm; a 25-250 °C cure scan at 10 °C/min for onset, peak and total heat; post-cure Tg on the second heat.",
+    "applicableSpecifications": "ASTM E1356; ASTM E537",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2026-01-13",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 2: Housing Material is empty.",
+   "Item 3: Traceability Mfg Lot Info is empty.",
+   "Item 3: Housing Material is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Additional Information is empty."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "'DSC thermal analysis' has no procedure in the assistant's library.",
+   "Item 1: SYN-EPX-1 is not in the parts directory.",
+   "Item 2: SYN-42424 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Complete DSC method and outputs.",
+  "Cites both methods.",
+  "Compares cured, liquid and field-return samples."
+ ],
+ "gaps": [
+  "No quantities.",
+  "No expected values."
+ ]
+}

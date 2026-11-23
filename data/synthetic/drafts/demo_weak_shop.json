@@ -1,0 +1,59 @@
+{
+ "form": "machine_shop_request",
+ "title": "DEMO weak draft: fixture parts",
+ "synthetic": true,
+ "fields": {
+  "requestType": "Fixture",
+  "requestorName": "Sam Sample",
+  "businessUnit": "Warpage team",
+  "costCenter": "lab budget",
+  "email": "sam.sample@example",
+  "emailCc": "",
+  "projectJobName": "fixture",
+  "scopeOfWork": "make the fixture parts",
+  "partDeliveryMethod": "Ship to another site",
+  "requestedDueDate": "2026-11-25",
+  "priority": "Line down",
+  "step3_rows": [
+   {
+    "partNumber": "SYN-20001",
+    "rev": "B",
+    "description": "plate",
+    "qty": "0",
+    "material": "Aluminium",
+    "_files": {
+     "drawing": [
+      {
+       "name": "plate.pdf",
+       "bytes": 1,
+       "ok": true
+      }
+     ],
+     "cad": [
+      {
+       "name": "base_v2.step",
+       "bytes": 1,
+       "ok": true
+      }
+     ]
+    }
+   },
+   {
+    "partNumber": "SYN-20002",
+    "rev": "A",
+    "description": "frame",
+    "qty": "2",
+    "material": "Stainless steel 304"
+   },
+   {
+    "partNumber": "SYN-20001",
+    "rev": "B",
+    "description": "plate",
+    "qty": "2",
+    "material": "Aluminium"
+   }
+  ],
+  "additionalInformation": ""
+ },
+ "_about": "SYNTHETIC weak draft with typical mistakes, used to demonstrate the quality flags. Not a real request."
+}

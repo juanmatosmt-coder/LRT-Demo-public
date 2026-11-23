@@ -1,0 +1,79 @@
+{
+ "id": "SYN-LR-022",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Dye and pry with a pass rule",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic stacking connector, aged group C",
+    "partNumberRevision": "SYN-42222 Rev B",
+    "traceabilityMfgLotInfo": "From SYN-LR-PRIOR-22 group C",
+    "contactBaseMaterial": "C70250",
+    "contactPlating": "0.76 µm Au over Ni",
+    "contactLubricant": "n/a",
+    "housingMaterial": "LCP",
+    "quantity": "2"
+   },
+   {
+    "productName": "Synthetic stacking connector, new",
+    "partNumberRevision": "SYN-42222 Rev B",
+    "traceabilityMfgLotInfo": "TBD (new samples)",
+    "contactBaseMaterial": "C70250",
+    "contactPlating": "0.76 µm Au over Ni",
+    "contactLubricant": "n/a",
+    "housingMaterial": "LCP",
+    "quantity": "4"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Dye and pry.",
+    "applicableSpecifications": "SYN-GS-2038",
+    "specificationRevision": "SYN-GS-2038 Rev 6"
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Pass: no dye on the solder joint fracture surfaces.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-11-25",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [],
+  "should_fix": [
+   "Item 1: 'Dye and pry.' is too short to plan from.",
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "Item 1: SYN-GS-203 is not in the procedure library.",
+   "Item 1: SYN-GS-203 is not in the procedure library.",
+   "'dye and pry' has no procedure in the assistant's library.",
+   "Item 1: SYN-42222 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "States the pass criterion.",
+  "Traces samples to an earlier group and adds new samples as a baseline.",
+  "Cites the procedure with revision."
+ ],
+ "gaps": [
+  "New-sample lot TBD.",
+  "Test line is two words."
+ ]
+}

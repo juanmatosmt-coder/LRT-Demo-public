@@ -1,0 +1,87 @@
+{
+ "id": "SYN-LR-019",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] CT wipe distance at three stack heights",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Formal Report (Internal)",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic floating connector, 23 mm stack",
+    "partNumberRevision": "N/A",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "N/A",
+    "housingMaterial": "LCP",
+    "quantity": "2"
+   },
+   {
+    "productName": "Synthetic floating connector, 23.6 mm stack",
+    "partNumberRevision": "N/A",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "N/A",
+    "housingMaterial": "LCP",
+    "quantity": "2"
+   },
+   {
+    "productName": "Synthetic floating connector, 22.4 mm stack",
+    "partNumberRevision": "N/A",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "N/A",
+    "housingMaterial": "LCP",
+    "quantity": "2"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "CT scan the connectors on their boards from the side; focus on the copper contacts. Measure wipe distance on each sample, from the centre of the receptacle contact to the edge of the plug contact.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "A section drawing marks the distance to measure.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-10-14",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Customer Specific Testing"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'CT scan' has no procedure in the assistant's library."
+  ]
+ },
+ "why_good": [
+  "Says what to focus on and what to ignore.",
+  "One clear measurement per sample, three stack heights."
+ ],
+ "gaps": [
+  "No part numbers or lots.",
+  "No expected wipe or limit."
+ ]
+}

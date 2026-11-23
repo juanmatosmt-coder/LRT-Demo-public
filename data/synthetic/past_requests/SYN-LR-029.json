@@ -1,0 +1,68 @@
+{
+ "id": "SYN-LR-029",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Abrasion method on plated plastic",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Formal Report (Internal)",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic plated housing",
+    "partNumberRevision": "SYN-42929 Rev 2",
+    "traceabilityMfgLotInfo": "Date code 2026-03",
+    "contactBaseMaterial": "N/A",
+    "contactPlating": "Ni/Cu",
+    "contactLubricant": "N/A",
+    "housingMaterial": "LCP",
+    "quantity": "6"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Sliding abrasion at 20, 40 and 60 g with 320-grit paper over a 5 mm stroke. Top-view photo before and after each load. Plating thickness by section after each test.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2026-03-24",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Qualification"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Additional Information is empty."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "'abrasion' has no procedure in the assistant's library.",
+   "'plating thickness' has no procedure in the assistant's library.",
+   "Item 1: SYN-42929 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Full abrasion method.",
+  "Photos and thickness after each load."
+ ],
+ "gaps": [
+  "Number of strokes not stated.",
+  "No pass criterion."
+ ]
+}

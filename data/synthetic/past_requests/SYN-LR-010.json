@@ -1,0 +1,88 @@
+{
+ "id": "SYN-LR-010",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] CT scan, five sample groups",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic cable leg, new revision",
+    "partNumberRevision": "SYN-40909 Rev B",
+    "traceabilityMfgLotInfo": "Line 2, May 2025",
+    "contactBaseMaterial": "C52100",
+    "contactPlating": "Au 0.76 µm",
+    "contactLubricant": "None",
+    "housingMaterial": "LCP",
+    "quantity": "1"
+   },
+   {
+    "productName": "Synthetic cable leg, new revision with dimple",
+    "partNumberRevision": "SYN-40909 Rev B",
+    "traceabilityMfgLotInfo": "Line 2, May 2025",
+    "contactBaseMaterial": "C52100",
+    "contactPlating": "Au 0.76 µm",
+    "contactLubricant": "None",
+    "housingMaterial": "LCP",
+    "quantity": "1"
+   },
+   {
+    "productName": "Synthetic cable leg, after testing",
+    "partNumberRevision": "SYN-40909 Rev B",
+    "traceabilityMfgLotInfo": "Line 2, May 2025",
+    "contactBaseMaterial": "C52100",
+    "contactPlating": "Au 0.76 µm",
+    "contactLubricant": "None",
+    "housingMaterial": "LCP",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "CT scan, one sample per group, both ends of each sample.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Drawing marks the feature of interest.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-06-03",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'CT scan' has no procedure in the assistant's library.",
+   "Item 1: SYN-40909 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Complete material data and a lot for every group.",
+  "Named groups and a drawing of the feature."
+ ],
+ "gaps": [
+  "Does not say what to measure from the scan.",
+  "Groups share one part number; samples must be labelled."
+ ]
+}

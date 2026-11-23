@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Local test suite: loads only from the local server; no outbound traffic. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Lab Data</title>
+<!--
+  Browse, search, check and edit the lab data the assistant uses: equipment, test methods, parts directory.
+  Reading needs nothing; editing needs a signed-in user. Every save keeps the previous file in history/.
+  Run:  python gui\serve.py   then open  http://127.0.0.1:8010/gui/data.html
+-->
+<style>
+  :root { --brand: #005cb9; --accent: #2d60d7; --ink: #212536; --ink-quiet: #5b6075; --line: #d0d3e2; --field: #f4f5f9;
+          --error: #c62828; --ok: #2e7d32; --warn-bg: #fff3e0; --warn-ink: #8a4b00; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; color: var(--ink); font: 14px/1.45 Inter, "Segoe UI", system-ui, sans-serif; }
+  .layout { display: grid; grid-template-columns: 320px 1fr; min-height: 100vh; }
+  aside { background: var(--brand); color: #fff; padding: 40px 28px; position: sticky; top: 0; height: 100vh; overflow: auto; }
+  aside h1 { font-size: 28px; font-weight: 400; margin: 0 0 6px; }
+  aside p { opacity: .9; margin: 0 0 14px; font-size: 13px; }
+  .logo { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+  .logo img { display: block; height: 34px; width: auto; }
+  .logo img.dept { height: 40px; background: #fff; border-radius: 6px; padding: 2px; }
+  .logo .dept-name { font-size: 11px; line-height: 1.15; letter-spacing: .04em; text-transform: uppercase; }
+  .logo .sep { width: 1px; align-self: stretch; background: rgba(255,255,255,.45); }
+  .pages { display: flex; gap: 6px; margin: 0 0 18px; }
+  .pages a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,.6); border-radius: 8px; padding: 6px 12px; font-size: 13px; }
+  .pages a[aria-current="page"] { background: #fff; color: var(--brand); font-weight: 600; }
+  nav ul { list-style: none; padding: 0; margin: 0; }
+  nav button { width: 100%; text-align: left; background: none; border: 0; color: #fff; font: inherit; padding: 8px 10px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; opacity: .85; }
+  nav button[aria-current="true"] { background: rgba(255,255,255,.16); opacity: 1; font-weight: 600; }
+  nav .count { opacity: .8; font-weight: 400; }
+  .setbox { margin: 18px 0; font-size: 13px; }
+  .setbox select { width: 100%; margin-top: 6px; height: 34px; border-radius: 8px; border: 0; padding: 0 8px; font: inherit; }
+  .who { font-size: 12px; opacity: .9; margin-top: 18px; }
+  .who a { color: #fff; }
+  main { padding: 36px 32px 80px; max-width: 980px; }
+  h2 { font-size: 26px; font-weight: 400; margin: 0 0 4px; }
+  .lead { color: var(--ink-quiet); margin: 0 0 18px; }
+  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+  .toolbar input, .toolbar select, .form input, .form select, .form textarea {
+    height: 38px; padding: 0 12px; border-radius: 8px; border: 1px solid transparent; background: var(--field); font: inherit; color: var(--ink); }
+  .toolbar input[type=search] { flex: 1 1 240px; }
+  .form textarea { height: 84px; padding: 8px 12px; width: 100%; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
+  .btn { border: 0; border-radius: 10px; padding: 9px 14px; font: 600 14px/1 inherit; font-family: inherit; cursor: pointer; }
+  .btn-primary { background: var(--accent); color: #f5f8ff; }
+  .btn-quiet { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .btn-danger { background: transparent; color: var(--error); border: 1px solid var(--error); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .card h3 { margin: 0; font-size: 15px; font-weight: 600; }
+  .meta { font-size: 12px; color: var(--ink-quiet); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--field); border-radius: 999px; padding: 2px 10px; font-size: 12px; border: 0; font-family: inherit; color: var(--ink); }
+  button.chip { cursor: pointer; }
+  .chip.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .chip.plan { background: #e8eefc; color: #1d3f9a; }
+  .card .actions { margin-top: auto; display: flex; gap: 8px; }
+  .gap-group h3 { font-size: 15px; margin: 18px 0 6px; }
+  .gap-group li { margin: 4px 0; }
+  .result { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-top: 16px; }
+  .result.fit { border-color: var(--ok); } .result.nofit { border-color: var(--error); }
+  .result h3 { margin: 0 0 6px; font-size: 16px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .form .field { display: flex; flex-direction: column; gap: 4px; }
+  .form label, .label { font-size: 12px; font-weight: 600; }
+  .form .wide { grid-column: 1 / -1; }
+  .kv { display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; }
+  .checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 12px; max-height: 180px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  .checks label { font-weight: 400; display: flex; gap: 6px; align-items: flex-start; }
+  dialog { border: 0; border-radius: 14px; padding: 22px; width: min(760px, calc(100vw - 24px)); max-height: calc(100vh - 24px); box-shadow: 0 10px 40px rgba(0,0,0,.25); color: var(--ink); }
+  dialog::backdrop { background: rgba(10,20,40,.45); }
+  dialog h3 { margin: 0 0 12px; font-size: 20px; font-weight: 500; }
+  .dlg-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .msg { font-size: 13px; margin-top: 8px; } .msg.bad { color: var(--error); } .msg.ok { color: var(--ok); }
+  .readonly-note { background: #fff8e1; border: 1px solid #f0d58c; border-radius: 10px; padding: 8px 12px; font-size: 13px; margin-bottom: 14px; }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { position: static; height: auto; padding: 14px 16px; }
+    aside h1 { font-size: 20px; } aside p { display: none; }
+    .logo { margin-bottom: 10px; } .logo img { height: 24px; } .logo img.dept { height: 28px; } .logo .dept-name { font-size: 9px; }
+    nav ul { display: flex; overflow-x: auto; gap: 4px; scrollbar-width: none; }
+    nav button { white-space: nowrap; padding: 6px 10px; gap: 6px; }
+    .setbox { margin: 8px 0; } .who { margin-top: 6px; }
+    main { padding: 18px 16px 60px; }
+    .grid2 { grid-template-columns: 1fr; }
+    .toolbar input, .toolbar select, .form input, .form select, .form textarea { font-size: 16px; }
+    .kv { grid-template-columns: 1fr 1fr auto; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <div class="logo" id="logoWrap"></div>
+    <div class="pages"><a href="request_form.html">Request forms</a><a href="data.html" aria-current="page">Lab data</a><a href="feedback.html">Feedback</a></div>
+    <h1>Lab data</h1>
+    <p>What the assistant knows about the lab: equipment and its limits, the test methods it runs, and the parts directory. Edits are saved on this computer, and the previous version is kept.</p>
+    <nav aria-label="Lab data"><ul id="nav"></ul></nav>
+    <div class="setbox"><label for="dataset">Data set</label><select id="dataset"></select></div>
+    <div class="who" id="who"></div>
+  </aside>
+  <main id="main"></main>
+</div>
+<dialog id="editor"><div id="editorBody"></div></dialog>
+<script src="data.js"></script>
+</body>
+</html>

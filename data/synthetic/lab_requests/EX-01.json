@@ -1,0 +1,53 @@
+{
+ "id": "EX-01",
+ "form": "lab_test_request",
+ "title": "Warpage through lead-free reflow, SYN-10001 Rev C",
+ "fields": {
+  "firstName": "Alex",
+  "lastName": "Example",
+  "email": "alex.example@example.com",
+  "phone": "5550100",
+  "bPCNumber": "U0000 - Synthetic Cost Center A",
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "Qualification",
+  "confidentialTestsOrSamples": "no",
+  "canTestingBeSubcontracted": "no",
+  "sendCopiesTo": "alex.example@example.com, quality.example@example.com",
+  "requestedTestingCompletionDate": "2026-12-18",
+  "resultsFormat": "Formal Report (Internal)",
+  "step2_rows": [
+   {
+    "productName": "Synthetic BGA socket 600-pin",
+    "partNumberRevision": "SYN-10001 Rev C",
+    "traceabilityMfgLotInfo": "Molding lot L2611-07, cavity 2, molded 2026-11-02",
+    "contactBaseMaterial": "Copper alloy C7025",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "LCP, 30% glass",
+    "quantity": "10"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Warpage (coplanarity and shape) during reflow simulation, shadow moire, captured at 25 C, 150 C, 183 C, 217 C, peak 260 C and 25 C after cooling",
+    "applicableSpecifications": "SYN-TM-101 Warpage Measurement During Reflow Simulation; SYN-PR-201 Sample Preparation and Moisture Preconditioning; SYN-RP-301 Reporting",
+    "specificationRevision": "SYN-TM-101 Rev C; SYN-PR-201 Rev B; SYN-RP-301 Rev A"
+   }
+  ],
+  "additionalInformation": "Objective: confirm coplanarity stays within 0.10 mm at peak reflow temperature for customer qualification.\nThermal profile: ramp 1.5 C/s to 150 C, soak 150-200 C for 90 s, time above 217 C for 75 s, peak 260 C, cooling 3 C/s. Profile file attached (profile_260.pdf).\nMeasurement area: full terminal seating plane, datum = three standoffs.\nSamples: as-molded, stored in moisture barrier bags since molding (2026-11-02). Bake 125 C / 24 h per SYN-PR-201 before baseline.\nAcceptance limit: 0.10 mm coplanarity at every capture temperature.\nReport: coplanarity table per sample and temperature, contour maps for the worst sample only."
+ },
+ "_why_good": [
+  "States the objective and the decision it supports, with the acceptance limit.",
+  "Gives the full thermal profile and capture temperatures, so the lab can check them against the chamber limits.",
+  "Names the measurement area and datum, so results are comparable.",
+  "Gives storage history and preconditioning, the most common reason warpage results are rejected.",
+  "Cites procedures with revisions, and asks for contour maps only where needed."
+ ],
+ "created": "2026-11-23",
+ "submitted": false,
+ "synthetic": true
+}

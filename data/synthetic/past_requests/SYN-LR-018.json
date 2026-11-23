@@ -1,0 +1,82 @@
+{
+ "id": "SYN-LR-018",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] FIB plating analysis at marked spots",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "Operational Support",
+  "step2_rows": [
+   {
+    "productName": "Synthetic receptacle",
+    "partNumberRevision": "SYN-41818 Rev A",
+    "traceabilityMfgLotInfo": "Supplier lot",
+    "contactBaseMaterial": "C17200",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "N/A",
+    "housingMaterial": "N/A",
+    "quantity": "2"
+   },
+   {
+    "productName": "Synthetic plug",
+    "partNumberRevision": "SYN-41819 Rev A",
+    "traceabilityMfgLotInfo": "Supplier lot",
+    "contactBaseMaterial": "C72500",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "N/A",
+    "housingMaterial": "N/A",
+    "quantity": "2"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "FIB and SEM.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Report Au thickness or layering, Au porosity, Ni thickness, Ni porosity and grain structure. Two FIB cuts per contact, trench at least 20 µm wide. Photos circle the cut locations on the plug pin and the receptacle beam.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-09-30",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Lab/Failure Analysis"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "Item 1: 'FIB and SEM.' is too short to plan from.",
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'FIB cross-section' has no procedure in the assistant's library.",
+   "'SEM inspection' has no procedure in the assistant's library.",
+   "'porosity' has no procedure in the assistant's library.",
+   "Item 1: SYN-41818 is not in the parts directory.",
+   "Item 2: SYN-41819 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Lists every result wanted.",
+  "Says where and how much to cut, with photos."
+ ],
+ "gaps": [
+  "Test line says only 'FIB and SEM'.",
+  "No plating specification to compare against."
+ ]
+}

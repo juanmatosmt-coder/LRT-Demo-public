@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Local test suite: loads only from the local server; no outbound traffic. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Request Feedback</title>
+<!--
+  Feedback from engineers, technicians and lab reviewers on what the assistant should ask and check.
+  Admins (and the server computer) see all entries, set their status and export them; others see their own.
+  Run:  python gui\serve.py   then open  http://127.0.0.1:8010/gui/feedback.html
+-->
+<style>
+  :root { --brand: #005cb9; --accent: #2d60d7; --ink: #212536; --ink-quiet: #5b6075; --line: #d0d3e2; --field: #f4f5f9;
+          --error: #c62828; --ok: #2e7d32; --warn-bg: #fff3e0; --warn-ink: #8a4b00; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; color: var(--ink); font: 14px/1.45 Inter, "Segoe UI", system-ui, sans-serif; }
+  .layout { display: grid; grid-template-columns: 320px 1fr; min-height: 100vh; }
+  aside { background: var(--brand); color: #fff; padding: 40px 28px; position: sticky; top: 0; height: 100vh; overflow: auto; }
+  aside h1 { font-size: 28px; font-weight: 400; margin: 0 0 6px; }
+  aside p { opacity: .92; margin: 0 0 14px; font-size: 13px; }
+  aside ol { padding-left: 18px; font-size: 13px; opacity: .92; } aside li { margin: 4px 0; }
+  .pages { display: flex; gap: 6px; margin: 0 0 18px; flex-wrap: wrap; }
+  .pages a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,.6); border-radius: 8px; padding: 6px 12px; font-size: 13px; }
+  .pages a[aria-current="page"] { background: #fff; color: var(--brand); font-weight: 600; }
+  main { padding: 36px 32px 80px; max-width: 1040px; }
+  h2 { font-size: 22px; font-weight: 500; margin: 26px 0 8px; } h2:first-child { margin-top: 0; }
+  .lead { color: var(--ink-quiet); margin: 0 0 14px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .stat { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+  .stat b { display: block; font-size: 24px; font-weight: 600; } .stat span { font-size: 12px; color: var(--ink-quiet); }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; color: var(--ink-quiet); font-weight: 600; } td.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 14px; align-items: center; }
+  .toolbar input, .toolbar select, .card select, .card input { height: 36px; padding: 0 10px; border-radius: 8px; border: 1px solid transparent; background: var(--field); font: inherit; color: var(--ink); }
+  .toolbar input[type=search] { flex: 1 1 220px; }
+  input:focus, select:focus { outline: none; border-color: var(--accent); background: #fff; }
+  .btn { border: 0; border-radius: 10px; padding: 9px 14px; font: 600 14px/1 inherit; font-family: inherit; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn-primary { background: var(--accent); color: #f5f8ff; } .btn-quiet { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .list { display: flex; flex-direction: column; gap: 10px; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
+  .card h3 { margin: 4px 0; font-size: 15px; font-weight: 600; }
+  .meta { font-size: 12px; color: var(--ink-quiet); }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 1px 8px; margin-right: 6px; background: var(--field); color: var(--ink-quiet); }
+  .tag.suggestion { background: #e8eefc; color: #1d3f9a; } .tag.must { background: #fdecea; color: var(--error); } .tag.should { background: var(--warn-bg); color: var(--warn-ink); }
+  .tag.useful { background: #e4f3ec; color: #1f6b52; } .tag.not_needed { background: var(--warn-bg); color: var(--warn-ink); } .tag.wrong { background: #fdecea; color: var(--error); }
+  .tag.ai { background: #efe9ff; color: #5b34c9; } .tag.rule, .tag.procedure, .tag.parts { background: #eceef3; color: #4a5068; }
+  .st { float: right; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 2px 10px; background: var(--field); }
+  .st.accepted { background: #e8eefc; color: #1d3f9a; } .st.added { background: #e4f3ec; color: #1f6b52; } .st.rejected { background: #eceef3; color: #8a8fa3; }
+  .kv { display: grid; grid-template-columns: 150px 1fr; gap: 2px 10px; margin: 6px 0; font-size: 13px; } .kv dt { color: var(--ink-quiet); } .kv dd { margin: 0; }
+  .screen { background: var(--warn-bg); color: var(--warn-ink); border-radius: 8px; padding: 4px 10px; font-size: 12px; margin: 6px 0; }
+  .manage { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; border-top: 1px dashed var(--line); padding-top: 8px; }
+  .manage input { flex: 1 1 200px; }
+  .empty { color: var(--ink-quiet); border: 1px dashed var(--line); border-radius: 12px; padding: 18px; }
+  .msg { font-size: 13px; } .msg.bad { color: var(--error); } .msg.ok { color: var(--ok); }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { position: static; height: auto; padding: 14px 16px; }
+    aside h1 { font-size: 20px; } aside p, aside ol { display: none; }
+    main { padding: 18px 16px 60px; }
+    .kv { grid-template-columns: 1fr; } .toolbar input, .toolbar select { font-size: 16px; }
+    table { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <div class="pages"><a href="request_form.html">Request forms</a><a href="data.html">Lab data</a><a href="feedback.html" aria-current="page">Feedback</a></div>
+    <h1>Feedback</h1>
+    <p>What engineers, technicians and lab reviewers say the assistant should ask and check. Kept on this server only.</p>
+    <p><b>How to give it:</b> on the Request forms page, under an answer or the Check quality list, press
+      <i>Give feedback on this</i>: rate items Useful, Not needed or Wrong, or <i>Suggest a missing question or check</i>.</p>
+    <p><b>How it becomes a rule</b> (feedback never changes the assistant by itself):</p>
+    <ol>
+      <li>Read new entries; set <i>Accepted</i> or <i>Rejected</i> with a note.</li>
+      <li>A person adds accepted items to the procedure, the assistant's questions (assistant/guardrails.py) or the quality check (assistant/quality.py).</li>
+      <li>Set <i>Added</i>, naming where it went.</li>
+    </ol>
+    <p id="who" class="meta" style="color:#fff"></p>
+  </aside>
+  <main>
+    <p id="synBanner" class="screen" hidden><b>SYNTHETIC examples</b> (invented for the course, not from real people), shown
+      because no feedback has been given on this computer yet. Your first feedback replaces them.</p>
+    <h2>Summary</h2>
+    <div id="stats" class="stats"></div>
+    <h2>By test</h2>
+    <div id="byTest"></div>
+    <h2>Most-wanted additions</h2>
+    <p class="lead">Open suggestions, most important first.</p>
+    <div id="wanted"></div>
+    <h2>Rated Not needed or Wrong</h2>
+    <p class="lead">Items people found unnecessary or wrong, worst first: candidates to drop or reword.</p>
+    <div id="worst"></div>
+    <h2>All entries</h2>
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Search text, test, role…" aria-label="Search feedback">
+      <select id="fType" aria-label="Type"><option value="">All types</option><option value="suggestion">Suggestions</option><option value="rating">Ratings</option></select>
+      <select id="fStatus" aria-label="Status"><option value="">Any status</option></select>
+      <select id="fTest" aria-label="Test"><option value="">Any test</option></select>
+      <a class="btn btn-quiet" id="csv" href="/api/feedback?format=csv">Export CSV</a>
+      <button type="button" class="btn btn-quiet" id="json">Export JSON</button>
+    </div>
+    <div id="list" class="list"></div>
+  </main>
+</div>
+<script src="feedback.js"></script>
+</body>
+</html>

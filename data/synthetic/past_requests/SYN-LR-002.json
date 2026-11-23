@@ -1,0 +1,69 @@
+{
+ "id": "SYN-LR-002",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Contact resistance and mating force, immersed in coolant",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "Operational Support",
+  "step2_rows": [
+   {
+    "productName": "Synthetic busbar clip",
+    "partNumberRevision": "SYN-40202 Rev B",
+    "traceabilityMfgLotInfo": "Lot SYN-L2501",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Ag",
+    "contactLubricant": "None",
+    "housingMaterial": "",
+    "quantity": "4"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "All tests with the samples immersed in the specified coolant. Low-level contact resistance of each beam (4-wire). Mating and unmating force during 20 cycles, then 30 more cycles.",
+    "applicableSpecifications": "SYN-GS-1100; EIA-364-23; EIA-364-13; EIA-364-09",
+    "specificationRevision": "SYN-GS-1100 Rev C"
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Sample count depends on how many busbar sections can be machined; the goal is 3 to 5, one busbar per sample.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-02-03",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Customer Specific Testing"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Housing Material is empty."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "Item 1: SYN-GS-110 is not in the procedure library.",
+   "Item 1: SYN-GS-110 is not in the procedure library.",
+   "'contact resistance' has no procedure in the assistant's library.",
+   "'mating and unmating force' has no procedure in the assistant's library.",
+   "Item 1: SYN-40202 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "States the test medium for every test.",
+  "Cites a standard for each measurement.",
+  "Explains why the sample count may change."
+ ],
+ "gaps": [
+  "No acceptance limits for resistance or force.",
+  "Housing material blank."
+ ]
+}

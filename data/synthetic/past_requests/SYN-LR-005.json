@@ -1,0 +1,71 @@
+{
+ "id": "SYN-LR-005",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Full qualification with annotated test board",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Formal Report (Internal)",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic mezzanine connector",
+    "partNumberRevision": "SYN-40404 Rev C",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "LCP",
+    "quantity": "28"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Full qualification per the attached product specification tables (test groups and sequences).",
+    "applicableSpecifications": "EIA-364-1000",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "A photo of the LLCR test board marks the screw torque (12 ± 2 N·cm) so every assembly is done the same way.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-03-25",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Qualification"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'contact resistance' has no procedure in the assistant's library.",
+   "'full qualification (several tests)' has no procedure in the assistant's library.",
+   "Item 1: SYN-40404 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Complete part data and quantity.",
+  "Cites the qualification standard.",
+  "Shows the assembly torque on a photo of the test board."
+ ],
+ "gaps": [
+  "Test groups only in an attachment.",
+  "No lot; no revision for the standard.",
+  "Objective not stated."
+ ]
+}

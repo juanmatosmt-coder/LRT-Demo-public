@@ -1,0 +1,85 @@
+{
+ "id": "SYN-LR-013",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Cable durability with two speed profiles",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Formal Report (Customer)",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic cable, 26 AWG male",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "C52100",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "PA66",
+    "quantity": "15"
+   },
+   {
+    "productName": "Synthetic cable, 27 AWG female",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "C52100",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "PA66",
+    "quantity": "21"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Durability and mate/unmate: 6 samples at 25.4 mm/min for all 200 cycles; 6 samples at 25.4 mm/min for 5 cycles then 127 mm/min for 195 cycles. Separate cables for plating thickness, porosity and wire pull.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Pairs: 26 AWG male with 27 AWG female, 12 pairs.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-07-15",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Qualification"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 2: Part Number Revision is empty.",
+   "Item 2: Traceability Mfg Lot Info is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'durability cycling' has no procedure in the assistant's library.",
+   "'plating thickness' has no procedure in the assistant's library.",
+   "'porosity' has no procedure in the assistant's library.",
+   "'wire pull' has no procedure in the assistant's library."
+  ]
+ },
+ "why_good": [
+  "Defines the mating pairs.",
+  "Two speed profiles with sample counts.",
+  "Separate samples for each destructive test."
+ ],
+ "gaps": [
+  "No part numbers or lots.",
+  "No standards or limits."
+ ]
+}

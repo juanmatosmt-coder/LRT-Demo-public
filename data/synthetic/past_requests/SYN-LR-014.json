@@ -1,0 +1,70 @@
+{
+ "id": "SYN-LR-014",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Foam compression method",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "2025-07-29",
+  "testSite": "Lab A",
+  "testSampleStatus": "Prototype",
+  "projectType": "Operational Support",
+  "step2_rows": [
+   {
+    "productName": "Synthetic gasket foam",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "6"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Force at 30% strain at 50 mm/min (about 6 mm of a 20 mm stack), 1-inch flat platen, 5 cycles.",
+    "applicableSpecifications": "ASTM D1056",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-08-05",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Additional Information is empty.",
+   "The requested date is in the past."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "High-quality past requests for this test also state the report contents.",
+   "High-quality past requests for this test also state the acceptance limit."
+  ]
+ },
+ "why_good": [
+  "Precise method: strain, speed, platen and cycles.",
+  "Cites the material standard."
+ ],
+ "gaps": [
+  "Requested date is before the request date.",
+  "No foam grade, lot or acceptance limit."
+ ]
+}

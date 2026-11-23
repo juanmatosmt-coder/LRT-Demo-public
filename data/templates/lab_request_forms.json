@@ -1,0 +1,1143 @@
+{
+ "_about": "Structure of the request forms for the local test suite: two lab request forms (a general lab test request, 4 steps; SMT lab test request, 6 steps), captured 2026-11-23. Field keys are the forms' own input names. Organisation lists (BPC number, business unit, manufacturing site) are SYNTHETIC here; the real lists stay in data/private/. The assistant prefills a draft of these fields for engineer approval and never submits. The machine shop form is an imaginary shop for the CMU demo, modelled on a one-part-per-submission shop form but itemized. The purchase requisition follows the layout of a paper requisition form, with synthetic values only.",
+ "shared_lists": {
+  "bPCNumber": [
+   "U0000 - Synthetic Cost Center A",
+   "U0001 - Synthetic Cost Center B"
+  ],
+  "businessUnit": [
+   "BU-A",
+   "BU-B",
+   "Other"
+  ],
+  "mFGSite": [
+   "SITE-A",
+   "SITE-B",
+   "Other"
+  ],
+  "testSite": [
+   "Lab A"
+  ],
+  "testSampleStatus": [
+   "Prototype",
+   "Pre-Production",
+   "Production",
+   "Competitor"
+  ],
+  "projectType": [
+   "Qualification",
+   "New Product Development",
+   "Product Extension",
+   "Innovation",
+   "Lab Activities (Lab Use Only)",
+   "Operational Support",
+   "Cost Reduction"
+  ],
+  "yesNo": [
+   "yes",
+   "no"
+  ]
+ },
+ "common_steps": {
+  "requester": [
+   {
+    "key": "firstName",
+    "label": "First Name",
+    "type": "text",
+    "required": true,
+    "source": "engineer profile"
+   },
+   {
+    "key": "lastName",
+    "label": "Last Name",
+    "type": "text",
+    "required": true,
+    "source": "engineer profile"
+   },
+   {
+    "key": "email",
+    "label": "Email",
+    "type": "email",
+    "required": true,
+    "source": "engineer profile"
+   },
+   {
+    "key": "phone",
+    "label": "Phone",
+    "type": "number",
+    "required": true,
+    "source": "engineer profile"
+   },
+   {
+    "key": "bPCNumber",
+    "label": "BPC Number",
+    "type": "select",
+    "options": "bPCNumber",
+    "required": true
+   },
+   {
+    "key": "businessUnit",
+    "label": "Business Unit",
+    "type": "select",
+    "options": "businessUnit",
+    "required": true
+   },
+   {
+    "key": "mFGSite",
+    "label": "MFG Site",
+    "type": "select",
+    "options": "mFGSite",
+    "required": true
+   }
+  ],
+  "tests_table": {
+   "title": "Description of Requested Testing",
+   "min_rows": 1,
+   "max_rows": 10,
+   "columns": [
+    {
+     "key": "testsToBePerformed",
+     "label": "Tests to be Performed",
+     "type": "text",
+     "required": true
+    },
+    {
+     "key": "applicableSpecifications",
+     "label": "Applicable Specifications",
+     "type": "textarea",
+     "required": true
+    },
+    {
+     "key": "specificationRevision",
+     "label": "Specification Revision",
+     "type": "text",
+     "required": true
+    }
+   ]
+  },
+  "additional_information": [
+   {
+    "key": "confidentialTestsOrSamples",
+    "label": "Confidential tests or samples",
+    "type": "radio",
+    "options": "yesNo",
+    "required": true
+   },
+   {
+    "key": "canTestingBeSubcontracted",
+    "label": "Can testing be subcontracted",
+    "type": "radio",
+    "options": "yesNo",
+    "required": true,
+    "note": "input name is canTestingBeSubContracted on the SMT form"
+   },
+   {
+    "key": "additionalInformation",
+    "label": "Additional Information",
+    "type": "textarea",
+    "required": true
+   },
+   {
+    "key": "sendCopiesTo",
+    "label": "Send copies of test results reports to",
+    "type": "text",
+    "required": true,
+    "note": "up to 5 emails, comma separated. You always get the report; your own email is filled in by default."
+   },
+   {
+    "key": "attachments",
+    "label": "Attachments",
+    "type": "file",
+    "required": false,
+    "accept": [
+     ".pdf",
+     ".docx"
+    ],
+    "multiple": true,
+    "max_mb": 2.0
+   }
+  ],
+  "site_only": "Both forms end with a 'verify you're human' arithmetic check before Submit. The duplicate GUI leaves it out because it never submits."
+ },
+ "forms": {
+  "lab_test_request": {
+   "title": "Laboratory Testing Request",
+   "steps": [
+    {
+     "n": 1,
+     "title": "Basic Details",
+     "fields": [
+      "@requester",
+      {
+       "key": "requestedTestingCompletionDate",
+       "label": "Requested Testing Completion Date",
+       "type": "date",
+       "required": false
+      },
+      {
+       "key": "resultsFormat",
+       "label": "Results Format",
+       "type": "select",
+       "required": true,
+       "options": [
+        "Data and Observations",
+        "Formal Report (Customer)",
+        "Formal Report (Internal)",
+        "Presentation Summary"
+       ]
+      },
+      {
+       "key": "testSite",
+       "label": "Test Site",
+       "type": "select",
+       "options": "testSite",
+       "required": false
+      },
+      {
+       "key": "testSampleStatus",
+       "label": "Test Sample Status",
+       "type": "select",
+       "options": "testSampleStatus",
+       "required": true
+      },
+      {
+       "key": "projectType",
+       "label": "Project Type",
+       "type": "select",
+       "options": "projectType",
+       "required": true
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "title": "Test Sample Information",
+     "table": {
+      "min_rows": 1,
+      "max_rows": 10,
+      "columns": [
+       {
+        "key": "productName",
+        "label": "Product Name",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "partNumberRevision",
+        "label": "Part Number Revision",
+        "type": "text",
+        "required": true,
+        "lookup": {
+         "format": "pn_rev",
+         "fill": {
+          "productName": "product_name",
+          "housingMaterial": "housing_material",
+          "contactBaseMaterial": "contact_base_material",
+          "contactPlating": "contact_plating",
+          "contactLubricant": "contact_lubricant"
+         }
+        }
+       },
+       {
+        "key": "traceabilityMfgLotInfo",
+        "label": "Traceability Mfg Lot Info",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "contactBaseMaterial",
+        "label": "Contact Base Material",
+        "type": "text",
+        "required": false
+       },
+       {
+        "key": "contactPlating",
+        "label": "Contact Plating",
+        "type": "text",
+        "required": false
+       },
+       {
+        "key": "contactLubricant",
+        "label": "Contact Lubricant",
+        "type": "text",
+        "required": false
+       },
+       {
+        "key": "housingMaterial",
+        "label": "Housing Material",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "quantity",
+        "label": "Quantity",
+        "type": "number",
+        "required": true
+       }
+      ],
+      "item_files": {
+       "kinds": [
+        "drawing",
+        "cad",
+        "photos"
+       ],
+       "required": []
+      }
+     }
+    },
+    {
+     "n": 3,
+     "title": "Description of Requested Testing",
+     "fields": [
+      {
+       "key": "postTestingSampleDisposition",
+       "label": "Post-Testing Sample Disposition",
+       "type": "select",
+       "required": true,
+       "options": [
+        "Send back to requestor",
+        "Scrap",
+        "Keep in the lab"
+       ]
+      }
+     ],
+     "table": "@tests_table"
+    },
+    {
+     "n": 4,
+     "title": "Additional Information",
+     "fields": [
+      "@additional_information"
+     ],
+     "footer": "Unless otherwise specified, assessment of conformity to requirements is based on simple acceptance."
+    }
+   ],
+   "short": "General lab",
+   "target": "the lab's online request form",
+   "upload_rule": {
+    "accept": [
+     ".pdf",
+     ".docx"
+    ],
+    "max_mb": 2.0,
+    "where": "one attachment box for the whole request"
+   }
+  },
+  "smt_lab_test_request": {
+   "title": "SMT Lab Test Request",
+   "steps": [
+    {
+     "n": 1,
+     "title": "Basic Details",
+     "fields": [
+      "@requester",
+      {
+       "key": "projectNumber",
+       "label": "Project Number",
+       "type": "text",
+       "required": true
+      },
+      {
+       "key": "resultsFormat",
+       "label": "Results Format",
+       "type": "select",
+       "required": true,
+       "options": [
+        "None",
+        "Reflow Profile",
+        "Formal Report"
+       ]
+      },
+      {
+       "key": "requestedTestingCompletionDate",
+       "label": "Requested Testing Completion Date",
+       "type": "date",
+       "required": false
+      },
+      {
+       "key": "testSite",
+       "label": "Test Site",
+       "type": "select",
+       "options": "testSite",
+       "required": false
+      },
+      {
+       "key": "testSampleStatus",
+       "label": "Test Sample Status",
+       "type": "select",
+       "options": "testSampleStatus",
+       "required": true
+      },
+      {
+       "key": "projectType",
+       "label": "Project Type",
+       "type": "select",
+       "options": "projectType",
+       "required": true
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "title": "BGA Sample Information",
+     "table": {
+      "min_rows": 1,
+      "max_rows": 10,
+      "columns": [
+       {
+        "key": "productName",
+        "label": "Product Name",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "partNumberRevision",
+        "label": "Part Number Revision",
+        "type": "text",
+        "required": true,
+        "lookup": {
+         "format": "pn_rev",
+         "fill": {
+          "productName": "product_name"
+         }
+        }
+       },
+       {
+        "key": "solderPaste",
+        "label": "Solder Paste",
+        "type": "select",
+        "required": true,
+        "options": [
+         "Lead-Free",
+         "Leaded",
+         "Low-Temp"
+        ]
+       },
+       {
+        "key": "sphereAlloy",
+        "label": "Sphere Alloy",
+        "type": "select",
+        "required": true,
+        "options": [
+         "Lead-Free",
+         "Leaded",
+         "Low-Temp"
+        ]
+       },
+       {
+        "key": "sphereDiameter",
+        "label": "Sphere Diameter",
+        "type": "select",
+        "required": true,
+        "options": [
+         ".010\"",
+         ".012\"",
+         ".014\"",
+         ".016\"",
+         ".018\"",
+         ".020\"",
+         ".022\"",
+         ".024\"",
+         ".026\"",
+         ".028\"",
+         ".030\"",
+         "Other"
+        ]
+       },
+       {
+        "key": "stencil",
+        "label": "Stencil",
+        "type": "select",
+        "required": true,
+        "options": [
+         "In House",
+         "Needs Designed",
+         "Other"
+        ]
+       }
+      ],
+      "item_files": {
+       "kinds": [
+        "drawing",
+        "cad",
+        "photos"
+       ],
+       "required": []
+      }
+     }
+    },
+    {
+     "n": 3,
+     "title": "Board Attach Sample Information",
+     "table": {
+      "min_rows": 1,
+      "max_rows": 10,
+      "columns": [
+       {
+        "key": "productName",
+        "label": "Product Name",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "partNumberRevision",
+        "label": "Part Number Revision",
+        "type": "text",
+        "required": true,
+        "lookup": {
+         "format": "pn_rev",
+         "fill": {
+          "productName": "product_name"
+         }
+        }
+       },
+       {
+        "key": "quantity",
+        "label": "Quantity",
+        "type": "number",
+        "required": true
+       },
+       {
+        "key": "solderPaste",
+        "label": "Solder Paste",
+        "type": "select",
+        "required": true,
+        "options": [
+         "Lead-Free",
+         "Leaded",
+         "Low-Temp"
+        ]
+       },
+       {
+        "key": "stencil",
+        "label": "Stencil",
+        "type": "select",
+        "required": true,
+        "options": [
+         "In House",
+         "Needs Designed",
+         "Other"
+        ]
+       },
+       {
+        "key": "stencilNumber",
+        "label": "Stencil Number",
+        "type": "text",
+        "required": false
+       },
+       {
+        "key": "placementMethod",
+        "label": "Placement Method",
+        "type": "select",
+        "required": true,
+        "options": [
+         "Hand Placed",
+         "Machine Placed"
+        ]
+       }
+      ],
+      "item_files": {
+       "kinds": [
+        "drawing",
+        "cad",
+        "photos"
+       ],
+       "required": []
+      }
+     }
+    },
+    {
+     "n": 4,
+     "title": "Dynamic Warpage Test",
+     "table": {
+      "min_rows": 0,
+      "max_rows": 10,
+      "optional": true,
+      "columns": [
+       {
+        "key": "productName",
+        "label": "Product Name",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "partNumberRevision",
+        "label": "Part Number Revision",
+        "type": "text",
+        "required": true,
+        "lookup": {
+         "format": "pn_rev",
+         "fill": {
+          "productName": "product_name"
+         }
+        }
+       },
+       {
+        "key": "resinInformation",
+        "label": "Resin information",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "additionalInformation",
+        "label": "Additional Information",
+        "type": "textarea",
+        "required": false
+       }
+      ],
+      "item_files": {
+       "kinds": [
+        "drawing",
+        "cad",
+        "photos"
+       ],
+       "required": []
+      }
+     }
+    },
+    {
+     "n": 5,
+     "title": "Description of Requested Testing",
+     "fields": [
+      {
+       "key": "postTestingSampleDisposition",
+       "label": "Post Testing Sample Disposition",
+       "type": "select",
+       "required": true,
+       "options": [
+        "Send back to requestor",
+        "Scrap"
+       ]
+      }
+     ],
+     "table": "@tests_table"
+    },
+    {
+     "n": 6,
+     "title": "Additional Information",
+     "fields": [
+      "@additional_information"
+     ]
+    }
+   ],
+   "short": "SMT lab",
+   "target": "the SMT lab's online request form",
+   "upload_rule": {
+    "accept": [
+     ".pdf",
+     ".docx"
+    ],
+    "max_mb": 2.0,
+    "where": "one attachment box for the whole request"
+   }
+  },
+  "machine_shop_request": {
+   "title": "Machine Shop Work Request",
+   "short": "Machine shop",
+   "target": "the machine shop queue (imaginary, for the demo)",
+   "note": "One request per job: the requester, cost center and job are entered once, then up to 25 part numbers, each with its own drawing, CAD model and photos.",
+   "upload_rule": {
+    "accept": [
+     ".pdf",
+     ".step",
+     ".stp",
+     ".jpg",
+     ".jpeg",
+     ".png"
+    ],
+    "max_mb": 25.0,
+    "where": "per item"
+   },
+   "steps": [
+    {
+     "n": 1,
+     "title": "Requestor Information",
+     "fields": [
+      {
+       "key": "requestType",
+       "label": "Request Type",
+       "type": "select",
+       "required": true,
+       "options": [
+        "Tooling",
+        "Fixture",
+        "Gauge",
+        "Prototype part",
+        "Repair or modify",
+        "Other"
+       ]
+      },
+      {
+       "key": "programName",
+       "label": "Program Name",
+       "type": "text",
+       "required": false
+      },
+      {
+       "key": "programNumber",
+       "label": "Program #",
+       "type": "text",
+       "required": false
+      },
+      {
+       "key": "requestorName",
+       "label": "Requestor Name",
+       "type": "text",
+       "required": true,
+       "source": "engineer profile"
+      },
+      {
+       "key": "businessUnit",
+       "label": "Business Unit",
+       "type": "combo",
+       "options": "businessUnit",
+       "required": true,
+       "note": "If the value is not listed, type it in."
+      },
+      {
+       "key": "costCenter",
+       "label": "Cost Center #",
+       "type": "combo",
+       "options": "bPCNumber",
+       "required": true,
+       "note": "If the value is not listed, type it in."
+      },
+      {
+       "key": "phone",
+       "label": "Phone",
+       "type": "number",
+       "required": false,
+       "source": "engineer profile"
+      },
+      {
+       "key": "email",
+       "label": "Email",
+       "type": "email",
+       "required": true,
+       "source": "engineer profile"
+      },
+      {
+       "key": "emailCc",
+       "label": "Email CC",
+       "type": "text",
+       "required": false,
+       "note": "Other people to copy on updates, comma separated."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "title": "Job Scope",
+     "fields": [
+      {
+       "key": "projectJobName",
+       "label": "Project / Job Name",
+       "type": "text",
+       "required": true
+      },
+      {
+       "key": "scopeOfWork",
+       "label": "Scope of Work",
+       "type": "textarea",
+       "required": true
+      },
+      {
+       "key": "partDeliveryMethod",
+       "label": "Part Delivery Method",
+       "type": "select",
+       "required": true,
+       "options": [
+        "Pick up at the shop",
+        "Deliver to the lab",
+        "Ship to another site"
+       ]
+      },
+      {
+       "key": "requestedDueDate",
+       "label": "Requested Due Date",
+       "type": "date",
+       "required": true
+      },
+      {
+       "key": "priority",
+       "label": "Priority",
+       "type": "select",
+       "required": true,
+       "options": [
+        "Low",
+        "Normal",
+        "High",
+        "Line down"
+       ]
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "title": "Parts",
+     "table": {
+      "min_rows": 1,
+      "max_rows": 25,
+      "columns": [
+       {
+        "key": "partNumber",
+        "label": "Part Number",
+        "type": "text",
+        "required": true,
+        "lookup": {
+         "format": "pn",
+         "fill": {
+          "rev": "rev",
+          "description": "description",
+          "material": "material"
+         }
+        }
+       },
+       {
+        "key": "rev",
+        "label": "Rev",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "description",
+        "label": "Description",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "qty",
+        "label": "Qty",
+        "type": "number",
+        "required": true
+       },
+       {
+        "key": "material",
+        "label": "Material",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "itemNotes",
+        "label": "Notes for this part",
+        "type": "textarea",
+        "required": false
+       }
+      ],
+      "item_files": {
+       "kinds": [
+        "drawing",
+        "cad",
+        "photos"
+       ],
+       "required": [
+        "drawing",
+        "cad"
+       ],
+       "match": "The drawing and the STEP file must be the same part number and revision; the STEP file is used for production."
+      }
+     }
+    },
+    {
+     "n": 4,
+     "title": "Additional Information",
+     "fields": [
+      {
+       "key": "additionalInformation",
+       "label": "Additional Information",
+       "type": "textarea",
+       "required": false
+      }
+     ]
+    }
+   ]
+  },
+  "purchase_requisition": {
+   "title": "Purchase Requisition",
+   "short": "Purchase req",
+   "target": "the purchasing requisition (imaginary, for the demo)",
+   "note": "One requisition per supplier: the supplier, shipping and account are entered once, then every line item. Line totals and the estimated cost are calculated as you type.",
+   "upload_rule": {
+    "accept": [
+     ".pdf",
+     ".xlsx",
+     ".docx",
+     ".jpg",
+     ".jpeg",
+     ".png"
+    ],
+    "max_mb": 25.0,
+    "where": "per item"
+   },
+   "steps": [
+    {
+     "n": 1,
+     "title": "Supplier",
+     "fields": [
+      {
+       "key": "supplierName",
+       "label": "Supplier Name",
+       "type": "text",
+       "required": true
+      },
+      {
+       "key": "supplierCode",
+       "label": "Supplier Code",
+       "type": "text",
+       "required": false,
+       "note": "Leave blank for a new supplier."
+      },
+      {
+       "key": "rfqNumber",
+       "label": "RFQ # / Quote #",
+       "type": "text",
+       "required": false
+      },
+      {
+       "key": "delivery",
+       "label": "Delivery",
+       "type": "text",
+       "required": false
+      },
+      {
+       "key": "terms",
+       "label": "Terms",
+       "type": "text",
+       "required": false
+      },
+      {
+       "key": "fob",
+       "label": "F.O.B.",
+       "type": "select",
+       "required": false,
+       "options": [
+        "Origin",
+        "Destination"
+       ]
+      },
+      {
+       "key": "shipVia",
+       "label": "Ship Via",
+       "type": "text",
+       "required": false
+      },
+      {
+       "key": "salesTax",
+       "label": "Sales Tax",
+       "type": "select",
+       "required": true,
+       "options": [
+        "Taxable",
+        "Exempt"
+       ]
+      },
+      {
+       "key": "confirming",
+       "label": "Confirming order",
+       "type": "radio",
+       "options": "yesNo",
+       "required": false,
+       "note": "Yes if the order was already placed by phone or online."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "title": "Ship To and Invoice To",
+     "fields": [
+      {
+       "key": "shipTo",
+       "label": "Ship To",
+       "type": "textarea",
+       "required": true
+      },
+      {
+       "key": "invoiceTo",
+       "label": "Invoice To",
+       "type": "textarea",
+       "required": true
+      },
+      {
+       "key": "attention",
+       "label": "Attention",
+       "type": "text",
+       "required": true,
+       "source": "engineer profile"
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "title": "Line Items",
+     "table": {
+      "min_rows": 1,
+      "max_rows": 100,
+      "columns": [
+       {
+        "key": "qty",
+        "label": "Quantity",
+        "type": "number",
+        "required": true
+       },
+       {
+        "key": "uom",
+        "label": "U/M",
+        "type": "select",
+        "required": true,
+        "options": [
+         "each",
+         "pack",
+         "box",
+         "set",
+         "ft",
+         "m",
+         "lb",
+         "kg"
+        ]
+       },
+       {
+        "key": "supplierPartNumber",
+        "label": "Supplier Part Number",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "description",
+        "label": "Description",
+        "type": "text",
+        "required": true
+       },
+       {
+        "key": "unitPrice",
+        "label": "Unit Price (USD)",
+        "type": "money",
+        "required": true
+       }
+      ],
+      "totals": {
+       "qty": "qty",
+       "price": "unitPrice"
+      },
+      "item_files": {
+       "kinds": [
+        "quote",
+        "photos"
+       ],
+       "required": []
+      }
+     }
+    },
+    {
+     "n": 4,
+     "title": "Charges, Account and Approval",
+     "fields": [
+      {
+       "key": "tax",
+       "label": "Tax (USD)",
+       "type": "money",
+       "required": false
+      },
+      {
+       "key": "discount",
+       "label": "Discount (USD)",
+       "type": "money",
+       "required": false,
+       "note": "Enter as a positive amount; it is subtracted."
+      },
+      {
+       "key": "shipping",
+       "label": "Shipping (USD)",
+       "type": "money",
+       "required": false
+      },
+      {
+       "key": "commodityCode",
+       "label": "Commodity Code",
+       "type": "select",
+       "required": true,
+       "options": [
+        "Tooling",
+        "Lab supplies",
+        "Test equipment",
+        "Spare parts",
+        "Services",
+        "Other"
+       ]
+      },
+      {
+       "key": "accountCostCenter",
+       "label": "Account / Sub / Cost Center / Entity",
+       "type": "text",
+       "required": true
+      },
+      {
+       "key": "project",
+       "label": "Project",
+       "type": "text",
+       "required": true
+      },
+      {
+       "key": "recommendedSupplier",
+       "label": "Last Purchased From or Recommended Supplier",
+       "type": "text",
+       "required": false
+      },
+      {
+       "key": "requestedBy",
+       "label": "Requested By",
+       "type": "text",
+       "required": true,
+       "source": "engineer profile"
+      },
+      {
+       "key": "extension",
+       "label": "Extension",
+       "type": "text",
+       "required": false
+      },
+      {
+       "key": "dateRequired",
+       "label": "Date Required",
+       "type": "combo",
+       "options": [
+        "ASAP"
+       ],
+       "required": true,
+       "note": "A date, or ASAP."
+      }
+     ],
+     "summary": {
+      "table_step": 3,
+      "adders": [
+       {
+        "key": "tax",
+        "label": "Tax",
+        "sign": 1
+       },
+       {
+        "key": "discount",
+        "label": "Discount",
+        "sign": -1
+       },
+       {
+        "key": "shipping",
+        "label": "Shipping",
+        "sign": 1
+       }
+      ]
+     },
+     "footer": "Filled in by Purchasing, not by the requester: PO number, release number, approvals and buyer."
+    }
+   ]
+  }
+ },
+ "not_yet_checked": [
+  "Whether choosing 'Other' (sphere diameter, stencil) opens an extra text field",
+  "Exact input name of the 'Send copies' field (shown here as sendCopiesTo)",
+  "Field input names on the general form match the SMT form (checked only for step 4 radios)"
+ ],
+ "parts_directory": {
+  "private": "../data/private/parts/parts.json",
+  "synthetic": "../data/synthetic/parts/parts.json"
+ }
+}

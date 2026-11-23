@@ -1,0 +1,65 @@
+{
+ "id": "SYN-LR-016",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Lab equipment check: current shunts",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "",
+  "step2_rows": [
+   {
+    "productName": "Current shunts",
+    "partNumberRevision": "Various",
+    "traceabilityMfgLotInfo": "Various",
+    "contactBaseMaterial": "Manganin",
+    "contactPlating": "N/A",
+    "contactLubricant": "N/A",
+    "housingMaterial": "N/A",
+    "quantity": "As needed"
+   }
+  ],
+  "postTestingSampleDisposition": "Keep in the lab",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Verify shunt resistance before use: source meter and nanovoltmeter, current reversal in differential mode, 100 mA, at most 20 mV across the shunt, at least 5 readings.",
+    "applicableSpecifications": "EIA-364-23",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "no",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-09-02",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Lab/Failure Analysis"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Project Type is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Additional Information is empty.",
+   "Item 1: quantity must be a whole number of at least 1."
+  ],
+  "should_fix": [],
+  "good_practice": []
+ },
+ "why_good": [
+  "Full measurement method.",
+  "Cites the method standard."
+ ],
+ "gaps": [
+  "No tolerance per shunt; no list of shunt IDs.",
+  "Standing request for the lab's own equipment."
+ ]
+}

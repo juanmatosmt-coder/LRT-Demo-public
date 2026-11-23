@@ -1,0 +1,49 @@
+{
+ "form": "lab_test_request",
+ "title": "DEMO weak draft: warpage before and after cycling",
+ "synthetic": true,
+ "_about": "SYNTHETIC weak draft with typical mistakes, used to demonstrate the quality flags. Not a real request.",
+ "fields": {
+  "firstName": "Sam",
+  "lastName": "Sample",
+  "email": "sam.sample@example.com",
+  "phone": "5550101",
+  "bPCNumber": "U0000 - Synthetic Cost Center A",
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "requestedTestingCompletionDate": "2026-11-29",
+  "resultsFormat": "Data and Observations",
+  "testSite": "Lab A",
+  "testSampleStatus": "Prototype",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic board-to-board header 120",
+    "partNumberRevision": "SYN-10002 Rev A",
+    "traceabilityMfgLotInfo": "TBD",
+    "contactBaseMaterial": "",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "",
+    "housingMaterial": "PPS",
+    "quantity": "4"
+   }
+  ],
+  "postTestingSampleDisposition": "Scrap",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "warpage, then cycle",
+    "applicableSpecifications": "SYN-TM-101; SYN-TM-110",
+    "specificationRevision": "SYN-TM-101 Rev B"
+   },
+   {
+    "testsToBePerformed": "Thermal cycling -65 C to 150 C for 300 cycles, then measure warpage through reflow again",
+    "applicableSpecifications": "SYN-TM-110",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "yes",
+  "additionalInformation": "Please run these asap, customer is waiting.",
+  "sendCopiesTo": "sam.sample@example.com, lab-team@example"
+ }
+}

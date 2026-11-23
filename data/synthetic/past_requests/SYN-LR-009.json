@@ -1,0 +1,68 @@
+{
+ "id": "SYN-LR-009",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Cap insertion and removal, per-sample cycles",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Prototype",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic socket with cap",
+    "partNumberRevision": "SYN-40808 Rev 17 (cap SYN-40809 Rev 12)",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "N/A",
+    "housingMaterial": "N/A",
+    "quantity": "5"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Cap insertion and removal force: 5 more cycles on samples 3, 4 and 5; 10 more cycles on samples 1 and 2.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-05-20",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Additional Information is empty."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "'insertion and removal force' has no procedure in the assistant's library.",
+   "Item 1: SYN-40808 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Cycle plan per sample.",
+  "Revisions for the socket and its cap."
+ ],
+ "gaps": [
+  "No force limit or speed.",
+  "The earlier cycles are not referenced."
+ ]
+}

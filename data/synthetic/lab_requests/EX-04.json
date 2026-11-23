@@ -1,0 +1,69 @@
+{
+ "id": "EX-04",
+ "form": "smt_lab_test_request",
+ "title": "BGA board attach and dynamic warpage, synthetic interposer",
+ "fields": {
+  "firstName": "Alex",
+  "lastName": "Example",
+  "email": "alex.example@example.com",
+  "phone": "5550100",
+  "bPCNumber": "U0000 - Synthetic Cost Center A",
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "Qualification",
+  "confidentialTestsOrSamples": "no",
+  "canTestingBeSubcontracted": "no",
+  "sendCopiesTo": "alex.example@example.com, quality.example@example.com",
+  "projectNumber": "SYN-PRJ-0042",
+  "resultsFormat": "Formal Report",
+  "requestedTestingCompletionDate": "2027-01-15",
+  "step2_rows": [
+   {
+    "productName": "Synthetic interposer 900",
+    "partNumberRevision": "SYN-30001 Rev A",
+    "solderPaste": "Lead-Free",
+    "sphereAlloy": "Lead-Free",
+    "sphereDiameter": ".020\"",
+    "stencil": "In House"
+   }
+  ],
+  "step3_rows": [
+   {
+    "productName": "Synthetic interposer 900",
+    "partNumberRevision": "SYN-30001 Rev A",
+    "quantity": "6",
+    "solderPaste": "Lead-Free",
+    "stencil": "In House",
+    "stencilNumber": "STN-0815",
+    "placementMethod": "Machine Placed"
+   }
+  ],
+  "step4_rows": [
+   {
+    "productName": "Synthetic interposer 900",
+    "partNumberRevision": "SYN-30001 Rev A",
+    "resinInformation": "Synthetic LCP grade X, lot R-77",
+    "additionalInformation": "Measure at 25 C, 183 C, 245 C and 25 C after cooling."
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step5_rows": [
+   {
+    "testsToBePerformed": "Ball attach, board attach, dynamic warpage of the interposer during reflow",
+    "applicableSpecifications": "SYN-TM-101 Warpage Measurement During Reflow Simulation; SYN-PR-201 Sample Preparation",
+    "specificationRevision": "SYN-TM-101 Rev C; SYN-PR-201 Rev B"
+   }
+  ],
+  "additionalInformation": "Objective: check that interposer warpage at 245 C stays below 0.08 mm before the board attach build.\nReflow profile: peak 245 C, profile file attached (profile_245.pdf). Boards: synthetic test board TB-12, 1.6 mm FR-4.\nMeasurement area: full ball side, datum = best-fit plane of the corner balls.\nSamples: as-molded interposers in dry-pack since molding; precondition per SYN-PR-201 before ball attach.\nReport: coplanarity table per temperature, contour map at peak."
+ },
+ "_why_good": [
+  "Uses the same part identity on every table, so the lab can follow one part through the build.",
+  "States the stencil number and placement method.",
+  "Gives the capture temperatures and the decision the data supports."
+ ],
+ "created": "2026-11-23",
+ "submitted": false,
+ "synthetic": true
+}

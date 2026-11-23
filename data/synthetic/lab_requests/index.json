@@ -1,0 +1,77 @@
+{
+ "_about": "SYNTHETIC examples of high-quality past lab requests, in the request-form format. Optional: nothing depends on them. They show the thinking behind a good request, open as a copy in the form page, and give the quality check a reference. Real examples go in data/private/lab_requests/ (gitignored) with the same format and an index.json.",
+ "examples": [
+  {
+   "id": "EX-01",
+   "form": "lab_test_request",
+   "title": "Warpage through lead-free reflow, SYN-10001 Rev C",
+   "why_good": [
+    "States the objective and the decision it supports, with the acceptance limit.",
+    "Gives the full thermal profile and capture temperatures, so the lab can check them against the chamber limits.",
+    "Names the measurement area and datum, so results are comparable.",
+    "Gives storage history and preconditioning, the most common reason warpage results are rejected.",
+    "Cites procedures with revisions, and asks for contour maps only where needed."
+   ],
+   "file": "EX-01.json"
+  },
+  {
+   "id": "EX-02",
+   "form": "lab_test_request",
+   "title": "Thermal cycling 500 cycles with readouts, SYN-10003 Rev B",
+   "why_good": [
+    "Gives every profile parameter the procedure requires (min, max, dwell, ramp, cycles).",
+    "Defines readouts and what is measured at each one.",
+    "Checks the profile against the chamber range before submitting.",
+    "Says what to do if something goes wrong mid-test (a stop condition)."
+   ],
+   "file": "EX-02.json"
+  },
+  {
+   "id": "EX-03",
+   "form": "lab_test_request",
+   "title": "Warpage before and after cycling, control group design",
+   "why_good": [
+    "Explains the test design choice (control group) and the rule behind it.",
+    "Keeps 5 samples per condition, the procedure minimum.",
+    "Repeats preconditioning before each thermal step.",
+    "Lets the lab see the whole sequence per group in one place."
+   ],
+   "file": "EX-03.json"
+  },
+  {
+   "id": "EX-04",
+   "form": "smt_lab_test_request",
+   "title": "BGA board attach and dynamic warpage, synthetic interposer",
+   "why_good": [
+    "Uses the same part identity on every table, so the lab can follow one part through the build.",
+    "States the stencil number and placement method.",
+    "Gives the capture temperatures and the decision the data supports."
+   ],
+   "file": "EX-04.json"
+  },
+  {
+   "id": "EX-05",
+   "form": "machine_shop_request",
+   "title": "Warpage sample fixture plates, two parts",
+   "why_good": [
+    "One job with every part listed, sharing the requester, cost center and job details.",
+    "Each part has its drawing and matching STEP file.",
+    "Scope gives the purpose, critical features with tolerances, finish and inspection.",
+    "Says what can be relaxed if a tolerance cannot be held."
+   ],
+   "file": "EX-05.json"
+  },
+  {
+   "id": "EX-06",
+   "form": "purchase_requisition",
+   "title": "Pneumatic fittings for fixture build",
+   "why_good": [
+    "Quote number given and the quote attached.",
+    "Supplier code given, so no vendor set-up delay.",
+    "Every line has the supplier part number, unit of measure and quoted price.",
+    "Account and project are complete, and the date is a real date."
+   ],
+   "file": "EX-06.json"
+  }
+ ]
+}

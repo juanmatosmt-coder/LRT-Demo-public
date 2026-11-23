@@ -1,0 +1,67 @@
+{
+ "id": "SYN-LR-025",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Contact force without cutting the housing",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic stacked cage connector",
+    "partNumberRevision": "SYN-42525 Rev A",
+    "traceabilityMfgLotInfo": "Build 2026-01",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Use an L-shaped probe on the front rows of both ports; mate to a board for the lowest beam. Test 1: 3 cycles to 0.40 mm, first and last maximum force. Test 2: full-travel curves per wafer type.",
+    "applicableSpecifications": "EIA-364-04",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Wafer pattern 1-13: G-S-S-G-S-S-LS-S-S-G-S-S-G. Measure 2 ground, 2 signal and 1 low-speed wafer.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2026-01-27",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Housing Material is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "Item 1: SYN-42525 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Says how to test without destroying the part.",
+  "Two tests with deflection and cycles.",
+  "Gives the wafer pattern and counts."
+ ],
+ "gaps": [
+  "No normal-force minimum."
+ ]
+}

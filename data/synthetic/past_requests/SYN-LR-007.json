@@ -1,0 +1,68 @@
+{
+ "id": "SYN-LR-007",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Hardness: certificate vs specification",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic power blade",
+    "partNumberRevision": "SYN-40606 Rev A",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "Stainless 301",
+    "contactPlating": "None",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Measure the hardness of the base metal.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "The material specification calls for Rockwell C34; the supplier certificate gives HV 340. Please verify.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-04-22",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "'hardness' has no procedure in the assistant's library.",
+   "Item 1: SYN-40606 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Asks one clear question with both numbers.",
+  "Small scope that fits a short turnaround."
+ ],
+ "gaps": [
+  "No lot.",
+  "Hardness method and load not stated (Rockwell or microhardness on thin strip)."
+ ]
+}

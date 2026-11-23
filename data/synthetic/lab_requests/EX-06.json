@@ -1,0 +1,70 @@
+{
+ "id": "EX-06",
+ "form": "purchase_requisition",
+ "title": "Pneumatic fittings for fixture build",
+ "fields": {
+  "supplierName": "Synthetic Industrial Supply",
+  "supplierCode": "SYN-V-0042",
+  "rfqNumber": "Q-2026-1187",
+  "delivery": "Standard ground, 5 days",
+  "terms": "Net 30",
+  "fob": "Destination",
+  "shipVia": "Ground",
+  "salesTax": "Taxable",
+  "confirming": "no",
+  "shipTo": "Lab A, Building 1, dock 2",
+  "invoiceTo": "Accounts payable, Synthetic Co",
+  "attention": "Alex Example",
+  "step3_rows": [
+   {
+    "qty": "10",
+    "uom": "each",
+    "supplierPartNumber": "SYN-FIT-04Y",
+    "description": "Push-to-connect union Y, 4 mm tube",
+    "unitPrice": "4.81",
+    "_files": {
+     "quote": [
+      {
+       "name": "Q-2026-1187.pdf",
+       "bytes": 90000,
+       "ok": true
+      }
+     ]
+    }
+   },
+   {
+    "qty": "20",
+    "uom": "each",
+    "supplierPartNumber": "SYN-SIL-M5",
+    "description": "Sintered exhaust silencer, M5",
+    "unitPrice": "2.74"
+   },
+   {
+    "qty": "2",
+    "uom": "each",
+    "supplierPartNumber": "SYN-REG-10",
+    "description": "Miniature air regulator",
+    "unitPrice": "27.75"
+   }
+  ],
+  "tax": "8.62",
+  "discount": "",
+  "shipping": "12.50",
+  "commodityCode": "Tooling",
+  "accountCostCenter": "5000 / 00 / SYN-CC-A / 100",
+  "project": "SYN-PRJ-0042",
+  "recommendedSupplier": "Synthetic Industrial Supply",
+  "requestedBy": "Alex Example",
+  "extension": "0100",
+  "dateRequired": "2026-12-09"
+ },
+ "why_good": [
+  "Quote number given and the quote attached.",
+  "Supplier code given, so no vendor set-up delay.",
+  "Every line has the supplier part number, unit of measure and quoted price.",
+  "Account and project are complete, and the date is a real date."
+ ],
+ "created": "2026-11-23",
+ "submitted": false,
+ "synthetic": true
+}

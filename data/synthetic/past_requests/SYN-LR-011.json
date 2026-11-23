@@ -1,0 +1,77 @@
+{
+ "id": "SYN-LR-011",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Lubricant change verification",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Formal Report (Customer)",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic power connector, right angle",
+    "partNumberRevision": "SYN-41010 Rev A",
+    "traceabilityMfgLotInfo": "Lot SYN-L2511",
+    "contactBaseMaterial": "Signal: C51000; power: C18070",
+    "contactPlating": "Signal: Au flash; power: Au",
+    "contactLubricant": "Power pins: lubricant B",
+    "housingMaterial": "PA9T",
+    "quantity": "15"
+   },
+   {
+    "productName": "Synthetic power connector, vertical",
+    "partNumberRevision": "SYN-41011 Rev A",
+    "traceabilityMfgLotInfo": "Lot SYN-L2511",
+    "contactBaseMaterial": "Signal: C70250; power: C18070",
+    "contactPlating": "Signal: Au flash; power: Au",
+    "contactLubricant": "Power pins: lubricant B",
+    "housingMaterial": "PA9T",
+    "quantity": "15"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Run test groups 2, 3b and 5 of the product specification on both connector styles.",
+    "applicableSpecifications": "SYN-GS-1314",
+    "specificationRevision": "SYN-GS-1314 Rev A"
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Objective: verify that changing the lubricant does not affect performance. Unsoldered samples go to groups 2 and 3b (signal LLCR, shock and vibration can be skipped); soldered samples go to the temperature-rise group.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-06-17",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [],
+  "should_fix": [],
+  "good_practice": [
+   "Item 1: SYN-GS-131 is not in the procedure library.",
+   "Item 1: SYN-GS-131 is not in the procedure library.",
+   "'contact resistance' has no procedure in the assistant's library.",
+   "'vibration' has no procedure in the assistant's library.",
+   "Item 1: SYN-41010 is not in the parts directory.",
+   "Item 2: SYN-41011 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "States the objective.",
+  "Cites the governing specification with its revision.",
+  "Materials per contact type, and which samples suit which group and why."
+ ],
+ "gaps": [
+  "Test matrix only in an annex."
+ ]
+}

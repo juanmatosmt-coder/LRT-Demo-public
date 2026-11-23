@@ -1,0 +1,67 @@
+{
+ "id": "SYN-LR-021",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Conductor fracture: which failure mode?",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Formal Report (Customer)",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "Operational Support",
+  "step2_rows": [
+   {
+    "productName": "Synthetic cable assembly",
+    "partNumberRevision": "SYN-42121 Rev A",
+    "traceabilityMfgLotInfo": "Lot SYN-L2521",
+    "contactBaseMaterial": "CuTi",
+    "contactPlating": "Au",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "SEM of the broken conductor surfaces to identify the failure mode.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Broken conductors are in row 4 of the plug, on the side without the dust cap. Need to assess the break: tensile with necking, shear cut, or embrittlement from oxidation? Destructive testing is approved; the cables may need separating.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-11-11",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Lab/Failure Analysis"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Housing Material is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "'SEM inspection' has no procedure in the assistant's library.",
+   "Item 1: SYN-42121 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Asks a specific question with candidate answers.",
+  "Says where to look and approves destructive work."
+ ],
+ "gaps": [
+  "Two working days for a customer report.",
+  "No usage history."
+ ]
+}

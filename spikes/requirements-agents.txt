@@ -1,0 +1,7 @@
+# AGENTS venv (.venv-agents): the frameworks. Versions tested with the spikes.
+crewai==1.15.34
+langchain-core==1.7.4
+langchain-openai==1.7.3
+langchain-mcp-adapters==0.3.2
+mcp==1.30.0
+openai==2.54.0

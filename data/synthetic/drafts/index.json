@@ -1,0 +1,29 @@
+{
+ "_about": "SYNTHETIC weak drafts with typical mistakes, one per form, for trying Check quality.",
+ "demos": [
+  {
+   "id": "DEMO-LAB",
+   "form": "lab_test_request",
+   "title": "Demo: weak general lab draft",
+   "file": "demo_weak_draft.json"
+  },
+  {
+   "id": "DEMO-SMT",
+   "form": "smt_lab_test_request",
+   "title": "Demo: weak SMT lab draft",
+   "file": "demo_weak_smt.json"
+  },
+  {
+   "id": "DEMO-SHOP",
+   "form": "machine_shop_request",
+   "title": "Demo: weak machine shop draft",
+   "file": "demo_weak_shop.json"
+  },
+  {
+   "id": "DEMO-PR",
+   "form": "purchase_requisition",
+   "title": "Demo: weak purchase requisition",
+   "file": "demo_weak_pr.json"
+  }
+ ]
+}

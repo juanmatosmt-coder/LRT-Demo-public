@@ -1,0 +1,57 @@
+{
+ "id": "EX-03",
+ "form": "lab_test_request",
+ "title": "Warpage before and after cycling, control group design",
+ "fields": {
+  "firstName": "Alex",
+  "lastName": "Example",
+  "email": "alex.example@example.com",
+  "phone": "5550100",
+  "bPCNumber": "U0000 - Synthetic Cost Center A",
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "Qualification",
+  "confidentialTestsOrSamples": "no",
+  "canTestingBeSubcontracted": "no",
+  "sendCopiesTo": "alex.example@example.com, quality.example@example.com",
+  "requestedTestingCompletionDate": "2027-01-29",
+  "resultsFormat": "Presentation Summary",
+  "step2_rows": [
+   {
+    "productName": "Synthetic board-to-board header 120",
+    "partNumberRevision": "SYN-10002 Rev A",
+    "traceabilityMfgLotInfo": "Lot L2611-02, IDs H01-H10",
+    "contactBaseMaterial": "Phosphor bronze",
+    "contactPlating": "Au flash over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "LCP, 30% glass",
+    "quantity": "10"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Group A (H01-H05, control): precondition, warpage during reflow simulation",
+    "applicableSpecifications": "SYN-TM-101; SYN-PR-201",
+    "specificationRevision": "SYN-TM-101 Rev C; SYN-PR-201 Rev B"
+   },
+   {
+    "testsToBePerformed": "Group B (H06-H10): precondition, thermal cycling -40 C to 125 C for 200 cycles, precondition again, warpage during reflow simulation",
+    "applicableSpecifications": "SYN-TM-110; SYN-PR-201; SYN-TM-101",
+    "specificationRevision": "SYN-TM-110 Rev D; SYN-PR-201 Rev B; SYN-TM-101 Rev C"
+   }
+  ],
+  "additionalInformation": "Objective: compare warpage before and after thermal cycling.\nDesign: two groups of 5 instead of measuring the same 10 parts twice, because SYN-TM-101 does not allow a second reflow profile on the same samples unless stated, and a second profile would change the parts. Group A is the before (control) group, group B the after group.\nThermal profile for warpage: peak 260 C, same profile as EX-01 (attached). Measurement area: terminal seating plane, datum = three standoffs. Cycling profile: 15 min dwell, 10 C/min ramp.\nPrecondition again after cycling and before the warpage run, as SYN-PR-201 requires before every elevated-temperature test.\nSamples: as-molded, dry-packed since molding.\nAcceptance: compare group B coplanarity against group A; limit 0.10 mm at peak.\nReport: coplanarity table per sample, before/after comparison plot."
+ },
+ "_why_good": [
+  "Explains the test design choice (control group) and the rule behind it.",
+  "Keeps 5 samples per condition, the procedure minimum.",
+  "Repeats preconditioning before each thermal step.",
+  "Lets the lab see the whole sequence per group in one place."
+ ],
+ "created": "2026-11-23",
+ "submitted": false,
+ "synthetic": true
+}

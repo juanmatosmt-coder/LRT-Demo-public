@@ -1,0 +1,97 @@
+{
+ "id": "SYN-LR-030",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] CT scan with no question",
+ "kind": "contrast example (what to avoid)",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "2026-04-07",
+  "testSite": "Lab A",
+  "testSampleStatus": "Prototype",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Design A",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "5"
+   },
+   {
+    "productName": "Design B",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "5"
+   },
+   {
+    "productName": "Design C",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "4"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "CT scan of all submitted samples.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2026-04-07",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 2: Part Number Revision is empty.",
+   "Item 2: Traceability Mfg Lot Info is empty.",
+   "Item 2: Housing Material is empty.",
+   "Item 3: Part Number Revision is empty.",
+   "Item 3: Traceability Mfg Lot Info is empty.",
+   "Item 3: Housing Material is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Additional Information is empty."
+  ],
+  "should_fix": [
+   "Only 0 working days until the requested date."
+  ],
+  "good_practice": [
+   "'CT scan' has no procedure in the assistant's library."
+  ]
+ },
+ "why_good": [
+  "Groups samples by design."
+ ],
+ "gaps": [
+  "Same-day request.",
+  "No part numbers, lots or materials.",
+  "Doesn't say what to look for."
+ ]
+}

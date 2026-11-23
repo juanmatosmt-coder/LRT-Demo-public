@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "timestamp": "2026-11-03 01:21",
+    "server": {
+      "ok": true,
+      "model": "Qwen/Qwen3.5-9B",
+      "quantization": "4bit",
+      "torch": "2.14.1+cu126",
+      "device": "NVIDIA RTX 5000 Ada Generation Laptop GPU"
+    },
+    "stub_model": false,
+    "versions": {
+      "python": "3.12.10",
+      "os": "Windows 11",
+      "crewai": "1.15.34",
+      "langchain-core": "1.7.4",
+      "langchain-openai": "1.7.3",
+      "langchain-mcp-adapters": "0.3.2",
+      "mcp": "1.30.0",
+      "openai": "2.54.0"
+    }
+  },
+  "results": [
+    {
+      "name": "1. Local Qwen served as an OpenAI-compatible API",
+      "passed": true,
+      "seconds": 3.1,
+      "details": {
+        "models": [
+          "qwen-local"
+        ],
+        "reply": "OK",
+        "stop_test": "stop at '5' returned: '1, 2, 3, 4,'"
+      }
+    },
+    {
+      "name": "2. LangChain LCEL chain with structured (JSON) output",
+      "passed": true,
+      "seconds": 2.3,
+      "details": {
+        "output": {
+          "test_type": "warpage_reflow",
+          "samples": 10,
+          "missing": [
+            "housings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. CrewAI planner and reviewer agents (role separation, task routing)",
+      "passed": true,
+      "seconds": 48.2,
+      "details": {
+        "planner_output": "1. **Option A: Sequential Thermal Cycling (In-Situ Aging)**\n   *   **Sample Group:** 10 Housings (Single Group)\n   *   **Step Order:**\n       1.  Measure initial warpage through reflow on all 10 housings.\n       2.  Thermally cycle all 10 housings for 200 cycles.\n       3.  Measure final warpage through reflow on all 10 housings.\n       4.  Compare before and after warpage data for the same units.\n\n2. **Option B: Split Group Comparison (Control vs. Stress)**\n   *   **Sample Group 1 (Control):** 5 Housings\n   *   **Sample Group 2 (Stress):** 5 Housings\n   *   **Step Order:**\n       1.  Measure initial warpage through reflow on all 10 housings (both groups).\n       2.  Thermally cycle only the 5 housings in Group 2 for 200 cycles.\n       3.  Measure final warpage through reflow on the 5 stressed housings (Group 2).\n       4.  Compare the \"before\" data of Group 2 against the \"after\" data of Group 2, and compare the \"after\" data of Group 2 against the \"after\" data of Group 1 (Control).",
+        "reviewer_output": "### Review of Option A: Sequential Thermal Cycling (In-Situ Aging)\n\n**Verdict: Not Acceptable**\n\n**Reasoning:**\nWhile this option correctly applies the rule of \"at least 5 samples per test condition\" (using 10 samples for the single condition), it violates the rule regarding the \"precondition before each thermal test.\"\nIn Step 1, the plan calls to \"Measure initial warpage through reflow.\" In Step 3, it calls to \"Measure final warpage through reflow.\"\nThe procedure rule explicitly states that a precondition (a standard reflow process) must occur *before* the thermal cycling to establish a valid baseline state. Option A performs a reflow, then cycles, then performs *another* reflow. This second reflow acts as a second thermal event on the same samples without the engineer's confirmation of a second reflow profile, which is prohibited by the rule: \"no second reflow profile on the same samples unless the engineer confirms it.\" Furthermore, performing a reflow after thermal cycling without explicit confirmation changes the material state, invalidating the comparison of the \"initial\" state against the \"final\" state as intended for aging studies.\n\n---\n\n### Review of Option B: Split Group "
+      }
+    },
+    {
+      "name": "t4_mcp",
+      "passed": false,
+      "seconds": 0.9,
+      "details": {
+        "error": "ExceptionGroup('unhandled errors in a TaskGroup', [ExceptionGroup('unhandled errors in a TaskGroup', [McpError('Connection closed')])])",
+        "traceback": "essions.py\", line 268, in _create_stdio_session\n  |     stdio_client(server_params) as (read, write),\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  |   File \"<python>\\Lib\\contextlib.py\", line 231, in __aexit__\n  |     await self.gen.athrow(value)\n  |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\client\\stdio\\__init__.py\", line 183, in stdio_client\n  |     anyio.create_task_group() as tg,\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 871, in __aexit__\n  |     raise BaseExceptionGroup(\n  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)\n  +-+---------------- 1 ----------------\n    | Exception Group Traceback (most recent call last):\n    |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\client\\stdio\\__init__.py\", line 189, in stdio_client\n    |     yield read_stream, write_stream\n    |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\langchain_mcp_adapters\\sessions.py\", line 269, in _create_stdio_session\n    |     ClientSession(read, write, **(session_kwargs or {})) as session,\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\shared\\session.py\", line 238, in __aexit__\n    |     return await self._task_group.__aexit__(exc_type, exc_val, exc_tb)\n    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 871, in __aexit__\n    |     raise BaseExceptionGroup(\n    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)\n    +-+---------------- 1 ----------------\n      | Traceback (most recent call last):\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\langchain_mcp_adapters\\sessions.py\", line 271, in _create_stdio_session\n      |     yield session\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\langchain_mcp_adapters\\sessions.py\", line 465, in create_session\n      |     yield session\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\langchain_mcp_adapters\\client.py\", line 163, in session\n      |     await session.initialize()\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\client\\session.py\", line 183, in initialize\n      |     result = await self.send_request(\n      |              ^^^^^^^^^^^^^^^^^^^^^^^^\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\shared\\session.py\", line 306, in send_request\n      |     raise McpError(response_or_error.error)\n      | mcp.shared.exceptions.McpError: Connection closed\n      +------------------------------------\n"
+      }
+    },
+    {
+      "name": "t5_tot",
+      "passed": false,
+      "seconds": 0.7,
+      "details": {
+        "error": "ExceptionGroup('unhandled errors in a TaskGroup', [ExceptionGroup('unhandled errors in a TaskGroup', [McpError('Connection closed')])])",
+        "traceback": "essions.py\", line 268, in _create_stdio_session\n  |     stdio_client(server_params) as (read, write),\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  |   File \"<python>\\Lib\\contextlib.py\", line 231, in __aexit__\n  |     await self.gen.athrow(value)\n  |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\client\\stdio\\__init__.py\", line 183, in stdio_client\n  |     anyio.create_task_group() as tg,\n  |     ^^^^^^^^^^^^^^^^^^^^^^^^^\n  |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 871, in __aexit__\n  |     raise BaseExceptionGroup(\n  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)\n  +-+---------------- 1 ----------------\n    | Exception Group Traceback (most recent call last):\n    |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\client\\stdio\\__init__.py\", line 189, in stdio_client\n    |     yield read_stream, write_stream\n    |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\langchain_mcp_adapters\\sessions.py\", line 269, in _create_stdio_session\n    |     ClientSession(read, write, **(session_kwargs or {})) as session,\n    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\shared\\session.py\", line 238, in __aexit__\n    |     return await self._task_group.__aexit__(exc_type, exc_val, exc_tb)\n    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 871, in __aexit__\n    |     raise BaseExceptionGroup(\n    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)\n    +-+---------------- 1 ----------------\n      | Traceback (most recent call last):\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\langchain_mcp_adapters\\sessions.py\", line 271, in _create_stdio_session\n      |     yield session\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\langchain_mcp_adapters\\sessions.py\", line 465, in create_session\n      |     yield session\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\langchain_mcp_adapters\\client.py\", line 163, in session\n      |     await session.initialize()\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\client\\session.py\", line 183, in initialize\n      |     result = await self.send_request(\n      |              ^^^^^^^^^^^^^^^^^^^^^^^^\n      |   File \"<repo>\\.venv-agents\\Lib\\site-packages\\mcp\\shared\\session.py\", line 306, in send_request\n      |     raise McpError(response_or_error.error)\n      | mcp.shared.exceptions.McpError: Connection closed\n      +------------------------------------\n"
+      }
+    }
+  ]
+}

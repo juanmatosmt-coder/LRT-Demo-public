@@ -1,0 +1,106 @@
+{
+ "id": "SYN-LR-006",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Competitor plating thickness by cross-section",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Competitor",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Competitor receptacle",
+    "partNumberRevision": "Competitor part (as marked)",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Competitor header",
+    "partNumberRevision": "Competitor part (as marked)",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Synthetic receptacle",
+    "partNumberRevision": "SYN-40505 Rev A",
+    "traceabilityMfgLotInfo": "Lot SYN-L2507",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "",
+    "housingMaterial": "LCP",
+    "quantity": "1"
+   },
+   {
+    "productName": "Synthetic header",
+    "partNumberRevision": "SYN-40506 Rev A",
+    "traceabilityMfgLotInfo": "Lot SYN-L2507",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "",
+    "housingMaterial": "LCP",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Cross-section each terminal at the pin and measure the gold plating thickness. Do our parts first.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-04-08",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Results Format is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 2: Traceability Mfg Lot Info is empty.",
+   "Item 2: Housing Material is empty.",
+   "Post-Testing Sample Disposition is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Additional Information is empty."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "'cross-section' has no procedure in the assistant's library.",
+   "'plating thickness' has no procedure in the assistant's library.",
+   "Item 1: COMPETITOR PART (AS MARKED) is not in the parts directory.",
+   "Item 3: SYN-40505 is not in the parts directory.",
+   "Item 4: SYN-40506 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Compares like with like (receptacle and header from both sources).",
+  "Says what to measure and where, and the order of work."
+ ],
+ "gaps": [
+  "No method or number of readings.",
+  "Results format and disposition blank."
+ ]
+}

@@ -1,0 +1,113 @@
+{
+ "_about": "SYNTHETIC parts directory for the demo. The real one goes in data/private/parts/parts.json (gitignored) with the same fields; the form uses it when it is there.",
+ "fields": [
+  "part_number",
+  "rev",
+  "product_name",
+  "description",
+  "housing_material",
+  "contact_base_material",
+  "contact_plating",
+  "contact_lubricant",
+  "material",
+  "status"
+ ],
+ "parts": [
+  {
+   "part_number": "SYN-10001",
+   "rev": "C",
+   "product_name": "Synthetic BGA socket 600-pin",
+   "description": "LCP housing, 600 positions",
+   "housing_material": "LCP, 30% glass",
+   "contact_base_material": "Copper alloy C7025",
+   "contact_plating": "Au over Ni",
+   "contact_lubricant": "None",
+   "material": "LCP",
+   "status": "active"
+  },
+  {
+   "part_number": "SYN-10002",
+   "rev": "A",
+   "product_name": "Synthetic board-to-board header 120",
+   "description": "120-position header, 0.8 mm pitch",
+   "housing_material": "LCP, 30% glass",
+   "contact_base_material": "Phosphor bronze",
+   "contact_plating": "Au flash over Ni",
+   "contact_lubricant": "None",
+   "material": "LCP",
+   "status": "active"
+  },
+  {
+   "part_number": "SYN-10003",
+   "rev": "B",
+   "product_name": "Synthetic mezzanine receptacle 400",
+   "description": "400-position receptacle",
+   "housing_material": "PPS, 40% glass",
+   "contact_base_material": "Copper alloy C7025",
+   "contact_plating": "Au over Ni",
+   "contact_lubricant": "Synthetic lube A",
+   "material": "PPS",
+   "status": "active"
+  },
+  {
+   "part_number": "SYN-20001",
+   "rev": "D",
+   "product_name": "Synthetic test fixture plate",
+   "description": "Fixture base plate, 150 x 100 mm",
+   "housing_material": "",
+   "contact_base_material": "",
+   "contact_plating": "",
+   "contact_lubricant": "",
+   "material": "Aluminium 6061-T6",
+   "status": "active"
+  },
+  {
+   "part_number": "SYN-20002",
+   "rev": "A",
+   "product_name": "Synthetic warpage shadow frame",
+   "description": "Shadow moire sample frame",
+   "housing_material": "",
+   "contact_base_material": "",
+   "contact_plating": "",
+   "contact_lubricant": "",
+   "material": "Stainless steel 304",
+   "status": "obsolete"
+  },
+  {
+   "part_number": "SYN-30001",
+   "rev": "A",
+   "product_name": "Synthetic interposer 900",
+   "description": "900-ball interposer, 0.8 mm pitch",
+   "housing_material": "LCP grade X",
+   "contact_base_material": "",
+   "contact_plating": "",
+   "contact_lubricant": "",
+   "material": "LCP",
+   "status": "active"
+  },
+  {
+   "part_number": "SYN-CONN-400",
+   "rev": "A",
+   "product_name": "Synthetic LCP connector housing 400",
+   "description": "400 positions, 0.8 mm pitch",
+   "housing_material": "LCP, 30% glass",
+   "contact_base_material": "",
+   "contact_plating": "",
+   "contact_lubricant": "",
+   "material": "LCP",
+   "status": "active"
+  },
+  {
+   "part_number": "SYN-20003",
+   "rev": "A",
+   "product_name": "Synthetic clamp ring",
+   "description": "Clamp ring for base plate",
+   "housing_material": "",
+   "contact_base_material": "",
+   "contact_plating": "",
+   "contact_lubricant": "",
+   "material": "Stainless steel 304",
+   "status": "active"
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "form": "purchase_requisition",
+ "title": "DEMO weak draft: fittings",
+ "synthetic": true,
+ "fields": {
+  "supplierName": "Some supplier",
+  "salesTax": "Exempt",
+  "shipTo": "lab",
+  "invoiceTo": "lab",
+  "attention": "Sam Sample",
+  "step3_rows": [
+   {
+    "qty": "10",
+    "uom": "each",
+    "supplierPartNumber": "SYN-FIT-04Y",
+    "description": "fittings",
+    "unitPrice": "0"
+   },
+   {
+    "qty": "0",
+    "uom": "each",
+    "supplierPartNumber": "",
+    "description": "silencers",
+    "unitPrice": "2.74"
+   },
+   {
+    "qty": "500",
+    "uom": "box",
+    "supplierPartNumber": "SYN-SCR-M3",
+    "description": "screws, box of 100",
+    "unitPrice": "12"
+   }
+  ],
+  "tax": "4.40",
+  "commodityCode": "Tooling",
+  "accountCostCenter": "",
+  "project": "fixture",
+  "requestedBy": "Sam Sample",
+  "dateRequired": "ASAP"
+ },
+ "_about": "SYNTHETIC weak draft with typical mistakes, used to demonstrate the quality flags. Not a real request."
+}

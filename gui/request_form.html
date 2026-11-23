@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Local test suite: no outbound traffic. The page may load only files from the local server it came from,
+     and may call only the local AI endpoint (127.0.0.1:8000). Everything else is blocked by the browser. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' http://127.0.0.1:8000 http://localhost:8000; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Request Draft</title>
+<!--
+  Draft editor for the request forms of the local test suite (general lab, SMT lab, machine shop).
+  Fields come from data/templates/lab_request_forms.json (the lab's form structure).
+  It never submits. Drafts save as you type: signed-in users to the local server (data/private/drafts/),
+  guests to this browser's storage. A reload, a crash or a shutdown does not lose the work.
+  Run:  python gui\serve.py   then open  http://127.0.0.1:8010/gui/request_form.html  (local only)
+  Optional: ?draft=<relative path to a draft JSON> opens a draft written by the assistant.
+-->
+<style>
+  :root {
+    --brand: #005cb9; --brand-ink: #ffffff; --accent: #2d60d7;
+    --ink: #212536; --ink-quiet: #5b6075; --line: #d0d3e2; --field: #f4f5f9;
+    --page: #ffffff; --error: #c62828; --ok: #2e7d32;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--page); color: var(--ink);
+    font: 14px/1.45 Inter, "Segoe UI", system-ui, sans-serif; }
+  .layout { display: grid; grid-template-columns: minmax(280px, 42%) 1fr; min-height: 100vh; }
+  aside { background: var(--brand); color: var(--brand-ink); padding: 56px 48px; position: sticky; top: 0; height: 100vh; overflow: auto; }
+  aside h1 { font-size: 36px; font-weight: 400; line-height: 1.15; margin: 0 0 20px; }
+  aside p { opacity: .9; margin: 0 0 12px; max-width: 46ch; }
+  .switch { display: flex; gap: 8px; margin: 24px 0; flex-wrap: wrap; }
+  .switch button { border: 1px solid rgba(255,255,255,.6); background: transparent; color: #fff;
+    padding: 8px 14px; border-radius: 10px; font: inherit; cursor: pointer; }
+  .switch button[aria-pressed="true"] { background: #fff; color: var(--brand); font-weight: 600; }
+  nav ol { list-style: none; padding: 0; margin: 24px 0 0; }
+  nav li a { display: flex; gap: 10px; align-items: center; color: #fff; text-decoration: none; padding: 6px 0; opacity: .85; }
+  nav li a:hover { opacity: 1; }
+  nav .dot { width: 22px; height: 22px; border-radius: 50%; border: 1px solid #fff; display: grid; place-items: center; font-size: 11px; flex: none; }
+  nav .done .dot { background: #fff; color: var(--brand); }
+  main { padding: 48px 32px 96px; }
+  form { max-width: 600px; margin: 0 auto; }
+  .req-note { color: var(--ink-quiet); font-size: 12px; margin: 0 0 24px; }
+  section { padding: 8px 0 28px; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
+  section h2 { font-size: 26px; font-weight: 400; margin: 0 0 4px; }
+  .step { color: var(--ink-quiet); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  .note { color: var(--ink-quiet); font-size: 12px; margin: 4px 0 16px; }
+  .field { margin: 18px 0; }
+  label, .label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+  .star { color: var(--error); margin-left: 2px; }
+  input[type=text], input[type=email], input[type=number], input[type=date], select, textarea {
+    width: 100%; height: 40px; padding: 0 12px; border: 1px solid transparent; border-radius: 8px;
+    background: var(--field); color: var(--ink); font: inherit; }
+  textarea { height: 96px; padding: 10px 12px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
+  .invalid { border-color: var(--error) !important; }
+  .help { font-size: 12px; color: var(--ink-quiet); margin-top: 4px; }
+  .err { font-size: 12px; color: var(--error); margin-top: 4px; }
+  .radios { display: flex; gap: 20px; }
+  .radios label { display: inline-flex; gap: 6px; align-items: center; font-weight: 400; font-size: 14px; margin: 0; }
+  .row { border: 1px solid var(--line); border-radius: 10px; padding: 4px 16px 8px; margin: 12px 0; }
+  .row-head { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; }
+  .row-head strong { font-size: 13px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  .grid2 .field { margin: 12px 0; }
+  .btn { border: 0; border-radius: 10px; padding: 10px 16px; font: 600 14px/1 inherit; cursor: pointer; font-family: inherit; }
+  .btn-primary { background: var(--accent); color: #f5f8ff; }
+  .actions label.btn { display: inline-flex; align-items: center; justify-content: center; }
+  .btn-quiet { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .btn-link { background: none; border: 0; color: var(--error); cursor: pointer; font: inherit; font-size: 12px; }
+  .drop { border: 1px dashed var(--line); border-radius: 10px; padding: 18px; text-align: center; color: var(--ink-quiet); }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .status { font-size: 13px; }
+  .status.ok { color: var(--ok); } .status.bad { color: var(--error); }
+  .banner { background: #fff8e1; border: 1px solid #f0d58c; border-radius: 10px; padding: 10px 14px; font-size: 13px; margin-bottom: 20px; }
+  .logo { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 32px; min-height: 0; }
+  .logo img { display: block; height: 44px; width: auto; max-width: 100%; }
+  .logo img.dept { height: 52px; background: #fff; border-radius: 6px; padding: 2px; }
+  .logo .dept-name { font-size: 13px; line-height: 1.15; letter-spacing: .04em; text-transform: uppercase; }
+  .logo .sep { width: 1px; align-self: stretch; background: rgba(255,255,255,.45); }
+  .division-row { display: flex; align-items: center; gap: 10px; margin: -18px 0 24px; font-size: 12px; opacity: .9; }
+  .division-row img { height: 26px; }
+  .files { border-top: 1px dashed var(--line); margin-top: 8px; padding-top: 4px; }
+  .files input[type=file] { font: inherit; font-size: 13px; width: 100%; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .chip { background: var(--field); border-radius: 999px; padding: 2px 10px; font-size: 12px; }
+  .chip.warn { background: #fff3e0; color: #8a4b00; }
+  .pages { display: flex; gap: 6px; margin: 0 0 16px; }
+  .pages a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,.6); border-radius: 8px; padding: 6px 12px; font-size: 13px; }
+  .pages a[aria-current="page"] { background: #fff; color: var(--brand); font-weight: 600; }
+  .account { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 22px; font-size: 13px; }
+  .account .who { flex-basis: 100%; opacity: .9; }
+  .account button { border: 1px solid rgba(255,255,255,.6); background: transparent; color: #fff; padding: 6px 12px; border-radius: 8px; font: inherit; cursor: pointer; }
+  .save-state { font-size: 12px; color: var(--ink-quiet); }
+  .save-state.ok { color: var(--ok); } .save-state.bad { color: var(--error); }
+  #suggestDlg { width: min(580px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; }
+  dialog { border: 0; border-radius: 14px; padding: 24px; width: min(440px, calc(100vw - 32px)); box-shadow: 0 10px 40px rgba(0,0,0,.25); color: var(--ink); }
+  dialog::backdrop { background: rgba(10,20,40,.45); }
+  dialog h3 { margin: 0 0 4px; font-size: 20px; font-weight: 500; }
+  dialog .row-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .drafts { list-style: none; padding: 0; margin: 12px 0 0; max-height: 50vh; overflow: auto; }
+  .drafts li { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  /* Compact example rows: one line of title + one line of notes, small buttons */
+  #exampleList li.ex-row { padding: 5px 0; font-size: 13px; line-height: 1.3; }
+  #exampleList li.ex-row > div:first-child { min-width: 0; }
+  #exampleList li.ex-row .meta { font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .ex-btns { display: flex; gap: 4px; flex: none; }
+  .btn-sm { font: 600 12px/1 inherit; font-family: inherit; padding: 5px 9px; border-radius: 7px; border: 1px solid var(--accent); background: #fff; color: var(--accent); cursor: pointer; white-space: nowrap; }
+  .btn-sm-primary { background: var(--accent); color: #f5f8ff; }
+  #draftsDlg { width: min(720px, calc(100vw - 24px)); }
+  /* Read-only preview, laid out like a compact document */
+  dialog.preview { width: min(860px, calc(100vw - 24px)); max-height: calc(100vh - 24px); padding: 18px 22px; overflow: auto; }
+  .pv-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  .pv-head h3 { margin: 0; font-size: 17px; } .pv-meta { font-size: 12px; color: var(--ink-quiet); } .pv-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pv-notes { font-size: 12.5px; background: #fff8e1; border: 1px solid #f0d58c; border-radius: 8px; padding: 6px 10px; margin: 8px 0; display: grid; gap: 4px; }
+  .pv-body h4 { font-size: 13px; margin: 12px 0 4px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-quiet); }
+  .pv-kv { display: grid; grid-template-columns: 210px 1fr; gap: 2px 12px; margin: 0; font-size: 13px; } .pv-kv dt { color: var(--ink-quiet); } .pv-kv dd { margin: 0; white-space: pre-wrap; }
+  .pv-table { border-collapse: collapse; width: 100%; font-size: 12.5px; margin: 4px 0; } .pv-table th, .pv-table td { border: 1px solid var(--line); padding: 3px 6px; text-align: left; vertical-align: top; }
+  .pv-table th { background: var(--field); font-weight: 600; }
+  @media (max-width: 860px) { .pv-kv { grid-template-columns: 1fr; } .pv-kv dt { margin-top: 4px; } }
+  @media print { body.printing-preview > *:not(#previewDlg) { display: none !important; } body.printing-preview #previewDlg { position: static; display: block; max-height: none; box-shadow: none; width: auto; }
+                 body.printing-preview .pv-actions { display: none; } }
+  .drafts .meta { font-size: 12px; color: var(--ink-quiet); }
+  .drafts button { font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 8px; cursor: pointer; }
+  .calc { font-size: 13px; color: var(--ink-quiet); text-align: right; margin: 4px 0 8px; }
+  .summary { border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin-top: 16px; font-size: 14px; }
+  .summary div { display: flex; justify-content: space-between; padding: 3px 0; }
+  .summary .total { font-weight: 600; border-top: 1px solid var(--line); margin-top: 6px; padding-top: 8px; }
+  .flags-panel { border: 1px solid var(--line); border-left-width: 4px; border-radius: 10px; padding: 12px 16px; margin: 0 0 24px; background: #fff; }
+  .flags-panel.bad { border-left-color: var(--error); } .flags-panel.warn { border-left-color: #e0a100; } .flags-panel.ok { border-left-color: var(--ok); }
+  .flags-head { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .flag-list { list-style: none; padding: 0; margin: 10px 0 0; max-height: 46vh; overflow: auto; }
+  .flag-item { padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
+  .flag-msg { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; text-align: left; cursor: pointer; color: var(--ink); }
+  .sev { display: inline-block; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 1px 8px; margin-right: 4px; }
+  .sev.error { background: #fdecea; color: var(--error); } .sev.warn { background: #fff3e0; color: #8a4b00; } .sev.info { background: #e8eefc; color: #1d3f9a; }
+  .fix { font-size: 12px; margin-top: 2px; } .src { display: inline-block; font-size: 11px; color: var(--ink-quiet); background: var(--field); border-radius: 6px; padding: 1px 6px; margin-top: 4px; }
+  .flag-error input, .flag-error select, .flag-error textarea { border-color: var(--error) !important; background: #fff6f5; }
+  .flag-warn input, .flag-warn select, .flag-warn textarea { border-color: #e0a100 !important; background: #fffbf0; }
+  .flag-note { font-size: 12px; margin-top: 4px; } .flag-note.error { color: var(--error); } .flag-note.warn { color: #8a4b00; } .flag-note.info { color: #1d3f9a; }
+  .flag-pulse { animation: pulse 1.6s ease; } @keyframes pulse { 0%, 100% { box-shadow: none; } 30% { box-shadow: 0 0 0 4px rgba(45,96,215,.35); border-radius: 8px; } }
+  /* assistant chat */
+  .chat { position: fixed; top: 0; right: 0; bottom: 0; width: min(440px, 100vw); background: #fff; border-left: 1px solid var(--line);
+          box-shadow: -8px 0 30px rgba(0,0,0,.12); display: flex; flex-direction: column; z-index: 20; }
+  .chat[hidden] { display: none; }
+  .chat, .chat * { color: var(--ink); } .chat .msg.user, .chat .btn-primary { color: #f5f8ff; } .chat .btn-quiet { color: var(--accent); }
+  .card details summary { cursor: pointer; font-weight: 600; font-size: 13px; margin-top: 10px; }
+  @media (min-width: 1300px) { body.chat-open main { margin-right: 440px; } }
+  .chat-head { display: flex; align-items: center; gap: 8px; padding: 14px 16px; }
+  .chat-head h2 { font-size: 17px; margin: 0; }
+  .chat-mode { font-size: 11px; border-radius: 999px; padding: 2px 8px; background: var(--field); color: var(--ink-quiet); }
+  .chat-mode.model { background: #e6f4ea; color: #1e6b34; } .chat-mode.offline, .chat-mode.demo { background: #fff4e0; color: #8a4b00; }
+  .chat-log { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { border-radius: 12px; padding: 10px 12px; font-size: 14px; line-height: 1.45; white-space: pre-wrap; max-width: 92%; }
+  .msg.user { align-self: flex-end; background: var(--accent); color: #f5f8ff; }
+  .msg.bot { align-self: flex-start; background: var(--field); }
+  .msg.note { align-self: stretch; background: #fff8e8; color: #6b3c00; font-size: 12px; }
+  .msg.err { align-self: stretch; background: #fdecec; color: var(--error); font-size: 13px; }
+  .card { align-self: stretch; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 13px; }
+  .card h3 { font-size: 13px; margin: 0 0 6px; } .card ul { margin: 0; padding-left: 18px; } .card li { margin: 2px 0; }
+  .card .k { color: var(--ink-quiet); } .card .row-btns { margin-top: 10px; display: flex; gap: 8px; }
+  .state { display: inline-block; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 2px 10px; margin-bottom: 6px; }
+  .state.incomplete { background: #fff4e0; color: #8a4b00; } .state.ready { background: #e6f4ea; color: #1e6b34; } .state.refused { background: #fdecec; color: var(--error); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; } .chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 10px; font: inherit; font-size: 12px; cursor: pointer; text-align: left; }
+  .chat-form { border-top: 1px solid var(--line); padding: 10px 12px; max-width: none; width: 100%; margin: 0; box-sizing: border-box; }
+  /* One box: the message and the send button inside it (saves a row of space) */
+  .compose { position: relative; display: flex; align-items: flex-end; background: var(--field); border: 1px solid var(--line);
+             border-radius: 14px; transition: border-color .15s; }
+  .compose:focus-within { border-color: var(--accent); background: #fff; }
+  .chat .compose textarea { flex: 1; min-width: 0; height: 44px; min-height: 44px; max-height: 180px; resize: none; overflow-y: auto;
+             border: 0; background: transparent; padding: 11px 4px 11px 14px; font-size: 15px; line-height: 1.4; box-sizing: border-box; }
+  .chat .compose textarea:focus { background: transparent; }
+  .chat .compose .send { flex: none; width: 32px; height: 32px; margin: 0 6px 6px 0; border: 0; border-radius: 10px; cursor: pointer;
+             background: var(--accent); color: #fff; display: grid; place-items: center; padding: 0; }
+  .chat .compose .send svg { width: 16px; height: 16px; stroke: #fff; }
+  .chat .compose .send:disabled { background: var(--line); cursor: default; }
+  .compose-hint { font-size: 11px; color: var(--ink-quiet); margin: 4px 2px 0; }
+  .chat-form[hidden] { display: none; }
+  /* Who wrote it: AI (violet) vs fixed rules, procedures and the parts list (neutral/green) */
+  .by { display: inline-block; font-size: 10.5px; font-weight: 600; line-height: 1.5; border-radius: 999px; padding: 0 7px;
+        margin-right: 6px; white-space: nowrap; vertical-align: 1px; }
+  .by.ai, .chat .by.ai { background: #efe9ff; color: #5b34c9; }
+  .by.rule, .chat .by.rule { background: #eceef3; color: #4a5068; }
+  .by.procedure, .chat .by.procedure, .by.parts, .chat .by.parts { background: #e4f3ec; color: #1f6b52; }
+  .by-list { margin: 6px 0; padding-left: 0; list-style: none; } .by-list li { margin: 4px 0; }
+  .chat-model { font-size: 12.5px; padding: 8px 16px 0; overflow-wrap: anywhere; } .chat .chat-model .k { color: var(--ink-quiet); }
+  .ai-chip { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 3px 10px;
+             align-self: center; white-space: nowrap; }
+  .ai-chip.model { background: #efe9ff; color: #5b34c9; } .ai-chip.demo, .ai-chip.offline { background: #eceef3; color: #4a5068; }
+  /* Feedback mode: rating buttons appear only after "Give feedback on this" */
+  .rate { display: none; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0 2px; }
+  .fb-on .rate { display: flex; }
+  .rate button { font-size: 11px; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 1px 9px; cursor: pointer; }
+  .chat .rate button, .rate button { color: var(--ink-quiet); } .rate button:hover { border-color: var(--accent); }
+  .chat .rate .fb-send, .rate .fb-send { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .rate input { flex: 1; min-width: 150px; height: 28px; font-size: 12px; padding: 0 8px; }
+  .fb-pick { font-size: 11px; font-weight: 600; } .chat .fb-saved, .fb-saved { font-size: 11px; color: var(--ok); } .chat .fb-hint, .fb-hint { font-size: 11px; color: #8a4b00; }
+  .fb-bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 12px; margin: 4px 0 8px; }
+  .fb-bar .btn-link { font-size: 12px; } .fb-extra { display: none; gap: 10px; align-items: center; flex-wrap: wrap; } .fb-on > .fb-bar .fb-extra { display: inline-flex; }
+  .fb-role { height: 28px; font-size: 12px; padding: 0 6px; width: auto; }
+  .choices { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; } .choices .chip { text-align: left; cursor: pointer; border: 1px solid var(--accent); background: #fff; padding: 6px 12px; font-size: 13px; }
+  .choices .chip:disabled { opacity: .5; cursor: default; }
+  .ex-tools { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 6px 0; } .ex-tools input { flex: 1 1 220px; width: auto; height: 34px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--line); font: inherit; }
+  .ex-tools select { width: auto; flex: none; height: 34px; border-radius: 8px; border: 1px solid var(--line); font: inherit; padding: 0 6px; }
+  #exampleList { max-height: 42vh; overflow-y: auto; }
+  .qmore { margin-top: 6px; } .qmore summary { cursor: pointer; font-weight: 600; }
+  .qhead { margin-top: 6px; font-weight: 600; } .qlist { margin: 4px 0 4px 1.2em; padding: 0; } .qlist li { margin: 3px 0; }
+  .stale { margin: 6px 16px 0; padding: 6px 10px; border-radius: 8px; background: #fff3e0; color: #8a4b00; font-size: 12.5px; }
+  .chat .stale { color: #8a4b00; }
+  .stale-banner { position: sticky; top: 0; z-index: 50; background: #fff3e0; color: #8a4b00; border-bottom: 1px solid #f0c27b;
+                  padding: 8px 16px; font-size: 14px; font-weight: 600; text-align: center; }
+  .chat-legend { font-size: 11px; color: var(--ink-quiet); padding: 4px 16px 6px; border-bottom: 1px solid var(--line); }
+  .chat-log > .row-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .thinking { font-size: 12px; color: var(--ink-quiet); }
+  @media (max-width: 860px) {
+    .chat { width: 100vw; border-left: 0; }
+    .chat .compose textarea { font-size: 16px; }
+  }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { position: static; height: auto; padding: 12px 16px 10px; }
+    aside h1 { font-size: 20px; margin: 0 0 8px; }
+    aside p { display: none; }
+    .logo { margin-bottom: 10px; gap: 12px; }
+    .logo img { height: 26px; }
+    .logo img.dept { height: 30px; }
+    .logo .dept-name { font-size: 10px; }
+    .division-row { margin: -4px 0 8px; }
+    .division-row img { height: 18px; }
+    .switch { margin: 6px 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .switch button { white-space: nowrap; flex: none; }
+    .switch button { padding: 6px 12px; }
+    nav ol { display: flex; gap: 14px; overflow-x: auto; margin: 6px 0 0; padding-bottom: 4px; scrollbar-width: none; }
+    nav li a { white-space: nowrap; font-size: 13px; padding: 2px 0; }
+    nav .label-long { display: none; }
+    main { padding: 20px 16px 96px; }
+    section { scroll-margin-top: 12px; }
+    section h2 { font-size: 22px; }
+    .grid2 { grid-template-columns: 1fr; }
+    input[type=text], input[type=email], input[type=number], input[type=date], select, textarea { font-size: 16px; height: 44px; }
+    textarea { height: 110px; }
+    .actions { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid var(--line); padding: 10px 16px; z-index: 6; }
+    .actions { flex-wrap: wrap; gap: 8px; }
+    .actions .btn { flex: 1 1 0; padding: 12px 6px; white-space: nowrap; text-align: center; font-size: 14px; }
+    .status { flex-basis: 100%; font-size: 12px; }
+    .pages { margin: 0 0 6px; } .pages a { padding: 4px 10px; font-size: 12px; }
+    .account { margin: 4px 0 6px; gap: 6px; font-size: 12px; }
+    .account .who { flex-basis: auto; margin-right: 4px; }
+    .account button { padding: 4px 10px; }
+  }
+</style>
+</head>
+<body>
+<div id="staleBanner" class="stale-banner" role="alert" hidden></div>
+<div class="layout">
+  <aside>
+    <!-- Logos come from data/private/branding/branding.json (gitignored). Without it, no logo is shown. -->
+    <div class="logo" id="logoWrap"></div>
+    <div class="division-row" id="divisionRow" hidden></div>
+    <div class="pages"><a href="request_form.html" aria-current="page">Request forms</a><a href="data.html">Lab data</a><a href="feedback.html">Feedback</a></div>
+    <div class="account" id="account"></div>
+    <h1 id="title">Request</h1>
+    <p id="draftOnly">Draft only. The assistant fills what it can from the request and the cited procedures; you check every field.</p>
+    <p id="target">Nothing is submitted from here. Save the draft, then enter it on the request form.</p>
+    <div class="switch" role="group" aria-label="Form" id="switch"></div>
+    <nav aria-label="Sections"><ol id="nav"></ol></nav>
+  </aside>
+  <main>
+    <form id="form" novalidate>
+      <div id="banner" class="banner" hidden></div>
+      <p class="req-note">Fields marked with an asterisk (<span class="star">*</span>) are required. <span id="saveState" class="save-state"></span></p>
+      <div id="flagsPanel" class="flags-panel" hidden></div>
+      <div id="sections"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary" id="askBtn">Ask the assistant</button>
+        <span id="aiChip" class="ai-chip" hidden></span>
+        <button type="button" class="btn btn-quiet" id="check">Check quality</button>
+        <button type="button" class="btn btn-quiet" id="openDrafts">My drafts</button>
+        <button type="button" class="btn btn-quiet" id="export">Export</button>
+        <span id="status" class="status"></span>
+      </div>
+    </form>
+  </main>
+</div>
+
+<div id="chat" class="chat" role="dialog" hidden aria-labelledby="chatTitle">
+  <div class="chat-head">
+    <h2 id="chatTitle">Assistant</h2>
+    <span id="chatMode" class="chat-mode">checking…</span>
+    <button type="button" class="btn-link" id="chatClose" style="margin-left:auto;color:var(--ink-quiet);font-size:14px" aria-label="Close the assistant">Close</button>
+  </div>
+  <div id="chatModel" class="chat-model">AI model: checking…</div>
+  <div id="chatStale" class="stale" role="alert" hidden></div>
+  <div class="chat-legend"><span class="by ai">✦ AI</span>AI model, checked &nbsp; <span class="by rule">Rule</span>fixed check, no AI
+    &nbsp; <span class="by procedure">Procedure</span>copied</div>
+  <div id="chatLog" class="chat-log" aria-live="polite"></div>
+  <form id="chatForm" class="chat-form">
+    <div class="compose">
+      <textarea id="chatInput" rows="1" placeholder="Describe the test you need…" aria-label="Message to the assistant"></textarea>
+      <button type="submit" class="send" id="chatSend" aria-label="Send" title="Send (Enter)">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </div>
+    <p class="compose-hint">Enter to send, Shift+Enter for a new line</p>
+  </form>
+</div>
+
+<dialog id="suggestDlg" aria-labelledby="sgTitle">
+  <form id="suggestForm" class="suggest">
+    <h3 id="sgTitle">Suggest a question or check</h3>
+    <p class="note">What should the assistant ask the requester, or check in a request, that it did not? A person reviews every
+      suggestion before it changes anything. Stored on this server only.</p>
+    <div class="field"><label for="sgRole">Your role</label><select id="sgRole" required></select></div>
+    <div class="field"><label for="sgTest">Test</label><select id="sgTest"></select></div>
+    <div class="field" id="sgTestOtherWrap" hidden><label for="sgTestOther">Which test?</label><input type="text" id="sgTestOther" maxlength="80"></div>
+    <div class="field"><div class="label">The assistant should</div>
+      <div class="radios"><label><input type="radio" name="sgKind" value="ask" checked> Ask the requester</label>
+        <label><input type="radio" name="sgKind" value="check"> Check the request</label><label><input type="radio" name="sgKind" value="both"> Both</label></div></div>
+    <div class="field"><label for="sgText">What should it ask or check? *</label>
+      <textarea id="sgText" required minlength="8" maxlength="1000" placeholder="For example: Is the mating half supplied, and what is its part number?"></textarea></div>
+    <div class="field"><label for="sgWhy">Why does it matter? What goes wrong without it?</label>
+      <textarea id="sgWhy" maxlength="1000" placeholder="For example: we often receive one half only and the test waits a week."></textarea></div>
+    <div class="field"><div class="label">How important</div>
+      <div class="radios"><label><input type="radio" name="sgImp" value="must"> Must answer before scheduling</label>
+        <label><input type="radio" name="sgImp" value="should" checked> Should be answered</label><label><input type="radio" name="sgImp" value="nice"> Nice to have</label></div></div>
+    <div class="field"><label for="sgExample">Example of a good answer</label><input type="text" id="sgExample" maxlength="500" placeholder="Mating half SYN-20002 Rev A, 5 pcs supplied with the samples"></div>
+    <div class="field"><label for="sgSource">Where the requirement comes from</label><select id="sgSource"></select>
+      <input type="text" id="sgRef" maxlength="200" placeholder="Document, clause or note (optional)" style="margin-top:6px"></div>
+    <p id="sgMsg" class="note" style="color:var(--error)" role="alert"></p>
+    <div class="row-btns"><button type="submit" class="btn btn-primary">Save suggestion</button>
+      <button type="button" class="btn btn-quiet" id="sgCancel">Cancel</button></div>
+  </form>
+</dialog>
+
+<dialog id="signin" aria-labelledby="signinTitle">
+  <form method="dialog" id="signinForm">
+    <h3 id="signinTitle">Sign in</h3>
+    <p class="note">Signed in, your drafts are kept by the local server and open in any browser that reaches it. As a guest, they stay in this browser only.</p>
+    <div class="field"><label for="siUser">User name</label><input type="text" id="siUser" autocomplete="username" autocapitalize="none" required></div>
+    <div class="field"><label for="siPass">Password</label><input type="password" id="siPass" autocomplete="current-password" required style="width:100%;height:40px;padding:0 12px;border-radius:8px;border:1px solid transparent;background:var(--field);font:inherit"></div>
+    <label id="siMoveWrap" style="font-weight:400;display:flex;gap:8px;align-items:center" hidden><input type="checkbox" id="siMove" checked> <span id="siMoveText"></span></label>
+    <div class="err" id="siErr"></div>
+    <div class="row-btns">
+      <button type="submit" class="btn btn-primary" value="login" id="siLogin">Sign in</button>
+      <button type="submit" class="btn btn-quiet" value="register" id="siRegister">Create account</button>
+      <button type="submit" class="btn btn-quiet" value="guest" formnovalidate>Continue as guest</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="previewDlg" class="preview" aria-labelledby="pvTitle">
+  <div class="pv-head">
+    <div><h3 id="pvTitle"></h3><div id="pvMeta" class="pv-meta"></div></div>
+    <div class="pv-actions"><button type="button" class="btn-sm" id="pvPrint">Print / Save as PDF</button>
+      <button type="button" class="btn-sm" id="pvUse">Use as start</button><button type="button" class="btn-sm" id="pvClose">Close</button></div>
+  </div>
+  <div id="pvNotes" class="pv-notes" hidden></div>
+  <div id="pvBody" class="pv-body"></div>
+</dialog>
+
+<dialog id="draftsDlg" aria-labelledby="draftsTitle">
+  <h3 id="draftsTitle">My drafts</h3>
+  <p class="note" id="draftsWhere"></p>
+  <ul class="drafts" id="draftList"></ul>
+  <h3 style="font-size:16px;margin-top:18px">Examples of good requests</h3>
+  <p class="note">Past requests and examples. <b>View</b> opens a read-only preview (nothing is saved); <b>Use as start</b> makes an editable copy. Ones marked SYNTHETIC are invented for the course.</p>
+  <div class="ex-tools"><input type="search" id="exSearch" placeholder="Search past requests: test, part, material, words…" aria-label="Search past requests">
+    <select id="exKind" aria-label="Which examples"><option value="">All</option><option value="private">Real past requests</option><option value="synthetic">SYNTHETIC</option></select>
+    <span id="exCount" class="note"></span></div>
+  <ul class="drafts" id="exampleList"></ul>
+  <div class="row-btns">
+    <button type="button" class="btn btn-primary" id="newDraft">New draft</button>
+    <label class="btn btn-quiet" style="margin:0;display:inline-flex;align-items:center">Import JSON<input type="file" id="load" accept=".json" hidden></label>
+    <button type="button" class="btn btn-quiet" id="closeDrafts">Close</button>
+  </div>
+</dialog>
+<script src="request_form.js"></script>
+</body>
+</html>

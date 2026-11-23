@@ -1,0 +1,70 @@
+{
+ "id": "SYN-LR-027",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Coating DOE on LLCR",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "Operational Support",
+  "step2_rows": [
+   {
+    "productName": "Synthetic 100-position array",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "18 pairs"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Baseline LLCR on all mated pairs; unmate; cap one group; coating supplier coats and measures; remate; post-coating LLCR. Compare by board pair, side, thickness and cap condition.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Purpose: does the coating process, its thickness or the cap change LLCR? Groups: 3 pairs light, 3 medium, 3 heavy, 5 heavy for Customer A's cleaning trial, 4 heavy with cap. Drawings circle the areas to mask.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2026-02-24",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Customer Specific Testing"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Item 1: quantity must be a whole number of at least 1."
+  ],
+  "should_fix": [],
+  "good_practice": [
+   "'contact resistance' has no procedure in the assistant's library."
+  ]
+ },
+ "why_good": [
+  "States the purpose in one line.",
+  "Defines the DOE groups and counts.",
+  "Step plan with hand-offs and how to report."
+ ],
+ "gaps": [
+  "No part numbers or lots.",
+  "No LLCR shift limit or target thicknesses."
+ ]
+}

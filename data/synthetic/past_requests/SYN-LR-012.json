@@ -1,0 +1,80 @@
+{
+ "id": "SYN-LR-012",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] End-of-life program for a customer",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Formal Report (Customer)",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "Operational Support",
+  "step2_rows": [
+   {
+    "productName": "Synthetic edge connector",
+    "partNumberRevision": "SYN-41212 Rev A",
+    "traceabilityMfgLotInfo": "Lot SYN-L2513",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "0.76 µm Au over 1.27 µm Ni",
+    "contactLubricant": "N/A",
+    "housingMaterial": "PA9T",
+    "quantity": "25"
+   },
+   {
+    "productName": "Host test board",
+    "partNumberRevision": "SYN-41213 Rev A",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "FR-4",
+    "quantity": "25"
+   }
+  ],
+  "postTestingSampleDisposition": "Keep in the lab",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Custom end-of-life: group 2A (5 years at 65 °C), group 2B (7 years), group 2C (10 years), and group 3.",
+    "applicableSpecifications": "EIA-364-1004",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Customer A purchase order received; test plan Rev 1. Custom boards are needed to apply current during vibration.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-07-01",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Customer Specific Testing"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 2: Traceability Mfg Lot Info is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'end-of-life (several tests)' has no procedure in the assistant's library.",
+   "'vibration' has no procedure in the assistant's library.",
+   "Item 1: SYN-41212 is not in the parts directory.",
+   "Item 2: SYN-41213 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Full traceability and plating thickness.",
+  "Test groups with simulated life.",
+  "Ties to the customer plan and warns about custom boards."
+ ],
+ "gaps": [
+  "Group 3 not described; plan not in the record."
+ ]
+}

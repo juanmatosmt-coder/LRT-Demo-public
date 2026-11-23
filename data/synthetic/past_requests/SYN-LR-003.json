@@ -1,0 +1,73 @@
+{
+ "id": "SYN-LR-003",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Chlorine exposure and SEM, same day",
+ "kind": "contrast example (what to avoid)",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic high-speed connector",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "",
+    "contactPlating": "Au over Ni, 0.76 µm on mating area",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "3"
+   }
+  ],
+  "postTestingSampleDisposition": "",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Chlorine test and SEM evaluation.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "The chlorine test needs to be finished today; SEM can wait.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-02-20",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Post-Testing Sample Disposition is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'SEM inspection' has no procedure in the assistant's library.",
+   "'gas corrosion' has no procedure in the assistant's library."
+  ]
+ },
+ "why_good": [
+  "Gives the plating thickness on the mating area.",
+  "Says which part is urgent."
+ ],
+ "gaps": [
+  "Asks for results the same day.",
+  "No method or exposure conditions, and no SEM question.",
+  "No part number, lot or disposition."
+ ]
+}

@@ -1,0 +1,445 @@
+{
+ "_about": "SYNTHETIC test registry for the CMU/Emeritus capstone: one entry per test with its detection words, its procedure (docs_extended/), the inputs the procedure requires (chat questions and Check quality rules both come from these), and the sample minimum. Regexes are matched case-insensitively on the request text. 'when' limits an input to board-mounted or wire-terminated parts.",
+ "tests": [
+  {
+   "key": "mech_force",
+   "doc_id": "SYN-TM-140",
+   "short": "Mechanical force (Instron)",
+   "name": "mechanical force test on a universal testing machine (mating/unmating, retention, crimp pull-out or normal force)",
+   "detect": [
+    "instron",
+    "universal test(ing)? (machine|frame)|\\butm\\b",
+    "(un)?mating forces?|insertion forces?|withdrawal forces?|engagement forces?|separation forces?",
+    "(contact|terminal|pin) retention|retention (force|test)",
+    "crimp (pull|tensile)|pull[- ]?(out|off) (force|test)|\\bpull tests?\\b",
+    "normal forces?",
+    "push[- ]?out (force|test)",
+    "removal forces?|insertion and removal|force[- ]displacement"
+   ],
+   "example": "Instron mating and unmating force on 10 SYN-20001 connectors",
+   "min_samples": 5,
+   "equipment": "SYN-MECH-UTM",
+   "inputs": [
+    {
+     "key": "mf_type",
+     "question": "Which force test: mating and unmating (insertion and withdrawal) force, contact or terminal retention, crimp pull-out, or contact normal force?",
+     "blocking": true,
+     "answered": "(un)?mating|insertion|withdrawal|engagement|separation|retention|crimp|pull[- ]?(out|off)|normal force|push[- ]?out",
+     "missing": "The type of force test is not stated.",
+     "example": "mating and unmating force"
+    },
+    {
+     "key": "mf_setup",
+     "question": "Where and how is the force applied: along which axis, how is the sample held (fixture, board, clamp), and is the mating half supplied (part number)?",
+     "blocking": true,
+     "answered": "\\baxis\\b|direction|fixture|clamp|\\bheld\\b|\\bgrip|mating half|mated with|mounted on|on (a |the )?(test )?boards?",
+     "missing": "How the sample is held and where the force is applied is not stated.",
+     "example": "held by the board in a fixture, force along the mating axis, mating half SYN-20002 supplied"
+    },
+    {
+     "key": "mf_speed",
+     "question": "At what speed (mm/min) and to what end point (full mating, a set distance, or until separation or failure)?",
+     "blocking": false,
+     "answered": "\\d+(\\.\\d+)?\\s*mm/min|\\bspeed\\b|until (separation|failure|break)|full(y)? mated|to failure",
+     "missing": "Test speed and end point are not stated.",
+     "example": "25 mm/min, until fully mated"
+    },
+    {
+     "key": "mf_limit",
+     "question": "What are the acceptance limits (for example maximum mating force and minimum unmating force in N, or minimum retention force)?",
+     "blocking": false,
+     "answered": "\\d+(\\.\\d+)?\\s*(n|newtons?|kgf|lbf)\\b|max(imum)? force|min(imum)? (force|retention)",
+     "missing": "No force acceptance limits.",
+     "example": "mating 60 N max, unmating 10 N min"
+    }
+   ]
+  },
+  {
+   "key": "durability",
+   "doc_id": "SYN-TM-142",
+   "short": "Durability (mating cycles)",
+   "name": "durability (repeated mating and unmating cycles)",
+   "detect": [
+    "durability",
+    "mating cycles?|mate[/ -]unmate cycles?|insertion cycles?|\\d+\\s*(mating|insertion) cycles"
+   ],
+   "example": "Durability, 50 mating cycles on 5 SYN-20001 connectors with LLCR before and after",
+   "min_samples": 5,
+   "equipment": "SYN-MECH-CYCLER",
+   "inputs": [
+    {
+     "key": "du_cycles",
+     "question": "How many mating cycles, and at what rate (cycles per minute)?",
+     "blocking": true,
+     "answered": "\\d+\\s*(mating |insertion )?cycles|cycles? per min|\\d+\\s*cpm",
+     "missing": "The number of cycles is not stated.",
+     "example": "50 cycles at 10 cycles per minute"
+    },
+    {
+     "key": "du_half",
+     "question": "Is the mating half supplied (part number), and how are both halves held and aligned?",
+     "blocking": true,
+     "answered": "mating half|mated with|counterpart|\\bfixture\\b|aligned|alignment|mounted on|on (a |the )?(test )?boards?",
+     "missing": "The mating half or how the halves are held is not stated.",
+     "example": "mating half SYN-20002 supplied; both on test boards in an alignment fixture"
+    },
+    {
+     "key": "du_readouts",
+     "question": "What is measured before, during and after cycling (for example LLCR or mating force at 0, 25 and 50 cycles)?",
+     "blocking": true,
+     "answered": "\\bllcr\\b|contact resistance|\\bforce\\b|before and after|readouts?|initial|after \\d+",
+     "missing": "Readouts before and after cycling are not stated.",
+     "example": "LLCR and unmating force at 0 and 50 cycles"
+    },
+    {
+     "key": "du_limit",
+     "question": "What are the acceptance limits after cycling (for example resistance change in milliohms, force change, no visible wear through the plating)?",
+     "blocking": false,
+     "answered": "\\d+(\\.\\d+)?\\s*m(illi)?(ω|ohms?)|delta ?r|wear[- ]?through|\\bmax(imum)?\\b|\\bmin(imum)?\\b",
+     "missing": "No acceptance limits after cycling.",
+     "example": "max 10 mOhm change, no wear through the gold"
+    }
+   ]
+  },
+  {
+   "key": "sem_eds",
+   "doc_id": "SYN-AN-150",
+   "short": "SEM / EDS",
+   "name": "SEM inspection with EDS element analysis",
+   "detect": [
+    "\\bsem\\b",
+    "scanning electron",
+    "\\beds\\b|\\bedx\\b|\\bedxa?\\b|energy[- ]dispersive",
+    "element(al)? analysis"
+   ],
+   "example": "SEM and EDS on 2 failed SYN-20001 contacts to find the contamination on the contact area",
+   "min_samples": 0,
+   "equipment": "SYN-AN-SEM",
+   "inputs": [
+    {
+     "key": "an_question",
+     "question": "What question should the analysis answer (for example identify a contamination, check a plating defect, look at a fracture, compare with a good part)?",
+     "blocking": true,
+     "answered": "contamina|residue|defect|fracture|crack|corrosion|failure|compare|comparison|identify|discolou?r|why|root cause|wear",
+     "missing": "The question the analysis should answer is not stated.",
+     "example": "identify the dark residue on the contact area"
+    },
+    {
+     "key": "an_where",
+     "question": "Where on the part: which feature or area should be examined? Mark it on a drawing or photo and list that file under Attachments.",
+     "blocking": true,
+     "answered": "contact area|mating area|\\btip\\b|\\bbarrel\\b|solder (joint|fillet)|fracture surface|marked|arrow|see (the )?(photo|drawing|picture)|\\.(jpg|jpeg|png|pdf)\\b|position \\d|pin \\d|area of interest|region",
+     "missing": "The area to examine is not stated or marked.",
+     "example": "dark spot on the contact area of position 5, marked in photo1.jpg"
+    },
+    {
+     "key": "sem_eds_elements",
+     "question": "Is EDS element analysis needed, and which elements matter (for example S, Cl, Sn, Ni)?",
+     "blocking": false,
+     "answered": "\\beds\\b|\\bedx\\b|element|\\b(s|cl|sn|ni|au|cu|ag|pd|zn|fe|si|o|c)\\b(,|\\s|$)",
+     "missing": "EDS and the elements of interest are not stated.",
+     "example": "EDS for S, Cl and Ni"
+    },
+    {
+     "key": "an_destructive",
+     "question": "May the lab cut, section or coat the samples (destructive), or must they stay intact? Is a good reference part supplied?",
+     "blocking": false,
+     "answered": "destructive|may (be )?(cut|section|coat)|must stay intact|keep intact|do not (cut|destroy)|reference (part|sample)|good part",
+     "missing": "Whether the samples may be cut or coated is not stated.",
+     "example": "may be sectioned; one good part supplied as reference"
+    }
+   ]
+  },
+  {
+   "key": "ftir",
+   "doc_id": "SYN-AN-151",
+   "short": "FTIR",
+   "name": "FTIR material or residue identification",
+   "detect": [
+    "\\bftir\\b|ft-ir",
+    "infrared spectr",
+    "material id(entification)?\\b|identify the (material|resin|polymer|plastic|residue|contaminant)"
+   ],
+   "example": "FTIR to identify the residue on 3 SYN-10001 housings",
+   "min_samples": 0,
+   "equipment": "SYN-AN-FTIR",
+   "inputs": [
+    {
+     "key": "ftir_what",
+     "question": "What should be identified: the bulk material (resin), a surface residue or contamination, or a comparison between two lots?",
+     "blocking": true,
+     "answered": "\\bbulk\\b|resin|polymer|plastic|housing material|residue|contamina|film|oil|lubricant|compare|comparison|lot",
+     "missing": "What to identify is not stated.",
+     "example": "the white residue on the housing surface"
+    },
+    {
+     "key": "ftir_where",
+     "question": "Where should the sample be taken: which part and which area or feature? Mark it on a drawing or photo and list that file under Attachments.",
+     "blocking": true,
+     "answered": "surface|\\bbulk\\b|area|marked|arrow|see (the )?(photo|drawing|picture)|\\.(jpg|jpeg|png|pdf)\\b|\\bside\\b|\\bface\\b|cavity|gate|region",
+     "missing": "Where to take the sample is not stated.",
+     "example": "white residue on the top face near the latch, marked in photo2.jpg"
+    },
+    {
+     "key": "ftir_ref",
+     "question": "Is a reference supplied (a known-good part, the resin pellets, or the expected material and its datasheet)?",
+     "blocking": false,
+     "answered": "reference|known[- ]good|pellets?|datasheet|expected material|should be (lcp|pa\\d*|ppa|pps|pbt|peek)",
+     "missing": "No reference material or expected material.",
+     "example": "resin pellets from the same lot supplied; expected LCP"
+    }
+   ]
+  },
+  {
+   "key": "porosity",
+   "doc_id": "SYN-TM-160",
+   "short": "Plating porosity",
+   "name": "plating porosity test (acid vapor exposure)",
+   "detect": [
+    "porosity",
+    "pore count|\\bpores\\b"
+   ],
+   "example": "Porosity on 5 SYN-20001 contacts, gold over nickel",
+   "min_samples": 3,
+   "equipment": "SYN-AN-PORO",
+   "inputs": [
+    {
+     "key": "po_plating",
+     "question": "What is the plating (layers and minimum thicknesses, for example 0.76 µm gold over 1.27 µm nickel)?",
+     "blocking": true,
+     "answered": "\\b(au|gold|pd|palladium|ni|nickel|ag|silver|sn|tin)\\b",
+     "missing": "The plating layers and thicknesses are not stated.",
+     "example": "0.76 µm Au over 1.27 µm Ni"
+    },
+    {
+     "key": "po_where",
+     "question": "Which surfaces are evaluated (for example the contact area within 1 mm of the mating point), and how is that area marked?",
+     "blocking": true,
+     "answered": "contact area|mating (area|point|zone)|significant surface|within \\d|marked|drawing|zone",
+     "missing": "The surfaces to evaluate are not stated.",
+     "example": "contact area within 1 mm of the mating point, per drawing"
+    },
+    {
+     "key": "po_method",
+     "question": "Which method: acid vapor exposure (default) or another method named in your specification?",
+     "blocking": false,
+     "answered": "acid vapou?r|nitric|sulfurous|\\bso2\\b|gel|electrograph|method",
+     "missing": "The porosity method is not stated (the lab uses acid vapor).",
+     "example": "acid vapor exposure"
+    },
+    {
+     "key": "po_limit",
+     "question": "What is the acceptance limit (for example no more than N pores per contact area)?",
+     "blocking": false,
+     "answered": "\\d+\\s*pores|pores? per|max(imum)? \\d+|no pores",
+     "missing": "No pore-count limit.",
+     "example": "max 2 pores per contact area"
+    }
+   ]
+  },
+  {
+   "key": "cross_section",
+   "doc_id": "SYN-AN-152",
+   "short": "Cross-section",
+   "name": "cross-section (microsection) with optical inspection",
+   "detect": [
+    "(?<!fib )(?<!focused ion beam )(cross[- ]?sections?|microsections?|\\bx[- ]sections?|metallograph)"
+   ],
+   "example": "Cross-section of 3 SYN-20001 solder joints on the test board",
+   "min_samples": 0,
+   "equipment": "SYN-AN-METALLO",
+   "inputs": [
+    {
+     "key": "xs_where",
+     "question": "Where to section: which location (contact, joint or feature) and in which plane (for example through position 5, parallel to the mating axis)? A marked drawing or photo helps.",
+     "blocking": true,
+     "answered": "through (position|pin|contact|the)|position \\d|pin \\d|\\bplane\\b|parallel|perpendicular|along|across|centre|center|marked|see (the )?(photo|drawing)|\\.(jpg|jpeg|png|pdf)\\b",
+     "missing": "The section location and plane are not stated.",
+     "example": "through position 5, parallel to the mating axis"
+    },
+    {
+     "key": "xs_measure",
+     "question": "What should be measured or inspected on the section (plating thickness, solder fillet and voids, crimp compaction, cracks)?",
+     "blocking": true,
+     "answered": "thickness|fillet|void|crimp|compaction|crack|intermetallic|\\bimc\\b|wetting|delamination|grain",
+     "missing": "What to measure on the section is not stated.",
+     "example": "solder fillet height and voids"
+    },
+    {
+     "key": "xs_count",
+     "question": "How many sections per sample, and may the lab pot (encapsulate) the samples?",
+     "blocking": false,
+     "answered": "\\d+\\s*sections?|one section|per sample|pot(ted|ting)?|encapsulat|mount(ed|ing) in",
+     "missing": "Number of sections per sample is not stated.",
+     "example": "one section per sample, potting allowed"
+    }
+   ]
+  },
+  {
+   "key": "xrf_thickness",
+   "doc_id": "SYN-AN-153",
+   "short": "Plating thickness (XRF)",
+   "name": "plating thickness measurement by X-ray fluorescence (XRF)",
+   "detect": [
+    "\\bxrf\\b|x-ray fluorescence",
+    "measure (the )?(plating|coating) thickness|(plating|coating|layer) thickness (measurement|test|check)"
+   ],
+   "example": "XRF plating thickness on 5 SYN-20001 contacts",
+   "min_samples": 3,
+   "equipment": "SYN-AN-XRF",
+   "inputs": [
+    {
+     "key": "xrf_layers",
+     "question": "Which layers and what specification (for example Au 0.76 µm min over Ni 1.27 µm min)?",
+     "blocking": true,
+     "answered": "\\b(au|gold|pd|palladium|ni|nickel|ag|silver|sn|tin|cu|copper)\\b",
+     "missing": "The layers and their specification are not stated.",
+     "example": "Au 0.76 µm min over Ni 1.27 µm min"
+    },
+    {
+     "key": "xrf_where",
+     "question": "Where to measure: which spots on the contact (for example the contact area and the tail) and how many points per sample?",
+     "blocking": true,
+     "answered": "contact area|mating (area|point)|\\btail\\b|\\bspots?\\b|points? per|\\d+\\s*points|marked|drawing|location",
+     "missing": "The measurement spots are not stated.",
+     "example": "contact area of positions 1, 10 and 20, 3 points each"
+    },
+    {
+     "key": "xrf_limit",
+     "question": "Should the results be judged against the specification minimums, or only reported?",
+     "blocking": false,
+     "answered": "\\bmin(imum)?\\b|\\bspec(ification)?\\b|report only|judge|accept",
+     "missing": "It is not stated whether to judge against the specification.",
+     "example": "judge against the drawing minimums"
+    }
+   ]
+  },
+  {
+   "key": "thermal_analysis",
+   "doc_id": "SYN-AN-154",
+   "short": "Thermal analysis (DSC/TMA/TGA)",
+   "name": "thermal analysis of a material (DSC, TMA or TGA)",
+   "detect": [
+    "\\bdsc\\b|differential scanning",
+    "\\btma\\b|thermo-?mechanical analy",
+    "\\btga\\b|thermogravimetric",
+    "(measure|measurement of|test for) (the )?(tg|glass transition|cte|melting point)"
+   ],
+   "example": "DSC on resin from 2 SYN-10001 housings to check the melting point",
+   "min_samples": 0,
+   "equipment": "SYN-AN-TA",
+   "inputs": [
+    {
+     "key": "ta_property",
+     "question": "Which property: glass transition (Tg), melting or crystallisation, coefficient of thermal expansion (CTE), decomposition, or degree of cure?",
+     "blocking": true,
+     "answered": "\\btg\\b|glass transition|melt|crystalli|\\bcte\\b|expansion|decompos|cure|degrad",
+     "missing": "The property to measure is not stated.",
+     "example": "melting point and crystallisation"
+    },
+    {
+     "key": "ta_where",
+     "question": "Where is the sample taken from: which part and which area (for example the bulk resin near the gate, or pellets)?",
+     "blocking": true,
+     "answered": "\\bbulk\\b|near the|gate|pellets?|\\bwall\\b|area|location|from the (housing|part)|cut from|marked",
+     "missing": "Where the sample is taken is not stated.",
+     "example": "bulk resin cut from the side wall"
+    },
+    {
+     "key": "ta_range",
+     "question": "Over what temperature range, at what heating rate, and in which atmosphere (for example 25 to 350 °C at 10 °C/min in nitrogen)?",
+     "blocking": false,
+     "answered": "°?\\s*c/min|heating rate|\\bto \\d{2,3}\\s*°?\\s*c|nitrogen|\\bn2\\b|\\bair\\b|atmosphere",
+     "missing": "Temperature range, heating rate and atmosphere are not stated.",
+     "example": "25 to 350 °C at 10 °C/min in nitrogen"
+    }
+   ]
+  },
+  {
+   "key": "microhardness",
+   "doc_id": "SYN-AN-155",
+   "short": "Microhardness",
+   "name": "microhardness measurement (Vickers or Knoop)",
+   "detect": [
+    "hardness",
+    "vickers|knoop|\\bhv\\s?0?\\.?\\d*\\b|rockwell"
+   ],
+   "example": "Vickers hardness on 3 SYN-20001 contacts",
+   "min_samples": 3,
+   "equipment": "SYN-AN-HARD",
+   "inputs": [
+    {
+     "key": "hd_where",
+     "question": "Where to indent: which location and surface (for example the contact spring arm, on a polished cross-section or on the surface)?",
+     "blocking": true,
+     "answered": "spring|\\barm\\b|\\btip\\b|\\bbase\\b|surface|cross[- ]?section|location|marked|drawing|position \\d",
+     "missing": "The indentation location is not stated.",
+     "example": "on a cross-section of the spring arm, mid-thickness"
+    },
+    {
+     "key": "hd_scale",
+     "question": "Which scale and load (for example HV 0.1), and how many indents per sample?",
+     "blocking": false,
+     "answered": "\\bhv\\s?\\d|vickers|knoop|\\bhk\\b|\\d+\\s*(gf|g|kgf)\\b|\\d+\\s*indents?",
+     "missing": "Scale, load and number of indents are not stated.",
+     "example": "HV 0.1, 5 indents per sample"
+    },
+    {
+     "key": "hd_limit",
+     "question": "What is the specification (for example 180 to 230 HV for the base metal temper)?",
+     "blocking": false,
+     "answered": "\\d+\\s*(to|-)\\s*\\d+\\s*hv|\\bhv\\b.*\\d|temper|spec",
+     "missing": "No hardness specification.",
+     "example": "180 to 230 HV"
+    }
+   ]
+  },
+  {
+   "key": "dwv_ir",
+   "doc_id": "SYN-TM-170",
+   "short": "DWV / insulation resistance",
+   "name": "dielectric withstanding voltage (DWV) and insulation resistance",
+   "detect": [
+    "\\bdwv\\b|dielectric withstand\\w*|dielectric strength|hi-?pot",
+    "insulation resistance"
+   ],
+   "example": "DWV and insulation resistance on 5 SYN-20001 connectors",
+   "min_samples": 3,
+   "equipment": "SYN-ELEC-HIPOT",
+   "inputs": [
+    {
+     "key": "dw_voltage",
+     "question": "What test voltage (AC or DC, in volts or kV) and for how long (for example 1000 V AC for 60 s; insulation resistance at 500 V DC)?",
+     "blocking": true,
+     "answered": "\\d+(\\.\\d+)?\\s*(v|kv)\\b|volts?",
+     "missing": "The test voltage and duration are not stated.",
+     "example": "750 V AC for 60 s; IR at 500 V DC"
+    },
+    {
+     "key": "dw_where",
+     "question": "Between which points: adjacent contacts, every contact to the shell, or contacts to ground? Which positions?",
+     "blocking": true,
+     "answered": "adjacent|between|to (the )?(shell|ground|housing)|contact[- ]to[- ]contact|positions?|every other|all contacts",
+     "missing": "The points the voltage is applied between are not stated.",
+     "example": "between adjacent contacts and every contact to the shell"
+    },
+    {
+     "key": "dw_limit",
+     "question": "What are the limits (maximum leakage current, for example 5 mA; minimum insulation resistance, for example 5000 MΩ)?",
+     "blocking": false,
+     "answered": "\\d+(\\.\\d+)?\\s*(ma|µa|ua)\\b|leakage|\\d+\\s*(mω|mohm|gω|gohm|megohm)|no (breakdown|flashover)",
+     "missing": "No leakage or insulation-resistance limits.",
+     "example": "leakage 5 mA max; IR 5000 MOhm min"
+    },
+    {
+     "key": "dw_condition",
+     "question": "In which condition: mated or unmated, and before or after an exposure such as humidity?",
+     "blocking": false,
+     "answered": "\\bmated\\b|\\bunmated\\b|after (humidity|exposure|cycling)|as received|before and after",
+     "missing": "The sample condition (mated/unmated, after which exposure) is not stated.",
+     "example": "mated, as received and after humidity"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "form": "smt_lab_test_request",
+ "title": "DEMO weak draft: BGA board attach",
+ "synthetic": true,
+ "fields": {
+  "firstName": "Sam",
+  "lastName": "Sample",
+  "email": "sam.sample@example.com",
+  "phone": "5550101",
+  "bPCNumber": "U0000 - Synthetic Cost Center A",
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "projectNumber": "SYN-PRJ-0099",
+  "resultsFormat": "Formal Report",
+  "requestedTestingCompletionDate": "2026-11-26",
+  "testSampleStatus": "Prototype",
+  "projectType": "Innovation",
+  "step2_rows": [
+   {
+    "productName": "Synthetic interposer 900",
+    "partNumberRevision": "SYN-30001 Rev B",
+    "solderPaste": "Lead-Free",
+    "sphereAlloy": "Leaded",
+    "sphereDiameter": "Other",
+    "stencil": "In House"
+   }
+  ],
+  "step3_rows": [
+   {
+    "productName": "Synthetic interposer 900",
+    "partNumberRevision": "SYN-30001 Rev B",
+    "quantity": "0",
+    "solderPaste": "Leaded",
+    "stencil": "Needs Designed",
+    "stencilNumber": "",
+    "placementMethod": "Hand Placed"
+   }
+  ],
+  "step4_rows": [
+   {
+    "productName": "Synthetic interposer 900",
+    "partNumberRevision": "SYN-30001 Rev B",
+    "resinInformation": "LCP",
+    "additionalInformation": ""
+   }
+  ],
+  "postTestingSampleDisposition": "Scrap",
+  "step5_rows": [
+   {
+    "testsToBePerformed": "board attach",
+    "applicableSpecifications": "SYN-TM-101",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "no",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "need asap",
+  "sendCopiesTo": "sam.sample@example.com"
+ },
+ "_about": "SYNTHETIC weak draft with typical mistakes, used to demonstrate the quality flags. Not a real request."
+}

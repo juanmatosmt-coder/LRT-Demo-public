@@ -1,0 +1,73 @@
+{
+ "id": "SYN-LR-015",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] FTIR on a melted area",
+ "kind": "contrast example (what to avoid)",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "",
+  "requestedTestingCompletionDate": "2024-12-01",
+  "testSite": "Lab A",
+  "testSampleStatus": "Prototype",
+  "projectType": "Operational Support",
+  "step2_rows": [
+   {
+    "productName": "Synthetic high-speed connector",
+    "partNumberRevision": "SYN-41515 Rev A",
+    "traceabilityMfgLotInfo": "",
+    "contactBaseMaterial": "CuTi",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "FTIR.",
+    "applicableSpecifications": "Need FTIR on the melted area to identify the polymer.",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-08-19",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Lab/Failure Analysis"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Results Format is empty.",
+   "Item 1: Traceability Mfg Lot Info is empty.",
+   "Item 1: Housing Material is empty.",
+   "Post-Testing Sample Disposition is empty.",
+   "Item 1: Specification Revision is empty.",
+   "Additional Information is empty.",
+   "The requested date is in the past."
+  ],
+  "should_fix": [
+   "Item 1: 'FTIR.' is too short to plan from."
+  ],
+  "good_practice": [
+   "'FTIR material analysis' has no procedure in the assistant's library.",
+   "Item 1: SYN-41515 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Asks one question: identify the polymer."
+ ],
+ "gaps": [
+  "Requested date months before the request.",
+  "No background on the melted area.",
+  "Results format and disposition blank."
+ ]
+}

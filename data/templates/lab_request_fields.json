@@ -1,0 +1,17 @@
+{
+  "_about": "PLACEHOLDER field list for a lab request, from the Checkpoint 1.1 definition of a complete request. It will be replaced by the schema captured from the online lab request form once the form is shared.",
+  "fields": [
+    {"name": "objective", "type": "text", "required": true},
+    {"name": "part_numbers", "type": "list", "required": true},
+    {"name": "sample_quantity", "type": "integer", "required": true},
+    {"name": "sample_history", "type": "text", "required": true, "note": "as-molded or reflowed, storage since molding"},
+    {"name": "test_methods", "type": "list", "required": true},
+    {"name": "test_conditions", "type": "text", "required": true, "note": "thermal profile, cycling profile, force range"},
+    {"name": "test_sequence", "type": "list", "required": true},
+    {"name": "measurements", "type": "list", "required": true},
+    {"name": "acceptance_limits", "type": "text", "required": false},
+    {"name": "reporting_format", "type": "text", "required": true},
+    {"name": "supporting_documents", "type": "list", "required": false},
+    {"name": "engineer_approval", "type": "boolean", "required": true, "note": "set only by the engineer"}
+  ]
+}

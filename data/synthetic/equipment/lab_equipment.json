@@ -1,0 +1,716 @@
+{
+ "_about": "SYNTHETIC lab equipment database for the course demo: same structure as the real one (data/private/equipment/lab_equipment.json), made-up equipment and limits.",
+ "_schema": "lab_equipment.v1",
+ "lab": {
+  "name": "Synthetic Test Lab",
+  "accreditation": null,
+  "areas": [
+   "mechanical",
+   "electrical",
+   "environmental",
+   "analytical"
+  ]
+ },
+ "_rules": {
+  "load_cell_usable_range_pct_of_capacity": [
+   10,
+   90
+  ]
+ },
+ "test_methods": [
+  {
+   "id": "T01",
+   "name": "Contact retention",
+   "group": "mechanical",
+   "standards": [
+    "EIA 364-29"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-MECH-UTM"
+   ]
+  },
+  {
+   "id": "T04",
+   "name": "Insertion force / withdrawal force",
+   "group": "mechanical",
+   "standards": [
+    "EIA 364-05"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-MECH-UTM"
+   ]
+  },
+  {
+   "id": "T06",
+   "name": "Normal force",
+   "group": "mechanical",
+   "standards": [
+    "EIA 364-04"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-MECH-UTM"
+   ]
+  },
+  {
+   "id": "T10",
+   "name": "Thickness via X-ray fluorescence",
+   "group": "plating",
+   "standards": [
+    "ASTM B568"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-AN-XRF"
+   ]
+  },
+  {
+   "id": "T14",
+   "name": "Humidity, steady state and cyclic",
+   "group": "environmental",
+   "standards": [
+    "EIA 364-31"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-ENV-TH",
+    "SYN-ENV-TH-NEW"
+   ]
+  },
+  {
+   "id": "T15",
+   "name": "Thermal shock",
+   "group": "environmental",
+   "standards": [
+    "EIA 364-32"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-ENV-TS"
+   ]
+  },
+  {
+   "id": "T18",
+   "name": "Thermal aging",
+   "group": "environmental",
+   "standards": [
+    "EIA 364-17"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-ENV-OVEN"
+   ]
+  },
+  {
+   "id": "T19",
+   "name": "Vibration",
+   "group": "environmental",
+   "standards": [
+    "EIA 364-28"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-MECH-SHAKER"
+   ]
+  },
+  {
+   "id": "T20",
+   "name": "Current rating, temperature rise",
+   "group": "performance",
+   "standards": [
+    "EIA 364-70"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-ELEC-TRISE"
+   ]
+  },
+  {
+   "id": "T21",
+   "name": "Dielectric withstanding voltage",
+   "group": "performance",
+   "standards": [
+    "EIA 364-20"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-ELEC-HIPOT"
+   ]
+  },
+  {
+   "id": "T23",
+   "name": "Insulation resistance",
+   "group": "performance",
+   "standards": [
+    "EIA 364-21"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-ELEC-HIPOT"
+   ]
+  },
+  {
+   "id": "T24",
+   "name": "Resistance measurements",
+   "group": "performance",
+   "standards": [
+    "EIA 364-23"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-ELEC-LLCR"
+   ]
+  },
+  {
+   "id": "T25",
+   "name": "Thermal cycling",
+   "group": "environmental",
+   "standards": [
+    "SYN-TM-110"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-ENV-TC"
+   ]
+  },
+  {
+   "id": "T26",
+   "name": "Warpage during reflow",
+   "group": "analytical",
+   "standards": [
+    "SYN-TM-101"
+   ],
+   "accredited": false,
+   "equipment": [
+    "SYN-AN-WARPAGE"
+   ]
+  },
+  {
+   "id": "T05",
+   "name": "Durability (mating cycles)",
+   "group": "mechanical",
+   "standards": [],
+   "accredited": false,
+   "equipment": [
+    "SYN-MECH-CYCLER"
+   ]
+  },
+  {
+   "id": "T30",
+   "name": "SEM / EDS inspection",
+   "group": "analytical",
+   "standards": [],
+   "accredited": false,
+   "equipment": [
+    "SYN-AN-SEM"
+   ]
+  },
+  {
+   "id": "T31",
+   "name": "FTIR material identification",
+   "group": "analytical",
+   "standards": [],
+   "accredited": false,
+   "equipment": [
+    "SYN-AN-FTIR"
+   ]
+  },
+  {
+   "id": "T32",
+   "name": "Thermal analysis (DSC, TMA, TGA)",
+   "group": "analytical",
+   "standards": [],
+   "accredited": false,
+   "equipment": [
+    "SYN-AN-TA"
+   ]
+  },
+  {
+   "id": "T33",
+   "name": "Microhardness",
+   "group": "analytical",
+   "standards": [],
+   "accredited": false,
+   "equipment": [
+    "SYN-AN-HARD"
+   ]
+  },
+  {
+   "id": "T34",
+   "name": "Cross-section (microsection)",
+   "group": "analytical",
+   "standards": [],
+   "accredited": false,
+   "equipment": [
+    "SYN-AN-METALLO"
+   ]
+  },
+  {
+   "id": "T35",
+   "name": "Plating porosity",
+   "group": "analytical",
+   "standards": [],
+   "accredited": false,
+   "equipment": [
+    "SYN-AN-PORO"
+   ]
+  }
+ ],
+ "equipment": [
+  {
+   "id": "SYN-MECH-UTM",
+   "name": "Universal force test frame",
+   "area": "mechanical",
+   "count": 2,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T01",
+    "T04",
+    "T06"
+   ],
+   "standards": [
+    "EIA 364-29",
+    "EIA 364-05",
+    "EIA 364-04"
+   ],
+   "capabilities": [
+    "insertion and withdrawal force",
+    "contact retention",
+    "normal force"
+   ],
+   "limits": {
+    "load_cell_capacity_max_n": 1000
+   },
+   "unknown": [
+    "crosshead speed range"
+   ],
+   "source": "synthetic",
+   "notes": "Load cells for this frame are listed in equipment.json (INSTRON-1)."
+  },
+  {
+   "id": "SYN-MECH-SHAKER",
+   "name": "Electrodynamic shaker",
+   "area": "mechanical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T19"
+   ],
+   "standards": [
+    "EIA 364-28"
+   ],
+   "capabilities": [
+    "sine",
+    "random",
+    "shock"
+   ],
+   "limits": {
+    "frequency_max_hz": 2000,
+    "sine_accel_max_gpk": 50,
+    "random_accel_max_grms": 30
+   },
+   "unknown": [
+    "max payload"
+   ],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-ELEC-LLCR",
+   "name": "Low-level contact resistance system",
+   "area": "electrical",
+   "count": 2,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T24"
+   ],
+   "standards": [
+    "EIA 364-23"
+   ],
+   "capabilities": [
+    "dry-circuit contact resistance"
+   ],
+   "limits": {
+    "open_circuit_voltage_max_mv": 20,
+    "test_current_max_ma": 100,
+    "scanner_channels": 40
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-ELEC-HIPOT",
+   "name": "High-voltage tester",
+   "area": "electrical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T21",
+    "T23"
+   ],
+   "standards": [
+    "EIA 364-20",
+    "EIA 364-21"
+   ],
+   "capabilities": [
+    "dielectric withstanding voltage",
+    "insulation resistance"
+   ],
+   "limits": {
+    "voltage_max_kv": 3
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-ELEC-TRISE",
+   "name": "Temperature rise bench",
+   "area": "electrical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T20"
+   ],
+   "standards": [
+    "EIA 364-70"
+   ],
+   "capabilities": [
+    "current rating"
+   ],
+   "limits": {
+    "current_max_a": 100
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-ENV-TS",
+   "name": "Two-zone thermal shock chamber",
+   "area": "environmental",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T15"
+   ],
+   "standards": [
+    "EIA 364-32"
+   ],
+   "capabilities": [],
+   "limits": {
+    "cold_zone_c": [
+     -65,
+     0
+    ],
+    "hot_zone_c": [
+     60,
+     150
+    ],
+    "working_volume_ft3": 3
+   },
+   "unknown": [
+    "transfer time"
+   ],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-ENV-TC",
+   "name": "Air-to-air thermal cycling chamber",
+   "area": "environmental",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T25"
+   ],
+   "standards": [
+    "SYN-TM-110"
+   ],
+   "capabilities": [
+    "thermal cycling"
+   ],
+   "limits": {
+    "temp_min_c": -55,
+    "temp_max_c": 150,
+    "ramp_max_c_per_min": 15
+   },
+   "unknown": [],
+   "source": "synthetic",
+   "notes": "Same chamber as TC-2 in equipment.json."
+  },
+  {
+   "id": "SYN-ENV-TH",
+   "name": "Temperature/humidity chamber",
+   "area": "environmental",
+   "count": 2,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T14"
+   ],
+   "standards": [
+    "EIA 364-31"
+   ],
+   "capabilities": [
+    "steady-state and cyclic humidity"
+   ],
+   "limits": {
+    "temp_min_c": -20,
+    "temp_max_c": 95,
+    "rh_min_pct": 20,
+    "rh_max_pct": 95
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-ENV-TH-NEW",
+   "name": "Temperature/humidity chamber (on order)",
+   "area": "environmental",
+   "count": 1,
+   "model": null,
+   "status": "planned",
+   "tests": [
+    "T14"
+   ],
+   "standards": [
+    "EIA 364-31"
+   ],
+   "capabilities": [],
+   "limits": {},
+   "unknown": [
+    "limits"
+   ],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-ENV-OVEN",
+   "name": "Temperature life oven",
+   "area": "environmental",
+   "count": 2,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T18"
+   ],
+   "standards": [
+    "EIA 364-17"
+   ],
+   "capabilities": [],
+   "limits": {
+    "temp_max_c": 200,
+    "working_volume_ft3": 10
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-AN-XRF",
+   "name": "XRF plating thickness system",
+   "area": "analytical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T10"
+   ],
+   "standards": [
+    "ASTM B568"
+   ],
+   "capabilities": [
+    "plating thickness"
+   ],
+   "limits": {
+    "spot_size_um": 50
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-AN-WARPAGE",
+   "name": "Shadow moire warpage system with reflow chamber",
+   "area": "analytical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T26"
+   ],
+   "standards": [
+    "SYN-TM-101"
+   ],
+   "capabilities": [
+    "warpage vs temperature"
+   ],
+   "limits": {
+    "temp_min_c": 20,
+    "temp_max_c": 300,
+    "ramp_max_c_per_s": 3.0,
+    "sample_max_mm": 200
+   },
+   "unknown": [],
+   "source": "synthetic",
+   "notes": "Same system as SM-1 in equipment.json."
+  },
+  {
+   "id": "SYN-MECH-CYCLER",
+   "name": "Mating cycle fixture",
+   "area": "mechanical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T05"
+   ],
+   "standards": [],
+   "capabilities": [
+    "mating durability cycling"
+   ],
+   "limits": {
+    "cycle_rate_max_per_min": 12,
+    "stroke_max_mm": 50
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-AN-SEM",
+   "name": "Scanning electron microscope with EDS",
+   "area": "analytical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T30"
+   ],
+   "standards": [],
+   "capabilities": [
+    "SEM imaging",
+    "EDS element analysis"
+   ],
+   "limits": {
+    "sample_mm": 100,
+    "magnification_max_x": 100000
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-AN-FTIR",
+   "name": "FTIR spectrometer with ATR",
+   "area": "analytical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T31"
+   ],
+   "standards": [],
+   "capabilities": [
+    "material identification",
+    "residue identification"
+   ],
+   "limits": {
+    "sample_mm": 50
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-AN-TA",
+   "name": "Thermal analysis (DSC, TMA, TGA)",
+   "area": "analytical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T32"
+   ],
+   "standards": [],
+   "capabilities": [
+    "glass transition",
+    "melting point",
+    "CTE",
+    "decomposition"
+   ],
+   "limits": {
+    "temp_c": [
+     -70,
+     600
+    ]
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-AN-HARD",
+   "name": "Microhardness tester (Vickers, Knoop)",
+   "area": "analytical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T33"
+   ],
+   "standards": [],
+   "capabilities": [
+    "microhardness"
+   ],
+   "limits": {
+    "load_gf": [
+     10,
+     1000
+    ]
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-AN-METALLO",
+   "name": "Metallography (cut, mount, polish) with optical microscope",
+   "area": "analytical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T34"
+   ],
+   "standards": [],
+   "capabilities": [
+    "cross-section",
+    "plating layer measurement"
+   ],
+   "limits": {
+    "sample_mm": 40
+   },
+   "unknown": [],
+   "source": "synthetic"
+  },
+  {
+   "id": "SYN-AN-PORO",
+   "name": "Porosity exposure chamber (acid vapor)",
+   "area": "analytical",
+   "count": 1,
+   "model": null,
+   "status": "available",
+   "tests": [
+    "T35"
+   ],
+   "standards": [],
+   "capabilities": [
+    "plating porosity"
+   ],
+   "limits": {
+    "sample_mm": 150
+   },
+   "unknown": [],
+   "source": "synthetic"
+  }
+ ]
+}

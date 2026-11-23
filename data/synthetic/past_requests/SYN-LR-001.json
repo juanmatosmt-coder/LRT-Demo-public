@@ -1,0 +1,69 @@
+{
+ "id": "SYN-LR-001",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Temperature rise, parallel-board fixture",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Prototype",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Synthetic power connector",
+    "partNumberRevision": "SYN-40101 Rev A",
+    "traceabilityMfgLotInfo": "Prototype build",
+    "contactBaseMaterial": "Copper alloy",
+    "contactPlating": "Au over Ni",
+    "contactLubricant": "None",
+    "housingMaterial": "High-temperature nylon",
+    "quantity": "2"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "Temperature rise on the 2 samples supplied. Increase current in steps until a 30 °C rise. Two thermocouples per sample, one on each side of the contact array. Record voltage at each step. Expected current 2-3 A.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "Parallel-board version of the series-board test in SYN-LR-PRIOR-01. One test per sample. Each sample is assembled with 2 press-fit pins and 8 screws; tape covers the middle screw holes to prevent shorting.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2025-01-14",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Development"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'temperature rise' has no procedure in the assistant's library.",
+   "Item 1: SYN-40101 is not in the parts directory."
+  ]
+ },
+ "why_good": [
+  "Points to the earlier test and says what is different this time.",
+  "Gives the stopping point (30 °C rise) and the thermocouple locations.",
+  "States the expected current, so the lab can choose the supply and range in advance."
+ ],
+ "gaps": [
+  "No standard cited for temperature rise (EIA-364-70 is the usual method).",
+  "No lot; ambient and airflow not stated."
+ ]
+}

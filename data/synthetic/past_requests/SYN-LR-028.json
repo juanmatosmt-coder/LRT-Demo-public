@@ -1,0 +1,131 @@
+{
+ "id": "SYN-LR-028",
+ "synthetic": true,
+ "_notice": "SYNTHETIC: invented for the CMU/Emeritus capstone. Not a real request; no real names, customers, programs, part numbers, lots, documents or results.",
+ "form": "lab_test_request",
+ "title": "[SYNTHETIC] Gasket ageing: two suppliers by three conditions",
+ "kind": "good example",
+ "source": "synthetic, written to mirror patterns in a private library of real requests",
+ "fields": {
+  "businessUnit": "BU-A",
+  "mFGSite": "SITE-A",
+  "resultsFormat": "Data and Observations",
+  "requestedTestingCompletionDate": "",
+  "testSite": "Lab A",
+  "testSampleStatus": "Pre-Production",
+  "projectType": "New Product Development",
+  "step2_rows": [
+   {
+    "productName": "Supplier X gasket, baseline",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Supplier X gasket, 125 °C 72 days",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Supplier X gasket, 85 °C/85 %RH 72 days",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Supplier Y gasket, baseline",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Supplier Y gasket, 125 °C 72 days",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   },
+   {
+    "productName": "Supplier Y gasket, 85 °C/85 %RH 72 days",
+    "partNumberRevision": "",
+    "traceabilityMfgLotInfo": "N/A",
+    "contactBaseMaterial": "",
+    "contactPlating": "",
+    "contactLubricant": "",
+    "housingMaterial": "",
+    "quantity": "1"
+   }
+  ],
+  "postTestingSampleDisposition": "Send back to requestor",
+  "step3_rows": [
+   {
+    "testsToBePerformed": "FTIR and TGA. Provide each spectrum and an overlay of baseline, thermal-aged and 85/85 samples, normalised to baseline. Report decomposition onset and filler content.",
+    "applicableSpecifications": "",
+    "specificationRevision": ""
+   }
+  ],
+  "confidentialTestsOrSamples": "yes",
+  "canTestingBeSubcontracted": "no",
+  "additionalInformation": "The top surface discoloured; the glass-contact side less so. FTIR on both faces; the bottom face is marked red.",
+  "sendCopiesTo": ""
+ },
+ "lab_section": {
+  "request_date": "2026-03-10",
+  "reviewed_and_approved_by_lab": true,
+  "legacy_test_type": "Product/Process Qualification"
+ },
+ "quality_at_request_date": {
+  "must_fix": [
+   "Item 1: Part Number Revision is empty.",
+   "Item 1: Housing Material is empty.",
+   "Item 2: Part Number Revision is empty.",
+   "Item 2: Housing Material is empty.",
+   "Item 3: Part Number Revision is empty.",
+   "Item 3: Housing Material is empty.",
+   "Item 4: Part Number Revision is empty.",
+   "Item 4: Housing Material is empty.",
+   "Item 5: Part Number Revision is empty.",
+   "Item 5: Housing Material is empty.",
+   "Item 6: Part Number Revision is empty.",
+   "Item 6: Housing Material is empty.",
+   "Item 1: Applicable Specifications is empty.",
+   "Item 1: Specification Revision is empty."
+  ],
+  "should_fix": [
+   "The objective is not stated."
+  ],
+  "good_practice": [
+   "'FTIR material analysis' has no procedure in the assistant's library.",
+   "'TGA thermal analysis' has no procedure in the assistant's library."
+  ]
+ },
+ "why_good": [
+  "Clean supplier-by-condition grid.",
+  "Says how to present results.",
+  "Explains an observation and asks for both faces."
+ ],
+ "gaps": [
+  "No lots.",
+  "No requested date."
+ ]
+}
