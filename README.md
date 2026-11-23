@@ -1,3 +1,6 @@
+Capstone Video Link
+https://youtu.be/qrpr3tVNEig
+
 # Lab Request Assistant
 
 A local assistant that helps an engineer write a complete laboratory test request: describe the test in a chat, it asks
