@@ -1,6 +1,7 @@
 """Small checks used by install.bat and start.bat (kept in Python so the batch files stay simple).
 
   python tools/launcher.py up <url> <seconds>    exit 0 once the local URL answers (waits up to <seconds>)
+  python tools/launcher.py gpu                   exit 0 if the AI model packages are installed and torch sees an NVIDIA GPU
   python tools/launcher.py has-model             exit 0 if the AI model packages, a CUDA GPU and the model files are available
   python tools/launcher.py find-model            say where the model files are looked for and whether they are there
   python tools/launcher.py prefetch              download the chat and embedding models once (install only)
@@ -145,7 +146,8 @@ def stop():
     return 0
 
 
-def has_model():
+def gpu():
+    """The GPU packages are installed and torch sees an NVIDIA GPU (the model files are not checked)."""
     try:
         import torch  # noqa: F401
         import transformers  # noqa: F401
@@ -159,7 +161,12 @@ def has_model():
         print("  torch is installed but sees no CUDA GPU (the CPU-only build may be installed)")
         return 1
     print(f"  GPU: {torch.cuda.get_device_name(0)}")
-    return find_model(quiet=True)
+    return 0
+
+
+def has_model():
+    """GPU packages, a visible GPU, and the model files on disk: everything start.bat needs."""
+    return gpu() or find_model(quiet=True)
 
 
 def prefetch():
@@ -201,4 +208,4 @@ if __name__ == "__main__":
         import lrt_version
         print(lrt_version.text())
         sys.exit(0)
-    sys.exit({"stop": stop, "has-model": has_model, "find-model": find_model, "prefetch": prefetch, "selftest": selftest}.get(cmd, lambda: print(__doc__) or 2)())
+    sys.exit({"stop": stop, "gpu": gpu, "has-model": has_model, "find-model": find_model, "prefetch": prefetch, "selftest": selftest}.get(cmd, lambda: print(__doc__) or 2)())

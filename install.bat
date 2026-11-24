@@ -49,9 +49,10 @@ echo.
 echo Installing the AI model packages (CUDA 12.6 build of torch) ...
 %VPY% -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126 || goto fail
 %VPY% -m pip install transformers accelerate sentence-transformers bitsandbytes pillow fastapi uvicorn || goto fail
-%VPY% tools\launcher.py has-model || ( echo The GPU is not visible to torch. Check the NVIDIA driver, then run "install.bat model" again. & pause & exit /b 1 )
+%VPY% tools\launcher.py gpu || ( echo The GPU is not visible to torch. Check the NVIDIA driver, then run "install.bat model" again. & pause & exit /b 1 )
 echo Downloading the model once ...
 %VPY% tools\launcher.py prefetch || goto fail
+%VPY% tools\launcher.py has-model || ( echo The model files were not found after the download. See the messages above. & pause & exit /b 1 )
 
 :done
 echo.
