@@ -1,6 +1,7 @@
 # Lab Request Assistant
 
-**Capstone video:** https://youtu.be/qrpr3tVNEig
+**Capstone video:** https://youtu.be/qrpr3tVNEig  
+**Walkthrough video (setup and running it with the AI):** https://youtu.be/Bv6jKg2yCn8
 
 A local assistant that helps an engineer write a complete laboratory test request: describe the test in a chat, it asks
 for what the procedure requires, cites the procedure, proposes the form fields, and checks the draft. It never submits.
@@ -18,6 +19,8 @@ without the private data see the SYNTHETIC past-request library (`data/synthetic
 | 3 | `stop.bat` | Stops the tool (port 8010) and the local AI model (port 8000), however their windows were opened: it uses the PID files in `traces\` and the ports, and stops only Python processes. |
 
 ## Run it with the AI (local Qwen)
+
+Step by step on video: https://youtu.be/Bv6jKg2yCn8
 
 Needs: Windows 10/11, Python 3.12, an NVIDIA GPU with 16 GB of VRAM, about 25 GB of free disk, and internet once for setup.
 After setup everything runs on this computer, with no network.
