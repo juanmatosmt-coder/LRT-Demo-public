@@ -1,7 +1,6 @@
-Capstone Video Link
-https://youtu.be/qrpr3tVNEig
-
 # Lab Request Assistant
+
+**Capstone video:** https://youtu.be/qrpr3tVNEig
 
 A local assistant that helps an engineer write a complete laboratory test request: describe the test in a chat, it asks
 for what the procedure requires, cites the procedure, proposes the form fields, and checks the draft. It never submits.
@@ -13,10 +12,29 @@ without the private data see the SYNTHETIC past-request library (`data/synthetic
 | Step | Command | What it does |
 |---|---|---|
 | 1 | `install.bat` | Creates `.venv` (an existing one is kept) and runs the **non-AI self-check** (`tools\selfcheck.py`, about 10 s, no network): it prints the version (from `VERSION`, plus the Git commit) and gives PASS/FAIL for environment, synthetic data files, quality-check known answers, the equipment range check, seven guardrails, one chat turn by rules, the local-only rules, and a web-server smoke test (page served, private files blocked). Private data and the AI model are reported as INFO only. The AI model is not used or tested here. Needs Python 3.10+ (3.12 preferred); the app itself needs no packages. |
-| 1b | `install.bat model` | Also installs the GPU packages and downloads the local model once (NVIDIA GPU, several GB). Skip it if `.venv` already has them. |
+| 1b | `install.bat model` | Also installs the GPU packages and downloads the local AI model once: Qwen3.5-9B (about 20 GB) and the embedding model. Needs an NVIDIA GPU with 16 GB of VRAM. Skip it if `.venv` already has them. |
 | 2 | `start.bat` | Starts the local AI model in its own window (if installed), starts the tool, and opens the form in the browser. |
 | 2b | `start.bat demo` | Same without the AI model: the assistant drafts by rules. For a quick look on any PC. |
 | 3 | `stop.bat` | Stops the tool (port 8010) and the local AI model (port 8000), however their windows were opened: it uses the PID files in `traces\` and the ports, and stops only Python processes. |
+
+## Run it with the AI (local Qwen)
+
+Needs: Windows 10/11, Python 3.12, an NVIDIA GPU with 16 GB of VRAM, about 25 GB of free disk, and internet once for setup.
+After setup everything runs on this computer, with no network.
+
+1. `install.bat model`: runs the non-AI self-check, then installs the GPU packages and downloads Qwen3.5-9B (about 20 GB)
+   and the embedding model once.
+2. `start.bat`: opens a window titled **LRT - AI model (Qwen)** and waits until the model answers (the first load can
+   take several minutes), then starts the tool and opens the request form at http://127.0.0.1:8010/gui/request_form.html.
+3. In the form, press **Ask the assistant**. This chat panel is where you talk to the AI. Check its header: the badge
+   should read **AI on**, and the **AI model** line should name **Qwen3.5-9B** and this computer. If it reads **No AI**, the model is still loading or did not
+   start: check the Qwen window. Values the model proposed carry a purple **AI** label; **Rule** and **Procedure** mark
+   values set by fixed rules or copied from the cited procedure.
+4. Describe the test in plain words (part, samples, test and conditions, why), answer the questions, then press
+   **Apply to form** and **Check quality**. Nothing is ever submitted from here.
+5. `stop.bat` stops the tool and the model.
+
+No NVIDIA GPU? `start.bat demo` runs the same form, questions and checks without the AI model (badge: **Demo: no AI**).
 
 **AI model already installed in another folder?** Copy `local_settings.example.bat` to `local_settings.bat` (kept out
 of Git) and set `LRT_MODEL_PYTHON` to that folder's `.venv\Scripts\python.exe`. If the model files are not in the usual
@@ -52,17 +70,6 @@ an admin (or the server computer) set the status *accepted / added / rejected* w
 accepted items to the procedure, the questions (`assistant/guardrails.py`) or the quality check (`assistant/quality.py`).
 A fresh copy shows the SYNTHETIC examples in `data/synthetic/feedback/`.
 
-**No Windows PC or no GPU? Google Colab (SYNTHETIC data only).** [Open in Colab](https://colab.research.google.com/github/juanmatosmt-coder/LRT-Demo-public/blob/main/colab/LRT_Colab.ipynb). `colab/LRT_Colab.ipynb` runs the same tool on
-Colab: the non-AI self-check, the chat from the notebook, the optional AI model on Colab's free T4 GPU, the form page
-through Colab's private proxy, and the security tests. Colab is Google's cloud, unlike the local-only Windows version,
-so only the committed SYNTHETIC data goes there: the notebook stops if `data/private` holds any file, and
-`serve.py --colab` refuses to start in that case and turns sign-in off. Cell 1 clones the public repository; without access to GitHub, upload a zip
-made with `git archive -o LRT-Demo-synthetic.zip HEAD` (committed files only). `python tests/test_colab_notebook.py` runs
-the notebook's cells outside Colab (9 checks).
-
-In the form, press **Ask the assistant**, describe the test (part, samples, test and conditions, why), answer its
-questions, then **Apply to form** and **Check quality**. The badge in the chat says which mode is running: *AI on*,
-*No AI* (the model is not running, so drafts are built by fixed rules), or *Demo: no AI*.
 
 What one chat turn does (`assistant/chat.py`): screens the message for instructions aimed at the AI, links, credentials
 and hidden characters; refuses to submit or to reveal prompts, keys or private files; recognises the tests and refers

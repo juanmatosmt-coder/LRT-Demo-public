@@ -61,17 +61,6 @@ FEEDBACK_SENT = {}                 # client -> times of recent feedback entries 
 LOCAL_CLIENTS = {"127.0.0.1", "::1", "::ffff:127.0.0.1"}
 
 
-def is_colab_host(host):
-    """Google Colab's proxy for a port in this notebook, e.g. abc123-8010-colab.googleusercontent.com."""
-    name = host.split(":")[0]
-    return name.endswith("-colab.googleusercontent.com") or name.endswith(".colab.dev") or name.endswith(".prod.colab.dev")
-
-
-def private_data_present():
-    """True if data/private holds anything besides its README (real company data must never reach a cloud notebook)."""
-    d = ROOT / "data" / "private"
-    return d.exists() and any(p.name != "README.md" for p in d.iterdir())
-
 # Static files the pages may load. Anything else is "not found".
 PUBLIC_PREFIXES = ("/gui/", "/data/templates/", "/data/synthetic/")
 PRIVATE_FILES = ("/data/private/branding/", "/data/private/lab_request_forms_schema.json",
@@ -216,20 +205,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     tls = False
     port = 8010
     extra_hosts = set()
-    colab = False                  # --colab: also accept Google Colab's per-notebook proxy (synthetic data only)
 
     # -- trust
     def client_is_local(self):
-        # In --colab mode the server still listens on 127.0.0.1 only, so every client is inside the Colab VM
-        # (Colab's proxy, which only the notebook's owner can open). data/private is empty there by rule.
-        return self.client_address[0] in LOCAL_CLIENTS or self.colab
+        return self.client_address[0] in LOCAL_CLIENTS
 
     def host_ok(self):
         host = (self.headers.get("Host") or "").lower()
         name = host.rsplit(":", 1)[0].strip("[]") if host.count(":") <= 1 or host.startswith("[") else host
         if name in ("127.0.0.1", "localhost", "::1") or host in self.extra_hosts:
-            return True
-        if self.colab and is_colab_host(host):
             return True
         return self.lan and is_ip_host(host)
 
@@ -311,7 +295,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     # -- feedback (assistant/feedback.py): who wrote it, and who may see and manage it
     def feedback_path(self):
         from assistant import feedback
-        return ROOT / "traces" / "feedback" / "feedback.jsonl" if self.colab else feedback.PATH
+        return feedback.PATH
 
     def feedback_by(self):
         return self.user() or ("this computer" if self.client_is_local() else "guest")
@@ -327,10 +311,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         return f"{COOKIE}={token}; Path=/; HttpOnly; SameSite=Strict; Max-Age={max_age}" + ("; Secure" if self.tls else "")
 
     def same_origin(self, origin):
-        netloc = urlparse(origin).netloc.lower()
-        if netloc == (self.headers.get("Host") or "").lower():
-            return True
-        return self.colab and urlparse(origin).scheme == "https" and is_colab_host(netloc)
+        return urlparse(origin).netloc.lower() == (self.headers.get("Host") or "").lower()
 
     def write_allowed(self):
         """Writes must be JSON sent by this page: browsers cannot send that cross-site without permission."""
@@ -636,7 +617,6 @@ def main():
     ap.add_argument("--allow-host", action="append", default=[], help="extra host name the browser may use, e.g. mypc.local:8010")
     ap.add_argument("--tls-cert"), ap.add_argument("--tls-key")
     ap.add_argument("--make-admin"), ap.add_argument("--remove-admin")
-    ap.add_argument("--colab", action="store_true", help="Google Colab: accept the notebook's proxy. SYNTHETIC data only")
     a = ap.parse_args()
     if a.make_admin or a.remove_admin:
         return set_admin((a.make_admin or a.remove_admin).lower(), bool(a.make_admin))
@@ -648,14 +628,6 @@ def main():
     Handler.register_local = not a.no_register
     Handler.allow_register = not a.no_register and (not a.allow_lan or a.allow_register)
     Handler.extra_hosts = {h.lower() for h in a.allow_host}
-    if a.colab:
-        if a.allow_lan or host not in LOOPBACK:
-            sys.exit("[gui] --colab listens on 127.0.0.1 only; it cannot be combined with --allow-lan.")
-        if private_data_present():
-            sys.exit("[gui] --colab refused: data/private holds files. Colab is Google's cloud; use SYNTHETIC data only.")
-        Handler.colab = True
-        Handler.register_local = Handler.allow_register = False     # guests only: drafts stay in the browser
-        print("[gui] Colab mode: Google's notebook proxy is accepted; SYNTHETIC data only.", flush=True)
     srv = http.server.ThreadingHTTPServer((host, a.port), functools.partial(Handler, directory=str(ROOT)))
     scheme = "http"
     if a.tls_cert and a.tls_key:

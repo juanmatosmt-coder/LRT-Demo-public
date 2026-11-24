@@ -113,7 +113,7 @@ def load_models():
     print(f"Loading embedding model {EMBED_MODEL} ...", flush=True)
     _embedder = SentenceTransformer(EMBED_MODEL, device=device)
     print(f"Loading chat model {CHAT_MODEL} (first run downloads it) ...", flush=True)
-    # bfloat16 on GPUs that support it (RTX 30xx and newer); float16 on older ones such as Colab's T4.
+    # bfloat16 on GPUs that support it (RTX 30xx and newer); float16 on older ones (for example a T4).
     half = torch.bfloat16 if device == "cuda" and torch.cuda.is_bf16_supported() else torch.float16
     if MULTIMODAL:
         from transformers import AutoModelForMultimodalLM, AutoProcessor

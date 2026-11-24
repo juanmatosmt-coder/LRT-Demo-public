@@ -10,7 +10,6 @@ The Lab Request Assistant is a local test suite. It runs on one computer, uses o
 | Accounts | `data/private/users.json`: salted PBKDF2 hashes (240,000 rounds), no passwords | Nobody over the web |
 | Saved drafts | `data/private/drafts/<user>/` | Only the signed-in owner |
 | Feedback (`data/private/feedback/feedback.jsonl`) | Append-only log on the server, never committed | Anyone trusted may add; this computer and admins see all and set status; other signed-in users see their own; network guests nothing. Validated, size-limited, rate-limited (200/hour/device), screened for text aimed at the AI and stored as data only (never sent to the model); CSV export escapes formula cells |
-| Google Colab version (`colab/LRT_Colab.ipynb`) | Google's cloud | SYNTHETIC data only: the notebook and `serve.py --colab` refuse to run if `data/private` holds files; the server listens on 127.0.0.1 and is reached only through Colab's per-user proxy; sign-in is off |
 | Run logs (request text, model replies) | `traces/` (never committed, never served) | Only on the computer; `LRT_TRACE_TEXT=0` keeps timings and counts but drops the text |
 | AI key for an approved remote AI service | The `LRT_AI_KEY` environment variable only | Never written to logs or files |
 
